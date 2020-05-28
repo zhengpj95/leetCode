@@ -36,6 +36,8 @@ var addBinary = function (a, b) {
 };
 
 /**
+ * Runtime: 80 ms
+ * Memory Usage: 38.4 MB
  * 使用数组的解法，逢二进一
  * @param {string} a
  * @param {string} b
@@ -94,5 +96,28 @@ var addBinary3 = function (a, b) {
 	return sum.toString(2);
 };
 
-console.log(addBinary3('11', '1'));
-console.log(addBinary3('1010', '1011'));
+/**
+ * Runtime: 80 ms, faster than 24.46% of JavaScript online submissions for Add Binary.
+ * Memory Usage: 37.3 MB, less than 14.29% of JavaScript online submissions for Add Binary.
+ * @param {string} a
+ * @param {string} b
+ */
+var addBinary4 = function (a, b) {
+	let res = '';
+	let overflow = 0;
+
+	for (let i = a.length - 1, j = b.length - 1; i >= 0 || j >= 0; i--, j--) {
+		let sum = overflow;
+		sum += a[i] ? parseInt(a[i]) : 0;
+		sum += b[j] ? parseInt(b[j]) : 0;
+		overflow = sum > 1 ? 1 : 0;
+		res += sum % 2;
+	}
+	if (overflow) {
+		res += 1;
+	}
+	return res.split('').reverse().join('');
+};
+
+console.log(addBinary4('11', '1'));
+console.log(addBinary4('1010', '1011'));
