@@ -33,3 +33,27 @@ var mySqrt = function (x) {
 	}
 	return x < high * high ? high - 1 : high;
 };
+
+/**
+ *
+ * @param {number} x
+ */
+const mySqrt2 = function (x) {
+	let low = 1;
+	let high = Math.floor(x / 2) + 1;
+	let mid = 0;
+	let tmp = 0;
+
+	while (low <= high) {
+		mid = Math.floor((low + high) / 2);
+		tmp = mid * mid;
+		if (x === tmp) {
+			return mid;
+		} else if (x < tmp) {
+			high = mid - 1;
+		} else {
+			low = mid + 1;
+		}
+	}
+	return high;
+};
