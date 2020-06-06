@@ -56,12 +56,30 @@ const longestConsecutive2 = function (nums) {
  * HashSet and Intelligent Sequence Building
  * @param {number[]} nums
  */
-const longestConsecutive3 = function (nums) {};
+const longestConsecutive3 = function (nums) {
+	let set = new Set(nums);
+	let max = 0;
+
+	for (let num of nums) {
+		// !包含前一个数字的
+		if (!set.has(num - 1)) {
+			let curMax = 1;
+			let curNum = num;
+
+			while (set.has(curNum + 1)) {
+				curMax += 1;
+				curNum += 1;
+			}
+			max = Math.max(curMax, max);
+		}
+	}
+	return max;
+};
 
 let arr = [9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6];
-let res = longestConsecutive(arr);
-console.log(res);
+console.log(longestConsecutive(arr));
 console.log(longestConsecutive2(arr));
+console.log(longestConsecutive3(arr));
 
 // 创建指定长度的数组，并填充1
 // let a = new Array(8).fill(1);
