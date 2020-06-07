@@ -13,7 +13,7 @@ const climbStairs = function (n) {
 		return 1;
 	}
 
-	let dp = new Array(n).fill(1 + 1);
+	let dp = new Array(n + 1).fill();
 	dp[0] = 0;
 	dp[1] = 1;
 	dp[2] = 2;
