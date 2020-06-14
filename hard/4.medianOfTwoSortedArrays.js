@@ -34,7 +34,7 @@ const findMedianSortedArrays2 = function (nums1, nums2) {
 	let total = -1;
 	let totalLen = nums1.length + nums2.length;
 	let midLen = (totalLen / 2) >> 0;
-	for (let i = 0, j = 0; i < nums1.length || j < nums2.length; ) {
+	for (let i = 0, j = 0; i < nums1.length || j < nums2.length;) {
 		if (nums1[i] < nums2[j]) {
 			res.push(nums1[i]);
 			i++;
@@ -58,5 +58,43 @@ const findMedianSortedArrays2 = function (nums1, nums2) {
 	}
 };
 
-console.log(findMedianSortedArrays([1, 3], [2]));
-console.log(findMedianSortedArrays([1, 3], [2, 4]));
+/**
+ * Time complexity: O(log(min(m,n)))
+ * Space complexity: O(1)
+ * @param {number[]} nums1 
+ * @param {number[]} nums2 
+ * @return {number}
+ */
+const findMedianSortedArrays3 = function (nums1, nums2) {
+	if (nums1.length > nums2.length) {
+		[nums1, nums2] = [nums2, nums1];//nums1为最小长度数组
+	}
+	let len1 = nums1.length;
+	let len2 = nums2.length;
+	let low = 0;
+	let high = len1;
+	while (low <= high) {
+		let i = low + Math.floor((high - low) / 2);
+		let j = Math.floor((len1 + len2 + 1) / 2) - i;
+
+		let leftA = i === 0 ? Number.NEGATIVE_INFINITY : nums1[i - 1];
+		let rightA = i === len1 ? Number.POSITIVE_INFINITY : nums1[i];
+		let leftB = j === 0 ? Number.NEGATIVE_INFINITY : nums2[j - 1];
+		let rightB = j === len2 ? Number.POSITIVE_INFINITY : nums2[j];
+
+		if (leftA <= rightB && leftB <= rightA) {
+			if ((len1 + len2) & 1) {
+				return Math.max(leftA, leftB);
+			} else {
+				return (Math.max(leftA, leftB) + Math.min(rightA, rightB)) / 2;
+			}
+		} else if (leftA > rightB) {
+			high = i - 1;
+		} else {
+			low = low + 1;
+		}
+	}
+};
+
+console.log(findMedianSortedArrays3([1, 3], [2]));
+console.log(findMedianSortedArrays3([1, 3], [2, 4]));
