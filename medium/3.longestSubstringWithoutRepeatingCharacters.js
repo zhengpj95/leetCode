@@ -3,7 +3,7 @@
  */
 
 /**
- * Time complexity: O(n)
+ * Time complexity: O(2n)
  * Space complexity: O(k)
  * @param {string} s
  * @return {number}
@@ -34,10 +34,35 @@ const lengthOfLongestSubstring = function (s) {
 	return max;
 };
 
-console.log(lengthOfLongestSubstring('abcabcbb'));
-console.log(lengthOfLongestSubstring('bbbbb'));
-console.log(lengthOfLongestSubstring('pwwkew'));
-console.log(lengthOfLongestSubstring(" "));
-console.log(lengthOfLongestSubstring(""));
-console.log(lengthOfLongestSubstring("au"));
-console.log(lengthOfLongestSubstring("dvdf"));
+/**
+ * Approach 2: Sliding Window
+ * Time complexity : O(2n) = O(n)
+ * Space complexity : O(min(m, n))
+ * @param {string} s 
+ * @returns {number}
+ */
+const lengthOfLongestSubstring2 = function (s) {
+	let map = new Set();
+	let len = s.length;
+	let star = 0;
+	let end = 0;
+	let max = 0;
+
+	while (star < len && end < len) {
+		if (!map.has(s.charAt(end))) {
+			map.add(s.charAt(end++));
+			max = Math.max(max, end - star);
+		} else {
+			map.delete(s.charAt(star++));
+		}
+	}
+	return max;
+};
+
+console.log(lengthOfLongestSubstring2('abcabcbb'));
+console.log(lengthOfLongestSubstring2('bbbbb'));
+console.log(lengthOfLongestSubstring2('pwwkew'));
+console.log(lengthOfLongestSubstring2(" "));
+console.log(lengthOfLongestSubstring2(""));
+console.log(lengthOfLongestSubstring2("au"));
+console.log(lengthOfLongestSubstring2("dvdf"));
