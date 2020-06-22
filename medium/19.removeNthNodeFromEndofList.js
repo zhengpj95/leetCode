@@ -46,6 +46,28 @@ const removeNthFromEnd = function (head, n) {
 	return head;
 };
 
+/**
+ * Time complexity: O(L)
+ * Space complexity: O(1)
+ * @param {ListNode} head
+ * @param {number} n
+ * @return {ListNode}
+ */
+const removeNthFromEnd2 = function (head, n) {
+	let node0 = new ListNode(0, head);
+	let first = node0;
+	let second = node0;
+	for (let i = 0; i < n + 1; i++) {
+		first = first.next;
+	}
+
+	while (first) {
+		first = first.next;
+		second = second.next;
+	}
+	second.next = second.next.next;
+	return node0.next;
+};
 
 let node7 = new ListNode(7);
 let node6 = new ListNode(6, node7);
@@ -55,7 +77,7 @@ let node3 = new ListNode(3, node4);
 let node2 = new ListNode(2, node3);
 let node1 = new ListNode(1, node2);
 
-let head = removeNthFromEnd(node1, 2);
+let head = removeNthFromEnd2(node1, 2);
 while (head) {
 	console.log(head.val);
 	head = head.next;
