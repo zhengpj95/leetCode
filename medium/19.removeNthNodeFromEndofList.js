@@ -11,6 +11,8 @@ function ListNode(val, next) {
 }
 
 /**
+ * Time complexity: O(L)
+ * Space complexity: O(1)
  * @param {ListNode} head
  * @param {number} n
  * @return {ListNode}
