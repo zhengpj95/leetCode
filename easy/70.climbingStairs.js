@@ -9,25 +9,31 @@
  * @return {number}
  */
 const climbStairs = function (n) {
-	if (n === 1) {
-		return 1;
-	}
+	// if (n === 1) {
+	// 	return 1;
+	// }
 
-	let dp = new Array(n + 1).fill();
-	dp[0] = 0;
-	dp[1] = 1;
-	dp[2] = 2;
+	// let dp = new Array(n + 1).fill();
+	// dp[0] = 0;
+	// dp[1] = 1;
+	// dp[2] = 2;
+	// for (let i = 3; i <= n; i++) {
+	// 	dp[i] = dp[i - 1] + dp[i - 2];
+	// }
+	// return Math.max(...dp);
+
+	let nums = [0, 1, 2];
 	for (let i = 3; i <= n; i++) {
-		dp[i] = dp[i - 1] + dp[i - 2];
+		nums[i] = nums[i - 1] + nums[i - 2];
 	}
-	return Math.max(...dp);
+	return nums[n];
 };
 
 /**
  * Brute Force
  * Time complexity : O(2^n)
  * Space complexity : O(n)
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 const climbStairs2 = function (n) {
@@ -48,7 +54,7 @@ const climb_stairs2 = function (i, n) {
  * Recursion with Memoization
  * Time complexity : O(n)
  * Space complexity : O(n)
- * @param {number} n 
+ * @param {number} n
  * @returns {number}
  */
 const climbStairs3 = function (n) {
