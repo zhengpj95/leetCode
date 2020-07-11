@@ -14,13 +14,13 @@ function TreeNode(val) {
  */
 var inorderTraversal = function (root) {
 	let nums = [];
-	let tranversal = function (root) {
+	let traversal = function (root) {
 		if (!root) return;
-		tranversal(root.left);
+		traversal(root.left);
 		nums.push(root.val);
-		tranversal(root.right);
+		traversal(root.right);
 	};
-	tranversal(root);
+	traversal(root);
 	return nums;
 };
 
