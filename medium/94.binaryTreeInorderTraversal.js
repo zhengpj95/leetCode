@@ -6,6 +6,9 @@ function TreeNode(val) {
 }
 
 /**
+ * 递归
+ * Time complexity: O(n)
+ * Space complexity: 最坏的情况O(n)，平均情况O(logn)
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -21,6 +24,32 @@ var inorderTraversal = function (root) {
 	return nums;
 };
 
+/**
+ * 基于栈的遍历
+ * Time complexity: O(n)
+ * Space complexity: O(n)
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal2 = function (root) {
+	let nums = [];
+	let stack = [];
+	let curNode = root;
+	// 结点存在或者栈未空
+	while (curNode || stack.length) {
+		while (curNode) {
+			stack.push(curNode);
+			curNode = curNode.left;
+		}
+		curNode = stack.pop();
+		nums.push(curNode.val);
+		curNode = curNode.right;
+	}
+	return nums;
+};
+
+// =============test=============
+
 let node1 = new TreeNode(1);
 let node2 = new TreeNode(2);
 let node3 = new TreeNode(3);
@@ -32,5 +61,7 @@ node2.right = node4;
 node3.left = node3.right = null;
 node4.left = node4.right = null;
 
-let nums = inorderTraversal(node1);
+let nums = inorderTraversal2(node1);
 console.log(nums);
+
+
