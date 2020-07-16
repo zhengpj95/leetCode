@@ -27,7 +27,7 @@ const preorderTraversal = function (root) {
  * @param {TreeNode} root
  * @return {number[]}
  */
-const preorderTraversa2 = function (root) {
+const preorderTraversal2 = function (root) {
 	let res = [];
 	let stack = [];
 	let curNode = root;
@@ -51,4 +51,4 @@ let node2 = new TreeNode(2, node3, node4);
 let node1 = new TreeNode(1, null, node2);
 
 console.log(preorderTraversal(node1));
-console.log(preorderTraversa2(node1));
+console.log(preorderTraversal2(node1));
