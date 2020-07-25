@@ -37,7 +37,7 @@ const trap1 = function (height) {
  * @return {number}
  */
 const trap2 = function (height) {
-	if (height.length <= 1) {
+	if (height.length <= 2) {
 		return 0;
 	}
 
