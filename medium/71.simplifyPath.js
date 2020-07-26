@@ -54,6 +54,30 @@ const simplifyPath2 = function (path) {
 	return '/' + stack.join('/');
 };
 
+/** 
+ * Time complexity: O(n)
+ * Space complexity: O(n)
+ * @param {string} path
+ * @return {string}
+ */
+const simplifyPath3 = function (path) {
+	let stack = [];
+	let arr = path.split(/\/+/gi);
+
+	arr.forEach(item => {
+		if (item === '' || item === '.') {
+			return;
+		}
+		if (item === '..') {
+			stack.pop();
+		} else {
+			stack.push(item);
+		}
+	});
+
+	return '/' + stack.join('/');
+};
+
 // let path = '/../';
 let path = '/a/../../b/../c//.//././////ab';
-console.log(simplifyPath2(path));;
+console.log(simplifyPath3(path));;
