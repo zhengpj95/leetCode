@@ -67,7 +67,27 @@ const trap2 = function (height) {
  * @returns {number}
  */
 const trap3 = function (height) {
+	let res = 0;
+	let current = 0;
+	let stack = [];//模拟栈
 
+	while (current < height.length) {
+		// 栈非空，且右边柱子高度大于栈顶柱子的高度，表示栈里的元素可以接水
+		while (stack.length && height[current] > height[stack[stack.length - 1]]) {
+			let top = stack.pop();
+			// 表示top左边没有柱子了，自然无法接水
+			if (!stack.length) {
+				break;
+			}
+			let newTop = stack[stack.length - 1];//左边柱子索引
+			let distance = current - newTop - 1;//左右柱子的间距
+			let bound = Math.min(height[current], height[newTop]) - height[top];//左右柱子可接水的高度，存在为0情况
+			res += distance * bound;//接水的容量
+		}
+		stack.push(current);
+		current++;
+	}
+	return res;
 };
 
 /**
@@ -125,5 +145,5 @@ const trap5 = function (height) {
 	return res;
 };
 
-let res = trap4([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]);
+let res = trap3([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]);
 console.log(res);
