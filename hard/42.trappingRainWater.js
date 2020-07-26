@@ -72,13 +72,29 @@ const trap3 = function (height) {
 
 /**
  * Approach 4: Using 2 pointers
- * Time complexity: O()
- * Space complexity: O()
+ * Time complexity: O(n)
+ * Space complexity: O(1)
  * @param {number[]} height 
  * @returns {number}
  */
 const trap4 = function (height) {
-
+	let res = 0;
+	let low = 0;
+	let high = height.length - 1;
+	let leftMax = height[low];
+	let rightMax = height[high];
+	while (low < high) {
+		if (height[low] < height[high]) {
+			if (height[low] > leftMax) leftMax = height[low];
+			else res += (leftMax - height[low]);
+			low++;
+		} else {
+			if (height[high] > rightMax) rightMax = height[high];
+			else res += (rightMax - height[high]);
+			high--;
+		}
+	}
+	return res;
 };
 
 
@@ -109,5 +125,5 @@ const trap5 = function (height) {
 	return res;
 };
 
-let res = trap5([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]);
+let res = trap4([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]);
 console.log(res);
