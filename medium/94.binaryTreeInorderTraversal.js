@@ -118,6 +118,38 @@ var inorderTraversal3 = function (root) {
 	return res;
 };
 
+/**
+ * Morris Traversal
+ * 记当前节点为 curNode
+ * 1. 如果 curNode 无左孩子，curNode 向右移动（curNode = curNode.right）
+ * 2. 如果 curNode 有左孩子，找到 curNode 左子树的最有节点（也就是 curNode 的前驱节点），记为 mostR
+ * 		2.1 如果 mostR 的right指针指向空，则让其指向 curNode，curNode 向左移动（curNode = curNode.left）
+ * 		2.2 如果 mostR 的right指针指向 curNode，则让其指向空，curNode 向右移动（curNode = curNode.right）
+ * @param {TreeNode} root 
+ */
+const morrisTraversal = function (root) {
+	let curNode = root;
+	let mostR = null;
+
+	while (curNode) {
+		mostR = curNode.left;
+		if (mostR) {
+			while (mostR.right && mostR.right != curNode) {
+				mostR = mostR.right;
+			}
+			if (!mostR.right) {
+				mostR.right = curNode;
+				curNode = curNode.left;
+				continue;
+			} else {
+				mostR.right = null;
+			}
+		}
+		console.log(curNode.val);
+		curNode = curNode.right;
+	}
+};
+
 // =============test=============
 
 let node1 = new TreeNode(1);
@@ -131,7 +163,8 @@ node2.right = node4;
 node3.left = node3.right = null;
 node4.left = node4.right = null;
 
-let nums = inorderTraversal3(node1);
-console.log(nums);
-
+// let nums = inorderTraversal3(node1);
+// console.log(nums);
+console.log(inorderTraversal1(node1));
+morrisTraversal(node1);
 
