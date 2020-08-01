@@ -125,6 +125,9 @@ var inorderTraversal3 = function (root) {
  * 2. 如果 curNode 有左孩子，找到 curNode 左子树的最有节点（也就是 curNode 的前驱节点），记为 mostR
  * 		2.1 如果 mostR 的right指针指向空，则让其指向 curNode，curNode 向左移动（curNode = curNode.left）
  * 		2.2 如果 mostR 的right指针指向 curNode，则让其指向空，curNode 向右移动（curNode = curNode.right）
+ * 
+ * Time complexity: O(n)
+ * Space complexity: O(1)
  * @param {TreeNode} root 
  */
 const morrisTraversal = function (root) {
