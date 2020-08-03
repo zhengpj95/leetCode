@@ -8,6 +8,8 @@
  */
 
 /**
+ * Time complexity: O(n^2)
+ * Space complexity: O(n)
  * @param {number[]} nums
  * @return {number}
  */
@@ -32,3 +34,42 @@ var lengthOfLIS = function (nums) {
 	}
 	return res;
 };
+
+/**
+ * 像纸牌游戏一样，能在左边的牌中叠加的才叠加，不能的就开辟新的一堆放纸牌
+ * 在每堆牌中最上面的那张牌就是最长的子序列之一。故堆的长度就是最长子序列了。
+ * Time complexity: O(nlogn)
+ * Space complexity: O(n)
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS2 = function (nums) {
+	let top = [];
+	let piles = 0;
+
+	for (let i = 0; i < nums.length; i++) {
+		let poker = nums[i];
+		let left = 0,
+			right = piles;
+
+		while (left < right) {
+			let mid = Math.floor((left + right) / 2);
+			if (top[mid] < poker) {
+				left = mid + 1;
+			} else {
+				right = mid;
+			}
+		}
+
+		if (left === piles) {
+			piles++;
+		}
+		// 放入牌后，数组都是有序得了
+		top[left] = poker;
+	}
+	return piles;
+};
+
+let arr = [10, 9, 2, 5, 3, 7, 101, 18];
+console.log(lengthOfLIS(arr));
+console.log(lengthOfLIS2(arr));
