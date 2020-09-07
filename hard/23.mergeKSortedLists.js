@@ -12,7 +12,7 @@ function ListNode(val, next) {
 
 /**
  * Approach 1: Brute Force
- * Time Complexity: O(nlogn)
+ * Time Complexity: O(nlogn) ==> n is the total number of nodes.
  * Space Complexity: O(n)
  * @param {ListNode[]} lists
  * @return {ListNode}
@@ -43,6 +43,53 @@ var mergeKLists1 = function (lists) {
 	return list.next;
 };
 
+/**
+ * Approach 2: Merge lists one by one
+ * Time Complexity: O(kn) ==> k is the number of linked lists.
+ * Space Complexity: O(1)
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists2 = function (lists) {
+	// merge two sorted linked list in O(n) time
+	// where n is the total number of nodes in two lists.
+	// O(l1.length + l2.length)
+	let mergeTwoLists = function (l1, l2) {
+		let res = new ListNode();
+		let node = res;
+		while (l1 || l2) {
+			if (l1 && !l2) {
+				node.next = l1;
+				node = node.next;
+				l1 = l1.next;
+			} else if (!l1 && l2) {
+				node.next = l2;
+				node = node.next;
+				l2 = l2.next;
+			} else {
+				if (l1.val < l2.val) {
+					node.next = l1;
+					node = node.next;
+					l1 = l1.next;
+				} else {
+					node.next = l2;
+					node = node.next;
+					l2 = l2.next;
+				}
+			}
+		}
+		return res.next;
+	};
+
+	// O(kn)
+	let list = null;
+	for (let i in lists) {
+		list = mergeTwoLists(list, lists[i]);
+	}
+
+	return list;
+};
+
 let node5 = new ListNode(5, null);
 let node4 = new ListNode(4, node5);
 let node1 = new ListNode(1, node4);
@@ -54,6 +101,7 @@ let node11 = new ListNode(1, node33);
 let node666 = new ListNode(6, null);
 let node222 = new ListNode(2, node666);
 
-let list = [[node1], [node11], [node222]];
+let list = [node1, node11, node222];
 
-console.log(mergeKLists1(list));
+// console.log(mergeKLists1(list));
+console.log(mergeKLists2(list));
