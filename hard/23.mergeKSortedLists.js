@@ -57,26 +57,22 @@ var mergeKLists2 = function (lists) {
 	let mergeTwoLists = function (l1, l2) {
 		let res = new ListNode();
 		let node = res;
-		while (l1 || l2) {
-			if (l1 && !l2) {
+		while (l1 && l2) {
+			if (l1.val < l2.val) {
 				node.next = l1;
 				node = node.next;
 				l1 = l1.next;
-			} else if (!l1 && l2) {
+			} else {
 				node.next = l2;
 				node = node.next;
 				l2 = l2.next;
-			} else {
-				if (l1.val < l2.val) {
-					node.next = l1;
-					node = node.next;
-					l1 = l1.next;
-				} else {
-					node.next = l2;
-					node = node.next;
-					l2 = l2.next;
-				}
 			}
+		}
+		if (l1) {
+			node.next = l1;
+		}
+		if (l2) {
+			node.next = l2;
 		}
 		return res.next;
 	};
