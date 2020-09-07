@@ -226,6 +226,15 @@ class PriorityQueue {
 	}
 }
 
+/**
+ * Approach 5: Merge with Divide And Conquer
+ * Time Complexity:
+ * Space Complexity:
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists4 = function (lists) {};
+
 let node5 = new ListNode(5, null);
 let node4 = new ListNode(4, node5);
 let node1 = new ListNode(1, node4);
