@@ -44,6 +44,35 @@ var mergeKLists1 = function (lists) {
 };
 
 /**
+ * Time Complexity: O(n) where n is total number of nodes in two lists
+ * Space Complexity: O(1)
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ */
+let mergeTwoLists = function (l1, l2) {
+	let res = new ListNode();
+	let node = res;
+	while (l1 && l2) {
+		if (l1.val < l2.val) {
+			node.next = l1;
+			node = node.next;
+			l1 = l1.next;
+		} else {
+			node.next = l2;
+			node = node.next;
+			l2 = l2.next;
+		}
+	}
+	if (l1) {
+		node.next = l1;
+	}
+	if (l2) {
+		node.next = l2;
+	}
+	return res.next;
+};
+
+/**
  * Approach 2: Merge lists one by one
  * Time Complexity: O(kn) ==> k is the number of linked lists.
  * Space Complexity: O(1)
@@ -51,32 +80,6 @@ var mergeKLists1 = function (lists) {
  * @return {ListNode}
  */
 var mergeKLists2 = function (lists) {
-	// merge two sorted linked list in O(n) time
-	// where n is the total number of nodes in two lists.
-	// O(l1.length + l2.length)
-	let mergeTwoLists = function (l1, l2) {
-		let res = new ListNode();
-		let node = res;
-		while (l1 && l2) {
-			if (l1.val < l2.val) {
-				node.next = l1;
-				node = node.next;
-				l1 = l1.next;
-			} else {
-				node.next = l2;
-				node = node.next;
-				l2 = l2.next;
-			}
-		}
-		if (l1) {
-			node.next = l1;
-		}
-		if (l2) {
-			node.next = l2;
-		}
-		return res.next;
-	};
-
 	// O(kn)
 	let list = null;
 	for (let i in lists) {
