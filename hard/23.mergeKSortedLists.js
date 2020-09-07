@@ -86,6 +86,53 @@ var mergeKLists2 = function (lists) {
 	return list;
 };
 
+/**
+ * Approach 2: Compare one by one
+ * Time Complexity: O(kn) ==> k is the number of linked lists.
+ * 		Almost every selection of node in final linked costs O(k)O(k) (\text{k-1}k-1 times comparison).
+ * 		There are NN nodes in the final linked list.
+ * Space Complexity: O(1) / O(n)
+ * 		O(1) It's not hard to apply in-place method-connect selected nodes instead of creating new nodes to fill the new linked list.
+ * 		O(n) Creating a new linked list costs O(n)O(n) space.
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists3 = function (lists) {
+	// O(k)
+	let findMinNode = function (lists) {
+		let flag = -1;
+		let min = Number.MAX_SAFE_INTEGER;
+		for (let i = 0; i < lists.length; i++) {
+			if (!lists[i]) {
+				continue;
+			}
+			if (lists[i].val < min) {
+				min = lists[i].val;
+				flag = i;
+			}
+		}
+
+		let res = null;
+		if (flag >= 0) {
+			res = lists[flag];
+			lists[flag] = lists[flag].next;
+			res.next = null;
+		}
+
+		return res;
+	};
+
+	let resNode = (curNode = new ListNode());
+	let min = findMinNode(lists);
+	// O(kn) ==> n is total number of nodes
+	while (min) {
+		curNode.next = min;
+		curNode = curNode.next;
+		min = findMinNode(lists);
+	}
+	return resNode.next;
+};
+
 let node5 = new ListNode(5, null);
 let node4 = new ListNode(4, node5);
 let node1 = new ListNode(1, node4);
@@ -100,4 +147,5 @@ let node222 = new ListNode(2, node666);
 let list = [node1, node11, node222];
 
 // console.log(mergeKLists1(list));
-console.log(mergeKLists2(list));
+// console.log(mergeKLists2(list));
+console.log(mergeKLists3(list));
