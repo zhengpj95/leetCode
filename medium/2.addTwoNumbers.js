@@ -10,7 +10,7 @@ function ListNode(val, next) {
  * @return {ListNode}
  */
 var addTwoNumbers = function (l1, l2) {
-	let result = [];
+	let result = null;
 	let addValue = 0;
 	let newValue = 0;
 	while (l1 || l2) {
@@ -28,19 +28,15 @@ var addTwoNumbers = function (l1, l2) {
 		if (newValue >= 10) {
 			newValue = newValue % 10;
 		}
-		result.push(newValue);
+		result = insertTail(result, newValue);
 		l1 = l1 ? l1.next : null;
 		l2 = l2 ? l2.next : null;
 	}
 	if (addValue) {
-		result.push(addValue);
+		result = insertTail(result, addValue);
 	}
 
-	let list = null;
-	for (let i = 0; i < result.length; i++) {
-		list = insertTail(list, result[i]);
-	}
-	return list;
+	return result;
 };
 
 /**
