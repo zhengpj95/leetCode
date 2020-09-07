@@ -87,7 +87,7 @@ var mergeKLists2 = function (lists) {
 };
 
 /**
- * Approach 2: Compare one by one
+ * Approach 3: Compare one by one
  * Time Complexity: O(kn) ==> k is the number of linked lists.
  * 		Almost every selection of node in final linked costs O(k)O(k) (\text{k-1}k-1 times comparison).
  * 		There are NN nodes in the final linked list.
@@ -133,6 +133,96 @@ var mergeKLists3 = function (lists) {
 	return resNode.next;
 };
 
+/**
+ * Approach 4: Optimize Approach 2 by Priority Queue
+ * Time Complexity: O(Nlogk) where k is the number of linked lists.
+ * 	1. The comparison cost will be reduced to O(logk) for every pop and insertion to priority queue.
+ * 		But finding the node with the smallest value just costs O(1) time.
+ * 	2. There are N nodes in the final linked list.
+ * Space Complexity:
+ * 	1. O(n) Creating a new linked list costs O(n) space.
+ * 	2. O(k) The code above present applies in-place method which cost O(1) space.
+ * 		And the priority queue (often implemented with heaps) costs O(k) space (it's far less than N in most situations).
+ * @param {ListNode[]} lists
+ * @return {ListNode}
+ */
+var mergeKLists4 = function (lists) {
+	let queue = new PriorityQueue();
+	lists.forEach((item) => {
+		if (item) queue.enQueue(item, item.val);
+	});
+
+	let result = new ListNode(-1);
+	let currNode = result;
+	while (!queue.isEmpty()) {
+		let priorityNode = queue.deQueueByMin();
+		if (!priorityNode) {
+			break;
+		}
+		currNode.next = priorityNode.val;
+		currNode = currNode.next;
+		if (currNode.next) {
+			queue.enQueue(currNode.next, currNode.next.val);
+		}
+	}
+	return result.next;
+};
+
+class PriorityNode {
+	constructor(val, priority) {
+		this.val = val;
+		this.priority = priority;
+	}
+}
+
+class PriorityQueue {
+	constructor() {
+		this.elements = [];
+	}
+
+	/**
+	 * 优先级越高越排前
+	 * @param {any} val
+	 * @param {number} priority
+	 */
+	enQueue(val, priority) {
+		let node = new PriorityNode(val, priority);
+		if (this.isEmpty()) {
+			this.elements.push(node);
+			return true;
+		}
+
+		for (let i = 0; i < this.getCount(); i++) {
+			let item = this.elements[i];
+			if (item && priority > item.priority) {
+				this.elements.splice(i, 0, node);
+				return true;
+			}
+		}
+
+		this.elements.push(node);
+		return true;
+	}
+
+	/**低优先级出队*/
+	deQueueByMin() {
+		return this.elements.pop();
+	}
+
+	/**高优先级出队 */
+	deQueueByMax() {
+		return this.elements.shift();
+	}
+
+	isEmpty() {
+		return this.elements.length == 0;
+	}
+
+	getCount() {
+		return this.elements.length;
+	}
+}
+
 let node5 = new ListNode(5, null);
 let node4 = new ListNode(4, node5);
 let node1 = new ListNode(1, node4);
@@ -148,4 +238,5 @@ let list = [node1, node11, node222];
 
 // console.log(mergeKLists1(list));
 // console.log(mergeKLists2(list));
-console.log(mergeKLists3(list));
+// console.log(mergeKLists3(list));
+console.log(mergeKLists4(list));
