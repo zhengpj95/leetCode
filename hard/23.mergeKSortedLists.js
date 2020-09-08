@@ -227,13 +227,28 @@ class PriorityQueue {
 }
 
 /**
- * Approach 5: Merge with Divide And Conquer
- * Time Complexity:
- * Space Complexity:
+ * Approach 5: Merge with Divide And Conquer 分治法
+ * Time Complexity: O(Nlogk) where k is the number of linked lists.
+ * We can merge two sorted linked list in O(n) time where nn is the total number of nodes in two lists.
+ * Sum up the merge process and we can get: O(Nlogk)
+ * Space Complexity: O(1)
  * @param {ListNode[]} lists
  * @return {ListNode}
  */
-var mergeKLists4 = function (lists) {};
+var mergeKLists5 = function (lists) {
+	let count = lists.length;
+	let interval = 1;
+
+	// O(logk)
+	while (interval < count) {
+		for (let i = 0; i <= count - interval; i += interval * 2) {
+			// O(n) where n is total number of nodes in two lists
+			lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
+		}
+		interval *= 2;
+	}
+	return lists[0];
+};
 
 let node5 = new ListNode(5, null);
 let node4 = new ListNode(4, node5);
@@ -251,4 +266,11 @@ let list = [node1, node11, node222];
 // console.log(mergeKLists1(list));
 // console.log(mergeKLists2(list));
 // console.log(mergeKLists3(list));
-console.log(mergeKLists4(list));
+// console.log(mergeKLists4(list));
+console.log(mergeKLists5(list));
+
+// let res = mergeKLists5(list);
+// while (res) {
+// 	console.log(res.val);
+// 	res = res.next;
+// }
