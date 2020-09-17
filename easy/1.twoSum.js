@@ -49,5 +49,25 @@ const twoSum2 = function (nums, target) {
 	return res;
 };
 
+/**
+ * 得到满足要求的索引数组
+ * @param {number[]} numbers
+ * @param {number} target
+ * @returns {number}
+ */
+const twoSum3 = function (numbers, target) {
+	let res = [];
+	for (let i = 0; i < numbers.length; i++) {
+		let remain = target - numbers[i];
+		let lastIndex = numbers.indexOf(remain, i + 1);
+		if (lastIndex > -1) {
+			res.push([i, lastIndex]);
+			// res.push([numbers[i], numbers[lastIndex]]);
+		}
+	}
+	return res;
+};
+
 console.log(twoSum([2, 7, 11, 15], 13));
-// console.log(twoSum2([2, 7, 11, 15], 13));
+console.log(twoSum2([2, 7, 11, 15], 13));
+console.log(twoSum3([2, 7, 11, 15], 13));
