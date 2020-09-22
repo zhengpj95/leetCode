@@ -41,4 +41,4 @@ const constructMaximumBinaryTree = function (nums) {
 };
 
 let arr = [3, 2, 1, 6, 0, 5];
-constructMaximumBinaryTree(arr);
+console.log(constructMaximumBinaryTree(arr));
