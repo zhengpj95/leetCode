@@ -13,6 +13,8 @@ function TreeNode(val, left, right) {
 }
 
 /**
+ * Time Complexity: O(n^2)
+ * Space Complexity: O(n)
  * @param {number[]} nums
  * @return {TreeNode}
  */
