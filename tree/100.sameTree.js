@@ -10,20 +10,21 @@ function TreeNode(val, left, right) {
 }
 /**
  * Time Complexity: O(n)
+ * Space Complexity: O(log(N)) in the best case of completely balanced tree
+ * 		and O(N) in the worst case of completely unbalanced tree, to keep a recursion stack. 调用栈需要消耗空间
  * @param {TreeNode} p
  * @param {TreeNode} q
  * @return {boolean}
  */
 var isSameTree = function (p, q) {
 	let isSame = function (p, q) {
-		if ((p && !q) || (!p && q) || (p && q && p.val != q.val)) {
-			return false;
-		}
-		if (p == null && q == null) {
+		if (!p && !q) {
 			return true;
 		}
-		let sameFlag = isSame(p.left, q.left) && isSame(p.right, q.right);
-		return sameFlag;
+		if (!p || !q || p.val != q.val) {
+			return false;
+		}
+		return isSame(p.left, q.left) && isSame(p.right, q.right);
 	};
 
 	return isSame(p, q);
