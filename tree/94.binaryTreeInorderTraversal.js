@@ -1,4 +1,3 @@
-
 // Definition for a binary tree node.
 function TreeNode(val) {
 	this.val = val;
@@ -35,8 +34,8 @@ var inorderTraversal1 = function (root) {
 };
 
 /**
- * @param {TreeNode} root 
- * @param {number[]} res 
+ * @param {TreeNode} root
+ * @param {number[]} res
  */
 var traversal = function (root, res) {
 	if (!root) {
@@ -81,7 +80,7 @@ var inorderTraversal2 = function (root) {
  * 		否则
  * 			a. 在 current 的左子树中，令 current 成为最右侧节点的右子节点
  * 			b. 进入左子树，亦即，current = current.left
- * 
+ *
  * Time complexity: O(n)。 想要证明时间复杂度是 O(n)，最大的问题是找到每个节点的前驱节点的时间复杂度。
  * 乍一想，找到每个节点的前驱节点的时间复杂度应该是 O(nlogn)，因为找到一个节点的前驱节点和树的高度有关。
  * 但事实上，找到所有节点的前驱节点只需要 O(n) 时间。
@@ -111,8 +110,8 @@ var inorderTraversal3 = function (root) {
 			preNode.right = currNode;
 			// 进入左子树
 			let temp = currNode;
-			currNode = currNode.left;//回到之前currNode的左子树，这一步之前 currNode 的左子树还存在的
-			temp.left = null;	//当前preNode.right的右子节点 currNode (temp) 的左子树为 null 
+			currNode = currNode.left; //回到之前currNode的左子树，这一步之前 currNode 的左子树还存在的
+			temp.left = null; //当前preNode.right的右子节点 currNode (temp) 的左子树为 null
 		}
 	}
 	return res;
@@ -125,10 +124,10 @@ var inorderTraversal3 = function (root) {
  * 2. 如果 curNode 有左孩子，找到 curNode 左子树的最有节点（也就是 curNode 的前驱节点），记为 mostR
  * 		2.1 如果 mostR 的right指针指向空，则让其指向 curNode，curNode 向左移动（curNode = curNode.left）
  * 		2.2 如果 mostR 的right指针指向 curNode，则让其指向空，curNode 向右移动（curNode = curNode.right）
- * 
+ *
  * Time complexity: O(n)
  * Space complexity: O(1)
- * @param {TreeNode} root 
+ * @param {TreeNode} root
  */
 const morrisTraversal = function (root) {
 	let curNode = root;
@@ -170,4 +169,3 @@ node4.left = node4.right = null;
 // console.log(nums);
 console.log(inorderTraversal1(node1));
 morrisTraversal(node1);
-
