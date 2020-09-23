@@ -51,14 +51,11 @@ var connect = function (root) {
 var connect2 = function (root) {
 	if (!root) return null;
 	let pre = root;
-	let cur = null;
 	while (pre.left) {
-		cur = pre;
+		let cur = pre;
 		while (cur) {
 			cur.left.next = cur.right;
-			if (cur.next) {
-				cur.right.next = cur.next.left;
-			}
+			cur.right.next = cur.next ? cur.next.left : null;
 			cur = cur.next;
 		}
 
