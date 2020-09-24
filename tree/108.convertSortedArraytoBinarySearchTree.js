@@ -4,7 +4,7 @@
  * in which the depth of the two subtrees of every node never differ by more than 1.
  */
 
-const TreeNode = require('./TreeNode');
+const { TreeNode } = require('./TreeNode');
 
 /**
  * Time complexity: O(n)
