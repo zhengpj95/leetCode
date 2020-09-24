@@ -37,7 +37,7 @@ const pathSum = function (root, sum) {
 };
 
 /**
- * Approach 2: Queue
+ * Approach 2: BFS + Queue
  * Time complexity: O(n)
  * @param {Treenode} root
  * @param {number} sum
