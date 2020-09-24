@@ -45,8 +45,23 @@ function createTree(nums) {
 	return root;
 }
 
+/**
+ * Definition for a binary tree node with next pointer.
+ * @param {any} val
+ * @param {NextNode} left
+ * @param {NextNode} right
+ * @param {NextNode} next
+ */
+function NextNode(val, left, right, next) {
+	this.val = val === undefined ? null : val;
+	this.left = left === undefined ? null : left;
+	this.right = right === undefined ? null : right;
+	this.next = next === undefined ? null : next;
+}
+
 module.exports.TreeNode = TreeNode;
 module.exports.createTree = createTree;
+module.exports.NextNode = NextNode;
 
 // Test Code
 // let arr1 = [3, 9, 20, null, null, 15, 7];
