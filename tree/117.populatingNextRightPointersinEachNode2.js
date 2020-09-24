@@ -10,6 +10,8 @@ const { NextNode } = require('./TreeNode');
 
 /**
  * 层次遍历，每一层都设置next指针
+ * Time complexity: O(n)
+ * Space complexity: O(m) m为某层的最大结点数
  * @param {NextNode} root
  * @return {NextNode}
  */
