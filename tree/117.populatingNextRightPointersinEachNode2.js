@@ -39,6 +39,43 @@ const connect = function (root) {
 	return root;
 };
 
+/**
+ * @param {NextNode} root
+ * @return {NextNode}
+ */
+const connect2 = function (root) {
+	if (!root) return null;
+
+	let head = null;
+	let prev = null;
+	let curr = root;
+	while (curr) {
+		while (curr) {
+			if (curr.left) {
+				if (prev) {
+					prev.next = curr.left;
+				} else {
+					head = curr.left;
+				}
+				prev = curr.left;
+			}
+			if (curr.right) {
+				if (prev) {
+					prev.next = curr.right;
+				} else {
+					head = curr.right;
+				}
+				prev = curr.right;
+			}
+			// 同层的下一个结点
+			curr = curr.next;
+		}
+		curr = head;
+		head = null;
+		prev = null;
+	}
+};
+
 let node4 = new NextNode(4);
 let node5 = new NextNode(5);
 let node2 = new NextNode(2, node4, node5);
@@ -46,5 +83,5 @@ let node7 = new NextNode(7);
 let node3 = new NextNode(3, null, node7);
 let node1 = new NextNode(1, node2, node3);
 
-connect(node1);
+connect2(node1);
 console.log(node1);
