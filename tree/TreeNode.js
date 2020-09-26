@@ -5,9 +5,9 @@
  * @param {TreeNode} right
  */
 function TreeNode(val, left, right) {
-	this.val = val === undefined ? 0 : val;
-	this.left = left === undefined ? null : left;
-	this.right = right === undefined ? null : right;
+	this.val = val === undefined || val === null ? 0 : val;
+	this.left = left === undefined || left === null ? null : left;
+	this.right = right === undefined || right === null ? null : right;
 }
 
 /**
@@ -27,7 +27,7 @@ function createTree(nums) {
 	for (let i = 1; i < nums.length; ) {
 		let parent = list.shift();
 		let lValue = nums[i++];
-		if (lValue !== undefined) {
+		if (lValue !== undefined && lValue !== null) {
 			parent.left = new TreeNode(lValue);
 			list.push(parent.left);
 		} else {
@@ -35,7 +35,7 @@ function createTree(nums) {
 		}
 
 		let rValue = nums[i++];
-		if (rValue !== undefined) {
+		if (rValue !== undefined && rValue !== null) {
 			parent.right = new TreeNode(rValue);
 			list.push(parent.right);
 		} else {
