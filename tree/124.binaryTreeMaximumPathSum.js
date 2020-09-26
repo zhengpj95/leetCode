@@ -9,6 +9,8 @@
 const { TreeNode, createTree } = require('./TreeNode');
 
 /**
+ * Time complexity: O(n)
+ * Space complexity: O(n)
  * @param {TreeNode} root
  * @return {number}
  */
