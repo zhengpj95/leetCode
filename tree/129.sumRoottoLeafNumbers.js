@@ -39,6 +39,26 @@ const sumNumbers = function (root) {
 	return total;
 };
 
+/**
+ * Time complexity: O(n)
+ * Space complexity: O(n) 递归调用栈
+ * @param {TreeNode} root
+ * @return {number}
+ */
+const sumNumbers2 = function (root) {
+	let sum = function (root, total) {
+		if (!root) return 0;
+		total = total * 10 + root.val; //new value
+		if (!root.left && !root.right) {
+			return total;
+		}
+		return sum(root.left, total) + sum(root.right, total);
+	};
+
+	return sum(root, 0);
+};
+
 let arr = [4, 9, 0, 5, 1];
 let root = createTree(arr);
 console.log(sumNumbers(root));
+console.log(sumNumbers2(root));
