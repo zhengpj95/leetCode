@@ -69,6 +69,7 @@ function NextNode(val, left, right, next) {
 
 module.exports.TreeNode = TreeNode;
 module.exports.createTree = createTree;
+module.exports.getTreeHeight = getTreeHeight;
 module.exports.NextNode = NextNode;
 
 // Test Code
