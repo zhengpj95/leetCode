@@ -40,6 +40,29 @@ const rightSideView = function (root) {
 	return result;
 };
 
+/**
+ * Time complexity: O(n)
+ * Space complexity: O(n)
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+const rightSideView2 = function (root) {
+	let result = [];
+
+	let findRight = function (root, depth) {
+		if (!root) return;
+		// 树的层数从0开始算，前n层（0-n）的都添加了，到n+1层时，result必有n个值
+		if (depth == result.length) {
+			result.push(root.val);
+		}
+		findRight(root.right, depth + 1);
+		findRight(root.left, depth + 1);
+	};
+	findRight(root, 0);
+	return result;
+};
+
 let arr = [1, 2, 3, 5, 6];
 let root = createTree(arr);
 console.log(rightSideView(root));
+console.log(rightSideView2(root));
