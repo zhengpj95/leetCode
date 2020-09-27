@@ -46,6 +46,14 @@ function createTree(nums) {
 }
 
 /**
+ * 完全二叉树以及满二叉树的树高
+ * @param {TreeNode} root
+ */
+function getTreeHeight(root) {
+	return !root ? 0 : 1 + getTreeHeight(root.left);
+}
+
+/**
  * Definition for a binary tree node with next pointer.
  * @param {any} val
  * @param {NextNode} left
@@ -64,8 +72,10 @@ module.exports.createTree = createTree;
 module.exports.NextNode = NextNode;
 
 // Test Code
-// let arr1 = [3, 9, 20, null, null, 15, 7];
+// let arr1 = [3, 9, 20, 1, 2, 15, 7, 7];
 // console.log(createTree(arr1));
+// console.log(getTreeHeight(createTree(arr1)));
+// console.log(getTreeHeight(null));
 
 // 方式一
 // module.exports.xxx = xxx
