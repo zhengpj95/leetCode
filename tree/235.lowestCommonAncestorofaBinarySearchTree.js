@@ -59,10 +59,47 @@ const lowestCommonAncestor2 = function (root, p, q) {
 	return null;
 };
 
+/**
+ * Iterative
+ * Time complexity: O(H) where H is tree height. In the worst case we might be visiting all the nodes of the BST, its complexity is O(N).
+ * Space complexity: O(1)
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+const lowestCommonAncestor3 = function (root, p, q) {
+	if (!root || !p || !q) return null;
+
+	// >0 表示 p, q 在同一颗子树上
+	while ((root.val - p.val) * (root.val - q.val) > 0) {
+		root = p.val < root.val ? root.left : root.right;
+	}
+	return root;
+};
+
+/**
+ * Recursive
+ * Time complexity: O(H) where H is tree height. In the worst case we might be visiting all the nodes of the BST, its complexity is O(N).
+ * Space complexity: O(1)
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+const lowestCommonAncestor4 = function (root, p, q) {
+	if (!root || !p || !q) return null;
+
+	return (root.val - p.val) * (root.val - q.val) < 1 ? root : lowestCommonAncestor4(p.val < root.val ? root.left : root.right, p, q);
+	// return (root.val - p.val) * (root.val - q.val) > 0 ? lowestCommonAncestor4(p.val < root.val ? root.left : root.right, p, q) : root;
+};
+
 let arr = [6, 2, 8, 0, 4, 7, 9, null, null, 3, 5];
 let root = createTree(arr);
 let node1 = new TreeNode(3);
 let node2 = new TreeNode(5);
 
-let res = lowestCommonAncestor2(root, node1, node2);
-console.log(res.val);
+console.log(lowestCommonAncestor(root, node1, node2).val);
+console.log(lowestCommonAncestor2(root, node1, node2).val);
+console.log(lowestCommonAncestor3(root, node1, node2).val);
+console.log(lowestCommonAncestor4(root, node1, node2).val);
