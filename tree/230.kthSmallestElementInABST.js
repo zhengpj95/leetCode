@@ -91,7 +91,32 @@ const kthSmallest3 = function (root, k) {
 	}
 };
 
+/**
+ * Time complexity: O(H + k)  先进入最左结点，然后再开始寻找Kth结点
+ * Space complexity: O(H) where H is a tree height.
+ * @param {TreeNode} root
+ * @param {Number} k
+ */
+const kthSmallest4 = function (root, k) {
+	if (!root || k < 1) return -1;
+	let stack = [];
+	let idx = 0;
+
+	while (stack.length || root) {
+		if (root) {
+			stack.push(root);
+			root = root.left;
+		} else {
+			let node = stack.pop();
+			if (++idx === k) return node.val;
+			root = node.right;
+		}
+	}
+	return -1;
+};
+
 let arr = [5, 3, 6, 2, 4, null, null, 1];
 let root = createTree(arr);
 console.log(kthSmallest2(root, 4));
 console.log(kthSmallest3(root, 5));
+console.log(kthSmallest4(root, 2));
