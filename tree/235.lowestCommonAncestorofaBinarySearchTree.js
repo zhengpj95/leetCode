@@ -36,10 +36,33 @@ const lowestCommonAncestor = function (root, p, q) {
 	return root;
 };
 
+/**
+ * Time complexity: O(H) where H is tree height. In the worst case we might be visiting all the nodes of the BST, its complexity is O(N).
+ * Space complexity: O(1)
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+const lowestCommonAncestor2 = function (root, p, q) {
+	if (!root || !p || !q) return null;
+
+	while (root) {
+		if (p.val < root.val && q.val < root.val) {
+			root = root.left;
+		} else if (p.val > root.val && q.val > root.val) {
+			root = root.right;
+		} else {
+			return root;
+		}
+	}
+	return null;
+};
+
 let arr = [6, 2, 8, 0, 4, 7, 9, null, null, 3, 5];
 let root = createTree(arr);
 let node1 = new TreeNode(3);
 let node2 = new TreeNode(5);
 
-let res = lowestCommonAncestor(root, node1, node2);
+let res = lowestCommonAncestor2(root, node1, node2);
 console.log(res.val);
