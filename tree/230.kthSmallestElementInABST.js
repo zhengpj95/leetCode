@@ -66,6 +66,32 @@ const kthSmallest2 = function (root, k) {
 	return -1;
 };
 
+/**
+ * Time complexity: O(H+k) where H is a tree height.
+ * 		This complexity is defined by the stack, which contains at least H + k elements, since before starting to pop out one has to go down to a leaf.
+ * 		This results in O(logN+k) for the balanced tree and O(N+k) for completely unbalanced tree with all the nodes in the left subtree.
+ * Space complexity: O(H) to keep the stack, where H is a tree height.
+ * 		That makes O(N) in the worst case of the skewed tree, and O(logN) in the average case of the balanced tree.
+ * @param {TreeNode} root
+ * @param {Number} k
+ */
+const kthSmallest3 = function (root, k) {
+	if (!root || k < 1) return -1;
+	let list = [];
+
+	while (1) {
+		while (root) {
+			list.push(root);
+			root = root.left;
+		}
+
+		root = list.pop();
+		if (--k === 0) return root.val;
+		root = root.right;
+	}
+};
+
 let arr = [5, 3, 6, 2, 4, null, null, 1];
 let root = createTree(arr);
 console.log(kthSmallest2(root, 4));
+console.log(kthSmallest3(root, 5));
