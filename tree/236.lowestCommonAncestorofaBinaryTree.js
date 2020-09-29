@@ -40,7 +40,32 @@ const lowestCommonAncestor = function (root, p, q) {
 	return parentNode;
 };
 
+/**
+ * Time complexity: O(N)
+ * Space complexity: O(N)
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+const lowestCommonAncestor2 = function (root, p, q) {
+	if (!root) return null;
+	if (root.val === p.val || root.val === q.val) return root;
+
+	let lNode = lowestCommonAncestor2(root.left, p, q);
+	let rNode = lowestCommonAncestor2(root.right, p, q);
+
+	// if (lNode && rNode) return root;
+	// else if (!lNode && rNode) return rNode;
+	// else if (lNode && !rNode) return lNode;
+	// else return null;
+
+	return lNode ? (rNode ? root : lNode) : rNode;
+	// return !lNode ? rNode : !rNode ? lNode : root;
+};
+
 let root = createTree([3, 5, 1, 6, 2, 0, 8, null, null, 7, 4]);
 let node1 = new TreeNode(5);
 let node2 = new TreeNode(4);
 console.log(lowestCommonAncestor(root, node1, node2));
+console.log(lowestCommonAncestor2(root, node1, node2));
