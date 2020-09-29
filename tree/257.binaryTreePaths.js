@@ -65,7 +65,55 @@ const binaryTreePaths2 = function (root) {
 	return result;
 };
 
+/**
+ * Time complexity: O(N)
+ * Space complexity: O(N)
+ * @param {TreeNode} root
+ * @return {string[]}
+ */
+const binaryTreePaths3 = function (root) {
+	if (!root) return [];
+	let paths = [];
+
+	let dfs = function (root, path, paths) {
+		if (!root.left && !root.right) {
+			paths.push(path);
+			return;
+		}
+
+		if (root.left) {
+			dfs(root.left, path + `->${root.left.val}`, paths);
+		}
+		if (root.right) {
+			dfs(root.right, path + `->${root.right.val}`, paths);
+		}
+	};
+
+	// let paths2 = [];
+	// let dfs2 = function (root, arr) {
+	// 	if (!root) return;
+	// 	arr.push(root.val);
+
+	// 	if (!root.left && !root.right) {
+	// 		paths2.push([...arr].join('->'));
+	// 	}
+	// 	dfs2(root.left, [...arr]);
+	// 	dfs2(root.right, [...arr]);
+	// };
+	// dfs2(root, []);
+
+	dfs(root, `${root.val}`, paths);
+	return paths;
+};
+
 let arr = [1, 2, 3, 4, 5, 7, 8];
 let root = createTree(arr);
+console.time();
 console.log(binaryTreePaths(root));
+console.timeEnd();
+console.time();
 console.log(binaryTreePaths2(root));
+console.timeEnd();
+console.time();
+console.log(binaryTreePaths3(root));
+console.timeEnd();
