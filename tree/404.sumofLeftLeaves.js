@@ -32,8 +32,26 @@ const sumOfLeftLeaves = function (root) {
 	return sum;
 };
 
+/**
+ * Time complexity: O(N)
+ * Space complexity: O(N)
+ * @param {TreeNode} root
+ * @return {number}
+ */
+const sumOfLeftLeaves2 = function (root) {
+	let findLeft = (root, isLeft) => {
+		if (!root) return 0;
+		if (!root.left && !root.right && isLeft) {
+			return root.val;
+		}
+		return findLeft(root.left, true) + findLeft(root.right, false);
+	};
+	return findLeft(root, false);
+};
+
 let arr = [3, 9, 20, null, null, 15, 7];
 let root = createTree(arr);
 console.log(sumOfLeftLeaves(root));
-
 console.log(sumOfLeftLeaves(createTree([1]))); // 输出0
+
+console.log(sumOfLeftLeaves2(root));
