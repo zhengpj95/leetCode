@@ -123,13 +123,13 @@ module.exports.getTreeHeight = getTreeHeight;
 module.exports.NextNode = NextNode;
 
 // Test Code
-let arr = [3, 9, 20, 1, 2, 15, 7];
-let root = createTree(arr);
+// let arr = [3, 9, 20, 1, 2, 15, 7];
+// let root = createTree(arr);
 // console.log(createTree(arr));
 // console.log(getTreeHeight(createTree(arr)));
 // console.log(getTreeHeight(null));
-console.log(getBinaryTreeHeight(root));
-console.log(getTreeCount(root));
+// console.log(getBinaryTreeHeight(root));
+// console.log(getTreeCount(root));
 
 // 方式一
 // module.exports.xxx = xxx
