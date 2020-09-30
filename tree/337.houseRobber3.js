@@ -63,6 +63,33 @@ const rob2 = function (root) {
 	return robFunc(root, 0);
 };
 
+/**
+ * 每个结点分 not robbed, robbed
+ * 从叶子结点往根节点推，比较好理解
+ * Time complexity: O(N)
+ * Space complexity: O(N)
+ * @param {TreeNode} root
+ * @return {number}
+ */
+const rob3 = function (root) {
+	let robFunc = (root) => {
+		if (!root) return { notRobbed: 0, robbed: 0 };
+
+		let lNode = robFunc(root.left);
+		let rNode = robFunc(root.right);
+
+		// 若不抢当前结点的，则其值为其左右子树的抢的最大值之和
+		let notRobbed = Math.max(lNode.notRobbed, lNode.robbed) + Math.max(rNode.notRobbed, rNode.robbed);
+		// 若抢当前结点的，则当前结点值 + 其左右子树的不抢的值
+		let robbed = root.val + lNode.notRobbed + rNode.notRobbed;
+
+		return { notRobbed: notRobbed, robbed: robbed };
+	};
+
+	let { notRobbed, robbed } = robFunc(root);
+	return Math.max(notRobbed, robbed);
+};
+
 let arr = [3, 4, 5, 1, 3, null, 1]; //[3, 2, 3, null, 3, null, 1];
 let root = createTree(arr);
 console.time();
@@ -70,4 +97,7 @@ console.log(rob(root));
 console.timeEnd();
 console.time();
 console.log(rob2(root));
+console.timeEnd();
+console.time();
+console.log(rob3(root));
 console.timeEnd();
