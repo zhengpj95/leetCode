@@ -54,6 +54,56 @@ function getTreeHeight(root) {
 }
 
 /**
+ * 二叉树的高度
+ * @param {TreeNode} root
+ */
+function getBinaryTreeHeight(root) {
+	if (!root) return 0;
+	let height = 0;
+	let queue = [root];
+
+	while (queue.length) {
+		height++;
+		let size = queue.length;
+		for (let i = 0; i < size; i++) {
+			let node = queue.shift();
+			if (node.left) {
+				queue.push(node.left);
+			}
+			if (node.right) {
+				queue.push(node.right);
+			}
+		}
+	}
+	return height;
+}
+
+/**
+ * 二叉树结点数
+ * @param {TreeNode} root
+ */
+function getTreeCount(root) {
+	if (!root) return 0;
+	let count = 0;
+	let queue = [root];
+
+	while (queue.length) {
+		let size = queue.length;
+		while (size-- > 0) {
+			count++;
+			let node = queue.shift();
+			if (node.left) {
+				queue.push(node.left);
+			}
+			if (node.right) {
+				queue.push(node.right);
+			}
+		}
+	}
+	return count;
+}
+
+/**
  * Definition for a binary tree node with next pointer.
  * @param {any} val
  * @param {NextNode} left
@@ -73,10 +123,13 @@ module.exports.getTreeHeight = getTreeHeight;
 module.exports.NextNode = NextNode;
 
 // Test Code
-// let arr1 = [3, 9, 20, 1, 2, 15, 7, 7];
-// console.log(createTree(arr1));
-// console.log(getTreeHeight(createTree(arr1)));
+let arr = [3, 9, 20, 1, 2, 15, 7];
+let root = createTree(arr);
+// console.log(createTree(arr));
+// console.log(getTreeHeight(createTree(arr)));
 // console.log(getTreeHeight(null));
+console.log(getBinaryTreeHeight(root));
+console.log(getTreeCount(root));
 
 // 方式一
 // module.exports.xxx = xxx
