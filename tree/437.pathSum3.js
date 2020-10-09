@@ -11,7 +11,7 @@ const { TreeNode, createTree } = require('./TreeNode');
 
 /**
  * DFS
- * Time complexity: O(N) ??
+ * Time complexity: O(N^2) ??
  * Space complexity: O(N) ??
  * @param {TreeNode} root
  * @param {number} sum
