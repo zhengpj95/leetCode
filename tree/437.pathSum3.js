@@ -103,6 +103,7 @@ const pathSum3 = function (root, sum) {
 };
 
 /**
+ * 前缀和(prefixSum) (todo)
  * Time complexity:
  * Space complexity:
  * @param {TreeNode} root
@@ -113,6 +114,8 @@ const pathSum4 = function (root, sum) {
 	if (!root) return 0;
 	let total = 0;
 	let map = new Map();
+	// 维持一条前缀和为0的路径
+	map.set(0, 1);
 
 	let helper = (root, currSum, targetSum, map) => {
 		console.log(map);
