@@ -104,8 +104,12 @@ const pathSum3 = function (root, sum) {
 
 /**
  * 前缀和(prefixSum) (todo)
- * Time complexity:
- * Space complexity:
+ * 前缀和的递归回溯思路
+ * 从当前结点反推到根结点，此路径有且只有一条
+ * 当前结点的路径和为currSum，如果此结点前有和为currSum - targetSum，则两者的差就是 targetSum，也就是 currSum - targetSum 的结点到当前currSum结点的路径和刚好为 targetSum
+ * 当前层记录的前缀和，在回溯结束回到本层后，需重置以保证不影响情况其他分支的计算
+ * Time complexity: O(N)
+ * Space complexity: O(N)
  * @param {TreeNode} root
  * @param {number} sum
  * @return {number}
@@ -118,20 +122,30 @@ const pathSum4 = function (root, sum) {
 	map.set(0, 1);
 
 	let helper = (root, currSum, targetSum, map) => {
-		console.log(map);
 		if (!root) return;
-		currSum += root.val;
-		if (map.has(currSum - targetSum)) {
-			total += map.get(currSum - targetSum);
-		}
 
-		if (!map.has(currSum)) {
-			map.set(currSum, 1);
-		} else {
-			map.set(currSum, map.get(currSum) + 1);
-		}
+		// 当前路径上的和
+		currSum += root.val;
+
+		// if (map.has(currSum - targetSum)) {
+		// 	total += map.get(currSum - targetSum);
+		// }
+
+		// if (!map.has(currSum)) {
+		// 	map.set(currSum, 1);
+		// } else {
+		// 	map.set(currSum, map.get(currSum) + 1);
+		// }
+
+		// currSum - targetSum 相当于找路径的起点，起点的 start + targetSum = currSum，起点到当前点的距离就是targetSum
+		total += map.has(currSum - targetSum) ? map.get(currSum - targetSum) : 0;
+		// 更新路径上当前结点前缀和的个数
+		map.set(currSum, map.has(currSum) ? map.get(currSum) + 1 : 1);
+
 		helper(root.left, currSum, targetSum, map);
 		helper(root.right, currSum, targetSum, map);
+
+		// 回到本层，恢复状态，去除当前结点的前缀和的值
 		map.set(currSum, map.get(currSum) - 1);
 	};
 
@@ -145,4 +159,4 @@ let root = createTree(arr);
 // console.log(pathSum2(root, 8));
 // console.log(pathSum3(root, 8));
 console.log(pathSum4(root, 8));
-// console.log(pathSum4(root, 1));
+console.log(pathSum4(root, 1));
