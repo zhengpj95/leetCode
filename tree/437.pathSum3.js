@@ -41,6 +41,41 @@ const pathSum = function (root, sum) {
 	return total;
 };
 
+/**
+ * DFS
+ * Time complexity: O(N^2) ??
+ * Space complexity: O(N) ??
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {number}
+ */
+const pathSum2 = function (root, sum) {
+	let total = 0;
+
+	let dfs = (root, currSum) => {
+		if (!root) return;
+		currSum += root.val;
+		if (currSum === sum) {
+			total += 1;
+		}
+
+		dfs(root.left, currSum);
+		dfs(root.right, currSum);
+	};
+
+	let find = (root) => {
+		if (!root) return;
+		dfs(root, 0);
+		find(root.left, 0);
+		find(root.right, 0);
+	};
+
+	find(root);
+
+	return total;
+};
+
 let arr = [10, 5, -3, 3, 2, null, 11, 3, -2, null, 1];
 let root = createTree(arr);
 console.log(pathSum(root, 8));
+console.log(pathSum2(root, 1));
