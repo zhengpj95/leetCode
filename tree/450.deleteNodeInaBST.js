@@ -61,6 +61,8 @@ const deleteNode = function (root, key) {
 };
 
 /**
+ * Time complexity: O(H) H is height of tree
+ * Space complexity: O(H)
  * @param {TreeNode} root
  * @param {number} key
  * @return {TreeNode}
