@@ -60,7 +60,36 @@ const deleteNode = function (root, key) {
 	return root;
 };
 
+/**
+ * @param {TreeNode} root
+ * @param {number} key
+ * @return {TreeNode}
+ */
+const deleteNode2 = function (root, key) {
+	if (!root) return null;
+	if (key < root.val) {
+		root.left = deleteNode2(root.left, key);
+	} else if (key > root.val) {
+		root.right = deleteNode2(root.right, key);
+	} else {
+		if (!root.left) return root.right;
+		if (!root.right) return root.left;
+
+		// 找出可替换的结点
+		let leftMaxNode = root.left;
+		while (leftMaxNode.right) {
+			leftMaxNode = leftMaxNode.right;
+		}
+		// 替换值
+		root.val = leftMaxNode.val;
+		// 在带删除结点的左边删除用于替换的结点
+		root.left = deleteNode2(root.left, leftMaxNode.val);
+	}
+
+	return root;
+};
+
 let arr = [5, 3, 6, 2, 4, null, 7];
 let root = createTree(arr);
 
-deleteNode(root, 3);
+console.log(deleteNode2(root, 3));
