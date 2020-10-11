@@ -10,6 +10,16 @@
  */
 
 /**
+ * 做题总结：
+ * 这是一个 “有序” 的数组，所以要联想到二分查找法
+ * 如果暴力解法，从头到尾遍历，虽然可解答，但是肯定不是好方法，而且面试也肯定不吃香，故要从其他想法入手
+ *
+ * binarySearch还不是很理解
+ *
+ * binarySearch2主要是总有一半是有序的，nums[mid] < nums[high] 则是右边是有序的
+ */
+
+/**
  * Time complexity: O(N)
  * Space complexity: O(1)
  * @param {number[]} nums
