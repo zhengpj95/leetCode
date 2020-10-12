@@ -49,7 +49,39 @@ const moveZeroes2 = function (nums) {
 	}
 };
 
+/**
+ * Time complexity: O(N)
+ * Space complexity: O(1)
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+const moveZeroes3 = function (nums) {
+	// let count = 0;
+	// for (let i = 0; i < nums.length; i++) {
+	// 	if (nums[i] === 0) {
+	// 		nums.splice(i--, 1);
+	// 		count++;
+	// 	}
+	// }
+	// for (let i = 0; i < count; i++) {
+	// 	nums.push(0);
+	// }
+
+	let slow = 0;
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] !== 0) {
+			nums[slow] = nums[i];
+			nums[i] = 0; // nums[i] = slow === i ? nums[i] : 0;
+			slow++;
+		}
+	}
+	console.log(nums);
+};
+
 let arr = [0, 1, 0, 3, 12];
-console.log(arr);
-moveZeroes2(arr);
-console.log(arr);
+console.time();
+moveZeroes2([0, 1, 0, 3, 12]);
+console.timeEnd();
+console.time();
+moveZeroes3([0, 1, 0, 3, 12]);
+console.timeEnd();
