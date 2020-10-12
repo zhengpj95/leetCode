@@ -5,6 +5,21 @@
  */
 
 /**
+ * 方法1：两数组重新排序成为一个新数组，再找出中位数，低级解法，不推荐，而且面试时不加分
+ *
+ * 方法2：两数组长度之和/2就是中位数下标，同时遍历两数组，小的元素依次进入新数组，但新数组长度等于中位数下标时就是中位数的位置了，在判断奇偶
+ *
+ * 方法3：理解不够透彻，nums1分为左右两部分，nums2也是，注意它们左右两部分可能为空的情况
+ * 		问题是如何让nums1,nums2的左部分的长度 === nums1,nums2的右部分长度，而且左边的最大值小于右边的最小值，这两个是关键点
+ *
+ * 		两数组分为两部分，i为nums1，j为nums2
+ * 		i + j = m - i + n - j  保证两部分长度相同
+ *		nums2[j-1] <= nums1[i] and nums1[i-1] <= nums2[j]  保证左部分的全小于右部分的元素
+ *
+ * 方法3解析：https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2481/Share-my-O(log(min(mn)))-solution-with-explanation
+ */
+
+/**
  * Time complexity: 取决于sort方法
  * Space complexity: O(m+n)
  * @param {number[]} nums1
@@ -66,14 +81,17 @@ const findMedianSortedArrays2 = function (nums1, nums2) {
  * @return {number}
  */
 const findMedianSortedArrays3 = function (nums1, nums2) {
+	//nums1为最小长度数组，保证元素少的数组在前
 	if (nums1.length > nums2.length) {
-		[nums1, nums2] = [nums2, nums1]; //nums1为最小长度数组
+		[nums1, nums2] = [nums2, nums1];
 	}
 	let len1 = nums1.length;
 	let len2 = nums2.length;
 	let low = 0;
 	let high = len1;
 	while (low <= high) {
+		// i + j = len1 - i + len2 - j
+		// 保证左部分元素长度等于右部分元素长度
 		let i = low + Math.floor((high - low) / 2);
 		let j = Math.floor((len1 + len2 + 1) / 2) - i;
 
