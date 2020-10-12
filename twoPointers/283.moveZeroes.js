@@ -10,6 +10,11 @@
  */
 
 /**
+ * 和27题移除元素相同思路，只是这里会把最后的几个元素置0
+ * 使用双指针，fast指针只要不为0，就把其换到slow指针处，然后slow后的都置0
+ */
+
+/**
  * Time complexity: O(N)
  * Space complexity: O(1)
  * @param {number[]} nums
