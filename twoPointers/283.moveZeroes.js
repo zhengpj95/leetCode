@@ -31,6 +31,25 @@ const moveZeroes = function (nums) {
 	}
 };
 
+/**
+ * Time complexity: O(N)
+ * Space complexity: O(1)
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+const moveZeroes2 = function (nums) {
+	if (!nums || !nums.length) return;
+
+	for (let slow = 0, fast = 0; fast < nums.length; fast++) {
+		if (nums[fast] !== 0) {
+			let temp = nums[slow];
+			nums[slow++] = nums[fast];
+			nums[fast] = temp;
+		}
+	}
+};
+
 let arr = [0, 1, 0, 3, 12];
-moveZeroes(arr);
+console.log(arr);
+moveZeroes2(arr);
 console.log(arr);
