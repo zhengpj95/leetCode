@@ -34,7 +34,7 @@ const findMedianSortedArrays2 = function (nums1, nums2) {
 	let total = -1;
 	let totalLen = nums1.length + nums2.length;
 	let midLen = (totalLen / 2) >> 0;
-	for (let i = 0, j = 0; i < nums1.length || j < nums2.length;) {
+	for (let i = 0, j = 0; i < nums1.length || j < nums2.length; ) {
 		if (nums1[i] < nums2[j]) {
 			res.push(nums1[i]);
 			i++;
@@ -61,13 +61,13 @@ const findMedianSortedArrays2 = function (nums1, nums2) {
 /**
  * Time complexity: O(log(min(m,n)))
  * Space complexity: O(1)
- * @param {number[]} nums1 
- * @param {number[]} nums2 
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @return {number}
  */
 const findMedianSortedArrays3 = function (nums1, nums2) {
 	if (nums1.length > nums2.length) {
-		[nums1, nums2] = [nums2, nums1];//nums1为最小长度数组
+		[nums1, nums2] = [nums2, nums1]; //nums1为最小长度数组
 	}
 	let len1 = nums1.length;
 	let len2 = nums2.length;
