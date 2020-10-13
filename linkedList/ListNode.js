@@ -1,6 +1,6 @@
 /**
  * @param {any} val
- * @param {any} next
+ * @param {ListNode} next
  */
 function ListNode(val, next) {
 	this.val = val === undefined ? 0 : val;
