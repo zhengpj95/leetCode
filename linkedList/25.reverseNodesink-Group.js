@@ -10,6 +10,12 @@
  * @date 2020/10/13 11:29:23
  */
 
+/**
+ * 和 24.Swap Node in Pairs 类似，都是reverse结点，这里是每k个reverse一次
+ * 充分利用头结点的性质
+ * 每k个一组，从每组的第二个元素开始往前插入，当然也可以每个元素都往前插入，即使是每组第一个元素
+ */
+
 const { ListNode, createList } = require('./ListNode');
 
 /**
