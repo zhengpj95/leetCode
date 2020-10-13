@@ -19,7 +19,8 @@
 const { TreeNode, createTree } = require('./TreeNode');
 
 /**
- * Time complexity: O(N^2) 需要遍历每个结点，但是每个结点的序列化也要花费 O(N) 的时间
+ * Time complexity: O(N^2) 需要遍历每个结点，但是每个结点的序列化也要花费 O(N) 的时间，
+ * 					其实也是因为序列化时，需要遍历叶子结点的左右孩子，故需要 O(N^2) 时间
  * Space complexity: O(N^2)
  * @param {TreeNode} root
  * @return {TreeNode[]}
