@@ -41,6 +41,43 @@ const sortedListToBST = function (head) {
 	return tree;
 };
 
+/**
+ * 利用有序链表和二叉树中序遍历的性质
+ * Time complexity: O(N)
+ * Space complexity: O(N)
+ * @param {ListNode} head
+ * @return {TreeNode}
+ */
+const sortedListToBST2 = function (head) {
+	if (!head) return null;
+	let getSize = (head) => {
+		let count = 0;
+		while (head) {
+			count++;
+			head = head.next;
+		}
+		return count;
+	};
+
+	let convertListToTree = (left, right) => {
+		if (left > right) return null;
+
+		let mid = Math.floor((left + right) / 2);
+		// left children
+		let leftNode = convertListToTree(left, mid - 1);
+
+		// root node
+		let node = new TreeNode(head.val);
+		node.left = leftNode;
+
+		head = head.next;
+		// right children
+		node.right = convertListToTree(mid + 1, right);
+		return node;
+	};
+	return convertListToTree(0, getSize(head) - 1);
+};
+
 let arr = [-10, -3, 0, 5, 9];
 let head = createList(arr);
-console.log(sortedListToBST(head.next));
+console.log(sortedListToBST2(head.next));
