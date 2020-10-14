@@ -74,10 +74,41 @@ const partition2 = function (head, x) {
 	return dummy.next;
 };
 
+/**
+ * Time complexity: O(N)
+ * Space complexity: O(1)
+ * @param {ListNode} head
+ * @param {number} x
+ * @return {ListNode}
+ */
+const partition3 = function (head, x) {
+	if (!head || !head.next) return head;
+	let dummy1 = new ListNode(0);
+	let p1 = dummy1;
+	let dummy2 = new ListNode(0);
+	let p2 = dummy2;
+
+	while (head) {
+		if (head.val < x) {
+			// p1 = p1.next = head;
+			p1.next = head;
+			p1 = p1.next;
+		} else {
+			// p2 = p2.next = head;
+			p2.next = head;
+			p2 = p2.next;
+		}
+		head = head.next;
+	}
+	p2.next = null;
+	p1.next = dummy2.next;
+	return dummy1.next;
+};
+
 let arr = [1, 4, 3, 2, 4, 5, 2, -1, 0];
 let node = createList(arr);
 
-let res = partition2(node.next, 3);
+let res = partition3(node.next, 3);
 while (res) {
 	console.log(res.val);
 	res = res.next;
