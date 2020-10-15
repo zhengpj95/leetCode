@@ -33,10 +33,30 @@ const hasCycle = function (head) {
 	return false;
 };
 
+/**
+ * Time complexity: O(N)
+ * Space coplexity: O(N)
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+const hasCycle2 = function (head) {
+	if (!head) return false;
+	let map = new Map();
+	while (head) {
+		if (map.has(head)) {
+			return true;
+		} else {
+			map.set(head, 1);
+		}
+		head = head.next;
+	}
+	return false;
+};
+
 let node2 = new ListNode(2);
 let node1 = new ListNode(3, node2);
 let node4 = new ListNode(-4, node2);
 let node3 = new ListNode(0, node4);
 node2.next = node3;
 
-console.log(hasCycle(node1));
+console.log(hasCycle2(node1));
