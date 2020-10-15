@@ -13,6 +13,7 @@
 const { ListNode, createList } = require('./ListNode');
 
 /**
+ * 这个思路也叫(Floyd的乌龟和野兔) Floyd's Tortoise and Hare
  * 双指针，一个跑快一个跑慢，最后会相遇
  * Time complexity: O(N)
  * Space coplexity: O(1)
