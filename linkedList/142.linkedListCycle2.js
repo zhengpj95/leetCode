@@ -19,6 +19,9 @@ const { ListNode, createList } = require('./ListNode');
  * fast指针2步，slow指针1步，当它们相遇的时候，假设slow跑了k步，那么fast就跑了2k步，也就是环的长度为k，
  * 此时slow和fast指针都已在环内的了(如果有环的话，如果无环时，fast必为null，此时要return)
  * 再假设环的起点到两指针的相遇点的距离为m，则从相遇点继续前进 k - m 到达环起点，从头开始走 k - m 步也会到环起点
+ *
+ * Time complexity: O(N)
+ * Space complexity: O(1)
  * @param {ListNode} head
  * @return {ListNode}
  */
