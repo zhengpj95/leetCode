@@ -42,6 +42,37 @@ const reorderList = function (head) {
 	head = dummyHead.next;
 };
 
-let head = createList([1, 2, 3, 4]);
-reorderList(head.next);
-console.log(traversal(head.next));
+/**
+ * 1. 找到中间结点，把链表分为两个部分，第二个链表从中间结点后面一个结点开始算，如果结点为偶数个，则从中间两个结点偏后的那个结点开始
+ * 2. 第二个链表倒序
+ * 3. 把第二个链表依次插入第一个链表中
+ * Time complexity: O(N)
+ * Space complexity: O(1)
+ * @param {ListNode} head
+ * @return {void} Do not return anything, modify head in-place instead.
+ */
+const reorderList1 = function (head) {
+	if (!head) return;
+	// 1. 选择链表中间结点
+	let mid = head;
+	let fast = head;
+	while (fast && fast.next) {
+		fast = fast.next.next;
+		if (!fast) break;
+		mid = mid.next;
+	}
+	// 把链表分为两半
+	let dummyHead = new ListNode(0, mid.next);
+	mid.next = null;
+	// 2. 把第二个链表倒序
+
+	// 3. 重建链表
+
+	console.log(traversal(dummyHead));
+};
+
+let head = createList([1, 2, 3, 4, 5, 6, 7, 8]);
+// reorderList(head.next);
+// console.log(traversal(head.next));
+
+reorderList1(head.next);
