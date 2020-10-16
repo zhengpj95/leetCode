@@ -73,17 +73,15 @@ const reorderList1 = function (head) {
 		cur.next = dummyHead.next;
 		dummyHead.next = cur;
 	}
-	console.log(traversal(dummyHead));
 	// 3. 重建链表
 	let curNode = head;
-	while(dummyHead && dummyHead.next) {
+	while (dummyHead && dummyHead.next) {
 		let node = dummyHead.next;
 		dummyHead.next = dummyHead.next.next;
 		node.next = curNode.next;
 		curNode.next = node;
 		curNode = curNode.next.next;
 	}
-	console.log(head)
 	return head;
 };
 
@@ -91,4 +89,5 @@ let head = createList([1, 2, 3, 4, 5, 6, 7, 8]);
 // reorderList(head.next);
 // console.log(traversal(head.next));
 
-reorderList1(head.next);
+let res = reorderList1(head.next);
+console.log(traversal(res));
