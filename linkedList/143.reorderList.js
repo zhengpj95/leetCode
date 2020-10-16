@@ -65,10 +65,26 @@ const reorderList1 = function (head) {
 	let dummyHead = new ListNode(0, mid.next);
 	mid.next = null;
 	// 2. 把第二个链表倒序
-
-	// 3. 重建链表
-
+	let pre = dummyHead.next;
+	while (pre && pre.next) {
+		let cur = pre.next;
+		pre.next = cur.next;
+		cur.next = null;
+		cur.next = dummyHead.next;
+		dummyHead.next = cur;
+	}
 	console.log(traversal(dummyHead));
+	// 3. 重建链表
+	let curNode = head;
+	while(dummyHead && dummyHead.next) {
+		let node = dummyHead.next;
+		dummyHead.next = dummyHead.next.next;
+		node.next = curNode.next;
+		curNode.next = node;
+		curNode = curNode.next.next;
+	}
+	console.log(head)
+	return head;
 };
 
 let head = createList([1, 2, 3, 4, 5, 6, 7, 8]);
