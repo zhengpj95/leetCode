@@ -12,7 +12,7 @@
 const { ListNode, createList, traversal } = require('./ListNode');
 
 /**
- * Time complexity: O(N)
+ * Time complexity: O(N^2)
  * Space complexity: O(1)
  * @param {ListNode} head
  * @return {ListNode}
