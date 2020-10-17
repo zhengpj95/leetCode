@@ -12,25 +12,34 @@
 const { ListNode, createList, traversal } = require('./ListNode');
 
 /**
+ * Time complexity: O(N)
+ * Space complexity: O(1)
  * @param {ListNode} head
  * @return {ListNode}
  */
 const insertionSortList = function (head) {
 	if (!head) return null;
-	let dummy = new ListNode(0, head);
+	let dummy = new ListNode(0);
 	let start = dummy;
-	// let currNode = dummy.next;
-	// while (currNode) {
 
-	// 	while (start && start.val < currNode.val) {
-	// 		start = start.next;
-	// 	}
+	while (head) {
+		let node = head;
+		head = head.next;
+		node.next = null;
 
-	// 	start = dummy;
-	// 	currNode = currNode.next;
-	// }
+		while (start && start.next && start.next.val < node.val) {
+			start = start.next;
+		}
+
+		node.next = start.next;
+		start.next = node;
+
+		start = dummy;
+	}
+
+	return dummy.next;
 };
 
 let arr = [6, 5, 3, 1, 8, 7, 2, 4];
 let head = createList(arr);
-console.log(insertionSortList(head.next));
+console.log(traversal(insertionSortList(head.next)));
