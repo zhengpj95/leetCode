@@ -84,6 +84,35 @@ let getListByMid = (head) => {
 	return slow;
 };
 
+/**
+ * Approach 2: Brute Force
+ * Time complexity: O(N)
+ * Space complexity: O(N)
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const bruteSortList = function (head) {
+	if (!head) return null;
+	let nodes = [];
+	let curr = head;
+	while (curr) {
+		nodes.push(curr);
+		curr = curr.next;
+	}
+	nodes.sort((a, b) => a.val - b.val);
+
+	let dummy = new ListNode(0);
+	let tail = dummy;
+	for (let item of nodes) {
+		tail.next = item;
+		tail = tail.next;
+		item.next = null;
+	}
+	return dummy.next;
+};
+
 let arr = [4, 2, 1, 3]; //[-1, 5, 3, 4, 0];
 let head = createList(arr);
-console.log(traversal(sortList(head.next)));
+// console.log(traversal(sortList(head.next)));
+
+console.log(traversal(bruteSortList(head.next)));
