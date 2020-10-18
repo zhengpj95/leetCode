@@ -13,8 +13,8 @@
 const { ListNode, createList, traversal } = require('./ListNode');
 
 /**
- * Time complexity: O(N)
- * Space complexity: O(N)
+ * Time complexity: O(max(m, n))
+ * Space complexity: O(m) or O(n)
  * @param {ListNode} headA
  * @param {ListNode} headB
  * @return {ListNode}
@@ -31,6 +31,28 @@ const getIntersectionNode = function (headA, headB) {
 			return headB;
 		}
 		headB = headB.next;
+	}
+	return null;
+};
+
+/**
+ * Time complexity: O(mn)
+ * Space complexity: O(1)
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+const bruteForceFunc = function (headA, headB) {
+	if (!headA || !headB) return null;
+	while (headA) {
+		let nodeB = headB;
+		while (nodeB) {
+			if (headA === nodeB) {
+				return nodeB;
+			}
+			nodeB = nodeB.next;
+		}
+		headA = headA.next;
 	}
 	return null;
 };
@@ -53,3 +75,4 @@ while (cur && cur.next) {
 cur.next = commonNode.next;
 
 console.log(getIntersectionNode(head.next, head2.next));
+console.log(bruteForceFunc(head.next, head2.next));
