@@ -60,6 +60,7 @@ const bruteForceFunc = function (headA, headB) {
 };
 
 /**
+ * 当pA=headB,pB=headA，从头开始遍历时，pA和pB后的结点长度是相同的了
  * Approach 3: Two Pointers
  * Time complexity: O(m+n)
  * Space complexity: O(1)
@@ -69,8 +70,15 @@ const bruteForceFunc = function (headA, headB) {
  */
 const twoPointersFunc = function (headA, headB) {
 	if (!headA || !headB) return null;
+	let pA = headA;
+	let pB = headB;
 
-	return null;
+	while (pA !== pB) {
+		pA = pA ? pA.next : headB;
+		pB = pB ? pB.next : headA;
+	}
+
+	return pA;
 };
 
 let arr1 = [4, 1];
@@ -92,3 +100,4 @@ cur.next = commonNode.next;
 
 console.log(getIntersectionNode(head.next, head2.next));
 console.log(bruteForceFunc(head.next, head2.next));
+console.log(twoPointersFunc(head.next, head2.next));
