@@ -13,6 +13,7 @@
 const { ListNode, createList, traversal } = require('./ListNode');
 
 /**
+ * Approach 1: Hast Table
  * Time complexity: O(max(m, n))
  * Space complexity: O(m) or O(n)
  * @param {ListNode} headA
@@ -36,6 +37,7 @@ const getIntersectionNode = function (headA, headB) {
 };
 
 /**
+ * Approach 2: Brute Force
  * Time complexity: O(mn)
  * Space complexity: O(1)
  * @param {ListNode} headA
@@ -54,6 +56,20 @@ const bruteForceFunc = function (headA, headB) {
 		}
 		headA = headA.next;
 	}
+	return null;
+};
+
+/**
+ * Approach 3: Two Pointers
+ * Time complexity: O(m+n)
+ * Space complexity: O(1)
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+const twoPointersFunc = function (headA, headB) {
+	if (!headA || !headB) return null;
+
 	return null;
 };
 
