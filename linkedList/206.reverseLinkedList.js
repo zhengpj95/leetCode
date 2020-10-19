@@ -30,6 +30,27 @@ const reverseList = function (head) {
 	return dummy.next;
 };
 
+/**
+ * 迭代
+ * Time complexity: O(N)
+ * Space complexity: O(1)
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const reverseList2 = function (head) {
+	if (!head) return;
+	let prev = null; //总是链表第一个结点
+	let curr = head;
+	while (curr) {
+		let temp = curr.next;
+		curr.next = prev;
+		prev = curr;
+		curr = temp;
+	}
+	return prev;
+};
+
 let arr = [1, 2, 3, 4, 5];
 let head = createList(arr);
-console.log(traversal(reverseList(head.next)));
+// console.log(traversal(reverseList(head.next)));
+console.log(traversal(reverseList2(head.next)));
