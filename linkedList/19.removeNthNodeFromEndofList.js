@@ -1,14 +1,8 @@
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
+ * Given the head of a linked list, remove the nth node from the end of the list and return its head.
+ * Follow up: Could you do this in one pass?
  */
-function ListNode(val, next) {
-	this.val = (val === undefined ? 0 : val);
-	this.next = (next === undefined ? null : next);
-}
+const { ListNode, createList, traversal } = require('./ListNode');
 
 /**
  * Time complexity: O(L)
@@ -26,7 +20,7 @@ const removeNthFromEnd = function (head, n) {
 		count++;
 		end = end.next;
 	}
-	let idx = count - n + 1;//第几个
+	let idx = count - n + 1; //第几个
 	// 如果是第一个直接干掉
 	if (idx === 1) {
 		head = head.next;
@@ -47,6 +41,7 @@ const removeNthFromEnd = function (head, n) {
 };
 
 /**
+ * 双指针法，快慢指针相差n个元素，当fast指针指向null时，slow指针指向倒数第n+1个元素
  * Time complexity: O(L)
  * Space complexity: O(1)
  * @param {ListNode} head
@@ -54,31 +49,21 @@ const removeNthFromEnd = function (head, n) {
  * @return {ListNode}
  */
 const removeNthFromEnd2 = function (head, n) {
-	let node0 = new ListNode(0, head);
-	let first = node0;
-	let second = node0;
+	let newHead = new ListNode(0, head);
+	let fast = newHead;
+	let slow = newHead;
 	for (let i = 0; i < n + 1; i++) {
-		first = first.next;
+		fast = fast.next;
 	}
-
-	while (first) {
-		first = first.next;
-		second = second.next;
+	while (fast) {
+		fast = fast.next;
+		slow = slow.next;
 	}
-	second.next = second.next.next;
-	return node0.next;
+	slow.next = slow.next.next;
+	return newHead.next;
 };
 
-let node7 = new ListNode(7);
-let node6 = new ListNode(6, node7);
-let node5 = new ListNode(5, node6);
-let node4 = new ListNode(4, node5);
-let node3 = new ListNode(3, node4);
-let node2 = new ListNode(2, node3);
-let node1 = new ListNode(1, node2);
-
-let head = removeNthFromEnd2(node1, 2);
-while (head) {
-	console.log(head.val);
-	head = head.next;
-}
+let arr = [1, 2, 3, 4, 5, 6, 7];
+let node = createList(arr);
+let head = removeNthFromEnd2(node.next, 2);
+console.log(traversal(head));
