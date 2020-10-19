@@ -42,6 +42,42 @@ const fullPermutation = function (nums) {
 	return res;
 };
 
+/**
+ * 输入一组不重复的数字，返回它们的排列，每个排列含k个元素
+ * @param {number[]} nums
+ * @param {number} k
+ * @returns {number[]}
+ */
+const fullPermutation2 = function (nums, k) {
+	if (!nums || !nums.length) return [];
+	let res = [];
+
+	/**
+	 * @param {number[]} nums
+	 * @param {number[]} track
+	 */
+	let backtrack = (nums, track) => {
+		// 结束条件
+		if (track.length === k) {
+			res.push([...track]);
+			return;
+		}
+
+		for (let item of nums) {
+			if (track.indexOf(item) >= 0) continue;
+			// 做选择
+			track.push(item);
+			// 进入下一层决策树
+			backtrack(nums, track);
+			// 取消选择
+			track.pop();
+		}
+	};
+
+	backtrack(nums, []);
+	return res;
+};
+
 let arr = [1, 2, 3];
-let res = fullPermutation(arr);
+let res = fullPermutation2(arr, 2); //fullPermutation(arr);
 console.log(res);
