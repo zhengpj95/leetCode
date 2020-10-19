@@ -16,7 +16,7 @@
  * 每k个一组，从每组的第二个元素开始往前插入，当然也可以每个元素都往前插入，即使是每组第一个元素
  */
 
-const { ListNode, createList } = require('./ListNode');
+const { ListNode, createList, traversal } = require('./ListNode');
 
 /**
  * Time complexity: O(N)
@@ -61,11 +61,47 @@ const reverseKGroup = function (head, k) {
 	return newHead.next;
 };
 
+/**
+ * 递归法
+ * Time complexity: O(N)
+ * Space complexity: O(N/k)
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+const reverseKGroup2 = function (head, k) {
+	if (!head || k === 1) return head;
+	// 反转两结点间的链表 [start, end)
+	let reverse = (start, end) => {
+		let curr = start;
+		let prev = null;
+		while (curr !== end) {
+			let temp = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = temp;
+		}
+		return prev;
+	};
+
+	// 链表区间 [aNode, bNode)
+	let aNode = head,
+		bNode = head;
+	for (let i = 0; i < k; i++) {
+		// 不足k个，不需要反转，base case
+		if (!bNode) {
+			return head;
+		}
+		bNode = bNode.next;
+	}
+
+	let newHead = reverse(aNode, bNode);
+	// aNode 此时是 newHead 的最后一个结点
+	aNode.next = reverseKGroup2(bNode, k);
+	return newHead;
+};
+
 let arr = [1, 2, 3, 4, 5, 6, 7, 8];
 let list = createList(arr); // 带头结点的
-let res = reverseKGroup(list.next, 3);
-// console.log(res);
-while (res) {
-	console.log(res.val);
-	res = res.next;
-}
+let res = reverseKGroup2(list.next, 3);
+console.log(traversal(res));
