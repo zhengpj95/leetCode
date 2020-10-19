@@ -50,7 +50,23 @@ const reverseList2 = function (head) {
 	return prev;
 };
 
+/**
+ * 递归
+ * Time complexity: O(N)
+ * Space complexity: O(N)
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const reverseList3 = function (head) {
+	if (!head || !head.next) return head;
+	let p = reverseList3(head.next);
+	head.next.next = head;
+	head.next = null;
+	return p;
+};
+
 let arr = [1, 2, 3, 4, 5];
 let head = createList(arr);
 // console.log(traversal(reverseList(head.next)));
-console.log(traversal(reverseList2(head.next)));
+// console.log(traversal(reverseList2(head.next)));
+console.log(traversal(reverseList3(head.next)));
