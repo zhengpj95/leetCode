@@ -1,4 +1,5 @@
 /**
+ * Related Topics: Hash Table, Two Pointers, String
  * You are given a string, s, and a list of words, that are all of the same length.
  * Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once
  * and without any intervening characters.
@@ -22,7 +23,7 @@ var findSubstring = function (s, words) {
 			return [];
 		}
 		obj[word] = [];
-		for (let i = 0; i <= s.length;) {
+		for (let i = 0; i <= s.length; ) {
 			let index = s.indexOf(word, i);
 			if (~index) {
 				obj[word].push(index);
