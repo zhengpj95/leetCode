@@ -37,6 +37,8 @@ const isPalindrome = function (head) {
 
 /**
  * 双指针，链表[a, b)倒序
+ * 此方法是前半链表倒序，奇数个结点时就要新加一个中间结点
+ * 可以换成倒序后半部分结点，如果是奇数个时，slow还需向下移动一个
  * Time complexity: O(N)
  * Space complexity: O(1)
  * @param {ListNode} head
