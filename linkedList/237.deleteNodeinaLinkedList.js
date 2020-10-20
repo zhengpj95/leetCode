@@ -15,7 +15,7 @@ const { ListNode, createList, traversal } = require('./ListNode');
  * @param {ListNode} node 要删除的结点
  * @return {void} Do not return anything, modify node in-place instead.
  */
-var deleteNode = function (node) {
+const deleteNode = function (node) {
 	if (!node) return;
 	let tail = node;
 	let pre = null;
@@ -27,7 +27,19 @@ var deleteNode = function (node) {
 	pre.next = null;
 };
 
+/**
+ * Time complexity: O(1)
+ * Space complexity: O(1)
+ * @param {ListNode} node 要删除的结点
+ * @return {void} Do not return anything, modify node in-place instead.
+ */
+const deleteNode2 = function (node) {
+	if (!node) return;
+	node.val = node.next.val;
+	node.next = node.next.next;
+};
+
 let arr = [4, 5, 1, 9];
 let head = createList(arr);
-deleteNode(head.next.next); // delete 5
+deleteNode2(head.next.next); // delete 5
 console.log(traversal(head.next));
