@@ -1,0 +1,123 @@
+/**
+ * Given two binary strings, return their sum (also a binary string).
+ * The input strings are both non-empty and contains only characters 1 or 0.
+ */
+
+/**
+ * 超过Number的范围就不行了。
+ * 如果sum大于Number能表示的范围时，就不对了。只能实现字符串较短的转换。
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function (a, b) {
+	let sum = Number(a) + Number(b);
+	if (sum < 2) {
+		return sum + '';
+	}
+
+	let temp = '';
+	while (sum > 0) {
+		let overflow = sum % 10;
+		if (overflow > 1) {
+			temp += overflow % 2;
+			sum = Math.floor(sum / 10) + 1;
+		} else {
+			temp += overflow;
+			sum = Math.floor(sum / 10);
+		}
+	}
+
+	let res = '';
+	for (let i = temp.length - 1; i >= 0; i--) {
+		res += temp[i];
+	}
+	return res;
+};
+
+/**
+ * Runtime: 80 ms
+ * Memory Usage: 38.4 MB
+ * 使用数组的解法，逢二进一
+ * @param {string} a
+ * @param {string} b
+ * @returns {string}
+ */
+const addBinary2 = function (a, b) {
+	let arr1 = a.split('').reverse();
+	let arr2 = b.split('').reverse();
+
+	let min = Math.min(arr1.length, arr2.length);
+	let newArr = [];
+	for (let i = 0; i < min; i++) {
+		newArr.push(Number(arr1.shift()) + Number(arr2.shift()));
+	}
+	if (arr1.length) {
+		newArr = newArr.concat(arr1.map((item) => parseInt(item)));
+	}
+	if (arr2.length) {
+		newArr = newArr.concat(arr2.map((item) => parseInt(item)));
+	}
+
+	let overflow = 0;
+	let result = newArr.map((item) => {
+		let newItem = item + overflow;
+		overflow = newItem > 1 ? 1 : 0;
+		return newItem % 2;
+	});
+	if (overflow) {
+		result.push(1);
+	}
+
+	let res = '';
+	result.reverse().map((item) => {
+		res += item;
+	});
+	return res;
+};
+
+/**
+ * 使用BigInt类型来出来
+ * 0b => binary 二进制
+ * 0h => hex	十六进制
+ * 0c => octal 	八进制
+ * 0d => decmal	十进制
+ *
+ * Runtime: 68 ms, faster than 48.11% of JavaScript online submissions for Add Binary.
+ * Memory Usage: 33.9 MB, less than 92.86% of JavaScript online submissions for Add Binary.
+ *
+ * @param {string} a
+ * @param {string} b
+ */
+var addBinary3 = function (a, b) {
+	const aBin = `0b${a}`;
+	const bBin = `0b${b}`;
+	const sum = BigInt(aBin) + BigInt(bBin);
+	return sum.toString(2);
+};
+
+/**
+ * Runtime: 80 ms, faster than 24.46% of JavaScript online submissions for Add Binary.
+ * Memory Usage: 37.3 MB, less than 14.29% of JavaScript online submissions for Add Binary.
+ * @param {string} a
+ * @param {string} b
+ */
+var addBinary4 = function (a, b) {
+	let res = '';
+	let overflow = 0;
+
+	for (let i = a.length - 1, j = b.length - 1; i >= 0 || j >= 0; i--, j--) {
+		let sum = overflow;
+		sum += a[i] ? parseInt(a[i]) : 0;
+		sum += b[j] ? parseInt(b[j]) : 0;
+		overflow = sum > 1 ? 1 : 0;
+		res += sum % 2;
+	}
+	if (overflow) {
+		res += 1;
+	}
+	return res.split('').reverse().join('');
+};
+
+console.log(addBinary4('11', '1'));
+console.log(addBinary4('1010', '1011'));
