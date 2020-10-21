@@ -8,6 +8,12 @@
  * Note:
  * A Sudoku board (partially filled) could be valid but is not necessarily solvable.
  * Only the filled cells need to be validated according to the mentioned rules.
+ *
+ * Constraints:
+ * board.length == 9
+ * board[i].length == 9
+ * board[i][j] is a digit or '.'.
+ *
  * @author zheng
  * @date 2020/10/21 15:36:57
  */
