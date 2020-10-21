@@ -84,12 +84,69 @@ var findSubstring2 = function (s, words) {
 			set.add(str.indexOf(word));
 		}
 		if (set.size === words.length) res.push(start);
-		start += wordLen;
-		end += wordLen;
+		start++;
+		end++;
 	}
 	return res;
 };
 
-let s = 'barfoofoobarthefoobarman'; //'bestgoodgoodgoodbestword';
-let words = ['foo', 'bar', 'the']; //['word', 'good', 'best', 'good'];
-console.log(findSubstring2(s, words));
+/**
+ * Time complexity: O(s.length * words.length)
+ * Space complexity: O(words.length * 2)
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number[]}
+ */
+var findSubstring3 = function (s, words) {
+	if (!s || !s.length || !words || !words.length) return [];
+	let countMap = new Map();
+	for (let word of words) {
+		countMap.set(word, countMap.has(word) ? countMap.get(word) + 1 : 1);
+	}
+
+	let res = [];
+	let wordLen = words[0].length;
+	let wordsLen = wordLen * words.length;
+	let start = 0;
+	let end = wordsLen - 1;
+	while (end < s.length) {
+		let str = s.slice(start, end + 1);
+		let map = new Map();
+		for (let i = 0; i < wordsLen; i += wordLen) {
+			let newStr = str.substr(i, wordLen);
+			map.set(newStr, map.has(newStr) ? map.get(newStr) + 1 : 1);
+		}
+		let isSame = true;
+		for (let word of words) {
+			if (!map.has(word)) {
+				isSame = false;
+				break;
+			}
+			if (map.get(word) !== countMap.get(word)) {
+				isSame = false;
+				break;
+			}
+		}
+		if (isSame) {
+			res.push(start);
+		}
+		start++;
+		end++;
+	}
+	return res;
+};
+
+let s = '';
+let words = [];
+let controlFlag = 3;
+if (controlFlag === 1) {
+	s = 'barfoofoobarthefoobarman';
+	words = ['foo', 'bar', 'the'];
+} else if (controlFlag === 2) {
+	s = 'bestgoodgoodgoodbestword';
+	words = ['word', 'good', 'best', 'good'];
+} else if (controlFlag === 3) {
+	s = 'lingmindraboofooowingdingbarrwingmonkeypoundcake';
+	words = ['fooo', 'barr', 'wing', 'ding', 'wing'];
+}
+console.log(findSubstring3(s, words));
