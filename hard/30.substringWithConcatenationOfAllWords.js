@@ -6,6 +6,7 @@
  */
 
 /**
+ * 找出每个单词的下标，再来判断，思路有问题
  * @param {string} s
  * @param {string[]} words
  * @return {number[]}
@@ -38,16 +39,57 @@ var findSubstring = function (s, words) {
 	console.log(obj, arr);
 
 	// todo
-	let res = [];
-	for (let i = 0; i < arr.length; i++) {
-		let start = i;
-		let end = i;
-		let idx = -1;
-		while (start < words.length + i && end < words.length + i) {
-			// todo
-		}
-	}
-	console.log(res);
+	// let res = [];
+	// for (let i = 0; i < arr.length; i++) {
+	// 	let start = i;
+	// 	let end = i;
+	// 	let idx = -1;
+	// 	while (start < words.length + i && end < words.length + i) {
+	// 		// todo
+	// 	}
+	// }
+	// console.log(res);
 };
 
-findSubstring('barfoothefoobarman', ['foo', 'bar']);
+/**
+ * 有bug，如果 words 中有重复的单词，就会判断不全
+ * Time complexity: O(s.length * words.length)
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number[]}
+ */
+var findSubstring2 = function (s, words) {
+	if (!words || !words.length) {
+		return [];
+	}
+	let res = [];
+	// let map = new Map();
+	// for (let word of words) {
+	// 	if (map.has(word)) {
+	// 		map.set(word, map.get(word) + 1);
+	// 	} else {
+	// 		map.set(word, 1);
+	// 	}
+	// }
+
+	let wordLen = words[0].length;
+	let totalLen = wordLen * words.length;
+	let start = 0,
+		end = totalLen - 1;
+	while (end < s.length) {
+		let str = s.slice(start, end + 1);
+		let set = new Set();
+		for (let word of words) {
+			if (str.indexOf(word) < 0) continue;
+			set.add(str.indexOf(word));
+		}
+		if (set.size === words.length) res.push(start);
+		start += wordLen;
+		end += wordLen;
+	}
+	return res;
+};
+
+let s = 'barfoofoobarthefoobarman'; //'bestgoodgoodgoodbestword';
+let words = ['foo', 'bar', 'the']; //['word', 'good', 'best', 'good'];
+console.log(findSubstring2(s, words));
