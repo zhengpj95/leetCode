@@ -32,4 +32,31 @@ const isHappy = function (n) {
 	return res;
 };
 
-console.log(isHappy(29));
+/**
+ * 使用快慢指针，快指针2步，慢指针1步，当它们相遇，即出现环的时候，
+ * 如果相遇点不是1，那么永远都不会有 happy number
+ * @param {number} n
+ * @return {boolean}
+ */
+const isHappy2 = function (n) {
+	let digitSum = (num) => {
+		let sum = 0;
+		while (num) {
+			let temp = num % 10;
+			sum += temp * temp;
+			num = Math.floor(num / 10);
+		}
+		return sum;
+	};
+
+	let slow = n;
+	let fast = digitSum(n); //必须从下一位开始
+	while (slow !== fast) {
+		console.log(slow, fast);
+		slow = digitSum(slow);
+		fast = digitSum(digitSum(fast));
+		if (fast === 1) return true;
+	}
+	return slow === 1;
+};
+console.log(isHappy2(19));
