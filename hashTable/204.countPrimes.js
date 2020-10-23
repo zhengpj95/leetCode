@@ -38,4 +38,28 @@ const isPrime = (num) => {
 	return true;
 };
 
-console.log(countPrimes(2));
+/**
+ * Approach 2: Sieve of Eratosthenes (爱拉托逊斯筛法)
+ * Time complexity: O(n log log n)
+ * Space complexity: O(n)
+ * @param {number} n
+ * @return {number}
+ */
+const countPrimes2 = function (n) {
+	let isPrime = new Array(n);
+	for (let i = 2; i <= n; i++) isPrime[i] = 1;
+
+	for (let i = 2; i * i < n; i++) {
+		if (!isPrime[i]) continue;
+		for (let j = i * i; j < n; j += i) {
+			isPrime[j] = 0;
+		}
+	}
+	let count = 0;
+	for (let i = 2; i < n; i++) {
+		if (isPrime[i]) count++;
+	}
+	return count;
+};
+
+console.log(countPrimes2(10));
