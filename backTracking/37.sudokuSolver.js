@@ -44,10 +44,13 @@ const solveSudoku = function (board) {
 				if (ele !== '.') continue;
 				for (let t = 1; t <= 9; t++) {
 					if (isValid(board, i, j, t)) {
+						// 做选择
 						board[i][j] = t + '';
+						// 继续递归
 						if (solve(board)) {
 							return true;
 						}
+						// 撤销选择
 						board[i][j] = '.';
 					}
 				}
