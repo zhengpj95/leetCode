@@ -95,11 +95,63 @@ const minWindow2 = function (s, t) {
 	return res === null ? '' : res;
 };
 
+/**
+ * Sliding Window
+ * 不断移动过程中就要同步的判断，如果像上面的方式，截取字符串过来判断，很耗时
+ * Time complexity: O(m^2) m is length of s
+ * Space complexity: O(2n)	n is length of t
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+const minWindow3 = function (s, t) {
+	if (!t || !t.length || !s || !s.length || s.length < t.length) return '';
+
+	let needMap = new Map();
+	let windowMap = new Map();
+	for (let i = 0; i < t.length; i++) {
+		needMap.set(t[i], needMap.has(t[i]) ? needMap.get(t[i]) + 1 : 1);
+		windowMap.set(t[i], 0);
+	}
+
+	let res = null;
+	let valid = 0; //t的字母数量
+	let left = 0,
+		right = 0;
+
+	// 右指针未到末尾
+	while (right < s.length) {
+		// 扩张窗口
+		let addChar = s[right];
+		right++;
+		if (needMap.has(addChar)) {
+			windowMap.set(addChar, windowMap.get(addChar) + 1);
+			if (needMap.get(addChar) === windowMap.get(addChar)) valid++;
+		}
+
+		// 有满足条件的子字符串，开始收缩窗口，寻找最小字符串
+		while (valid === needMap.size) {
+			let str = s.slice(left, right);
+			if (res === null || str.length < res.length) res = str;
+
+			let removeChar = s[left];
+			left++;
+
+			// 这一步刚好和扩张窗口对称
+			if (needMap.has(removeChar)) {
+				if (needMap.get(removeChar) === windowMap.get(removeChar)) valid--;
+				windowMap.set(removeChar, windowMap.get(removeChar) - 1);
+			}
+		}
+	}
+	return res === null ? '' : res;
+};
+
 let S = 'aaabcde',
 	T = 'ab';
-// S =
-// 	'jwsdrkqzrthzysvqqazpfnulprulwmwhiqlbcdduxktxepnurpmxegktzegxscfbusexvhruumrydhvvyjucpeyrkeodjvgdnkalutfoizoliliguckmikdtpryanedcqgpkzxahwrvgcdoxiylqjolahjawpfbilqunnvwlmtrqxfphgaxroltyuvumavuomodblbnzvequmfbuganwliwidrudoqtcgyeuattxxlrlruhzuwxieuqhnmndciikhoehhaeglxuerbfnafvebnmozbtdjdo';
-// T = 'qruzywfhkcbovewle';
+S =
+	'jwsdrkqzrthzysvqqazpfnulprulwmwhiqlbcdduxktxepnurpmxegktzegxscfbusexvhruumrydhvvyjucpeyrkeodjvgdnkalutfoizoliliguckmikdtpryanedcqgpkzxahwrvgcdoxiylqjolahjawpfbilqunnvwlmtrqxfphgaxroltyuvumavuomodblbnzvequmfbuganwliwidrudoqtcgyeuattxxlrlruhzuwxieuqhnmndciikhoehhaeglxuerbfnafvebnmozbtdjdo';
+T = 'qruzywfhkcbovewle';
 console.time();
-console.log(11111111, minWindow2(S, T));
+console.log(11111111, minWindow3(S, T));
 console.timeEnd();
