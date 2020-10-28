@@ -25,7 +25,7 @@ while (right satisfy conditions) {
   right++;
 
   // 出现满足条件的情况，开始缩小窗口
-  while (window meet conditions) {
+  while or if (window meet conditions) {
     window.remove(xxx);
     left++;
   }
