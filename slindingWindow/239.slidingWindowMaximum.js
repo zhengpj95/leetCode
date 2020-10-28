@@ -112,8 +112,33 @@ const maxSlidingWindow2 = function (nums, k) {
 	return res;
 };
 
+/**
+ * Time complexity: O(n) n is the length of nums
+ * Space complexity: O(n)
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+const maxSlidingWindow3 = function (nums, k) {
+	let result = [];
+	let sortedArr = []; //单调数组
+
+	for (let i = 0; i < nums.length; i++) {
+		while (sortedArr.length > 0 && sortedArr[sortedArr.length - 1] < nums[i]) {
+			sortedArr.pop();
+		}
+		sortedArr.push(nums[i]);
+		let idx = i - k + 1;
+		if (idx >= 0) {
+			result.push(sortedArr[0]);
+			if (sortedArr[0] == nums[idx]) sortedArr.shift();
+		}
+	}
+	return result;
+};
+
 let nums = [-7, -8, 7, 5, 7, 1, 6, 0],
 	k = 4;
 // nums = [1, 3, 1, 2, 0, 5];
 // k = 3;
-console.log(maxSlidingWindow2(nums, k));
+console.log(maxSlidingWindow3(nums, k));
