@@ -15,6 +15,15 @@
  */
 
 /**
+ * 在窗口移动过程中，不断的增减元素，
+ * 如何在 O(1) 时间内找出 k 区域内的最大值才是难点。
+ *
+ * 维持一个单调队列或者单调数组，其实这个单调队列或单调数组就是窗口大小，
+ * right 指针向右移动时，单调队列或单调数组中加入新元素，比其小的都可删除；
+ * 当 left 指针向右移动时，如果移除的元素刚好是单调队列或单调数组的最大值，则单调队列或单调数组就要相应的缩小，
+ */
+
+/**
  * Brute Force --- Time Limit Exceeded
  * Time complexity: O(nk) 或 O(n * nlogn) n is the length of nums, Math.max need time, but how much does it cost
  * Space complexity: O(n-k+1) = O(n)
@@ -38,6 +47,73 @@ const maxSlidingWindow = function (nums, k) {
 	return res;
 };
 
-let nums = [1, 3, -1, -3, 5, 3, 6, 7],
-	k = 3;
-console.log(maxSlidingWindow(nums, k));
+/**
+ * 单调队列，队列中的数据递增或递减
+ */
+class MonotonicQueue {
+	constructor() {
+		this.queue = [];
+	}
+
+	isEmpty() {
+		return this.queue.length === 0;
+	}
+
+	getSize() {
+		return this.queue.length;
+	}
+
+	getHead() {
+		return this.isEmpty() ? null : this.queue[0];
+	}
+
+	getTail() {
+		return this.isEmpty() ? null : this.queue[this.getSize() - 1];
+	}
+
+	addData(ele) {
+		while (!this.isEmpty() && this.getTail() < ele) {
+			this.queue.pop();
+		}
+		this.queue.push(ele);
+		return true;
+	}
+
+	removeData(ele) {
+		if (!this.isEmpty() && this.getHead() === ele) {
+			this.queue.shift();
+		}
+		return true;
+	}
+}
+
+/**
+ * Time complexity: O(n) n is the length of nums
+ * Space complexity: O(n)
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+const maxSlidingWindow2 = function (nums, k) {
+	let window = new MonotonicQueue();
+	let res = [];
+	let left = 0,
+		right = 0;
+
+	while (right < nums.length) {
+		left = right - k + 1;
+		window.addData(nums[right]);
+		if (left >= 0) {
+			res.push(window.getHead());
+			window.removeData(nums[left]);
+		}
+		right++;
+	}
+	return res;
+};
+
+let nums = [-7, -8, 7, 5, 7, 1, 6, 0],
+	k = 4;
+// nums = [1, 3, 1, 2, 0, 5];
+// k = 3;
+console.log(maxSlidingWindow2(nums, k));
