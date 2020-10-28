@@ -1,4 +1,5 @@
 /**
+ * Related Topics: Hash Table, Two Pointers, String, Sliding Window
  * Given a string, find the length of the longest substring without repeating characters.
  */
 
@@ -17,7 +18,7 @@ const lengthOfLongestSubstring = function (s) {
 	let max = 1;
 	let tempMax = 1;
 	let star = 0;
-	for (let i = 1; i < len;) {
+	for (let i = 1; i < len; ) {
 		let idx = s.substring(star, i).indexOf(s.charAt(i));
 		if (idx === -1) {
 			tempMax++;
@@ -38,7 +39,7 @@ const lengthOfLongestSubstring = function (s) {
  * Approach 2: Sliding Window
  * Time complexity : O(2n) = O(n)
  * Space complexity : O(min(m, n))
- * @param {string} s 
+ * @param {string} s
  * @returns {number}
  */
 const lengthOfLongestSubstring2 = function (s) {
@@ -62,7 +63,7 @@ const lengthOfLongestSubstring2 = function (s) {
 console.log(lengthOfLongestSubstring2('abcabcbb'));
 console.log(lengthOfLongestSubstring2('bbbbb'));
 console.log(lengthOfLongestSubstring2('pwwkew'));
-console.log(lengthOfLongestSubstring2(" "));
-console.log(lengthOfLongestSubstring2(""));
-console.log(lengthOfLongestSubstring2("au"));
-console.log(lengthOfLongestSubstring2("dvdf"));
+console.log(lengthOfLongestSubstring2(' '));
+console.log(lengthOfLongestSubstring2(''));
+console.log(lengthOfLongestSubstring2('au'));
+console.log(lengthOfLongestSubstring2('dvdf'));
