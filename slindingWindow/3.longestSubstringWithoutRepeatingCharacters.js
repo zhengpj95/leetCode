@@ -113,7 +113,8 @@ const lengthOfLongestSubstring4 = function (s) {
 		let char = s[right];
 		// 存在重复，从重复的下一位开始
 		if (map.has(char)) {
-			left = map.get(char) + 1;
+			// map中未移除对应的char，存在left往左移动情况，如abba情况下
+			left = Math.max(map.get(char) + 1, left);
 		}
 
 		max = Math.max(max, right - left + 1);
@@ -130,3 +131,4 @@ console.log(lengthOfLongestSubstring4(' '));
 console.log(lengthOfLongestSubstring4(''));
 console.log(lengthOfLongestSubstring4('au'));
 console.log(lengthOfLongestSubstring4('dvdf'));
+console.log(lengthOfLongestSubstring4('abbbba'));
