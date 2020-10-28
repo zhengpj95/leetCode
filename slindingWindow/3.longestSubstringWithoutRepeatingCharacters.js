@@ -94,10 +94,39 @@ const lengthOfLongestSubstring3 = function (s) {
 	return max;
 };
 
-console.log(lengthOfLongestSubstring3('abcabcbb'));
-console.log(lengthOfLongestSubstring3('bbbbb'));
-console.log(lengthOfLongestSubstring3('pwwkew'));
-console.log(lengthOfLongestSubstring3(' '));
-console.log(lengthOfLongestSubstring3(''));
-console.log(lengthOfLongestSubstring3('au'));
-console.log(lengthOfLongestSubstring3('dvdf'));
+/**
+ * Sliding Window Optimized
+ * [left, right)
+ * Time complexity : O(2n) = O(n)
+ * Space complexity : O(min(m, n))
+ * @param {string} s
+ * @returns {number}
+ */
+const lengthOfLongestSubstring4 = function (s) {
+	let size = s.length;
+	let map = new Map();
+	let left = 0,
+		right = 0;
+	let max = 0;
+
+	while (right < size) {
+		let char = s[right];
+		// 存在重复，从重复的下一位开始
+		if (map.has(char)) {
+			left = map.get(char) + 1;
+		}
+
+		max = Math.max(max, right - left + 1);
+		map.set(char, right);
+		right++;
+	}
+	return max;
+};
+
+console.log(lengthOfLongestSubstring4('abcabcbb'));
+console.log(lengthOfLongestSubstring4('bbbbb'));
+console.log(lengthOfLongestSubstring4('pwwkew'));
+console.log(lengthOfLongestSubstring4(' '));
+console.log(lengthOfLongestSubstring4(''));
+console.log(lengthOfLongestSubstring4('au'));
+console.log(lengthOfLongestSubstring4('dvdf'));
