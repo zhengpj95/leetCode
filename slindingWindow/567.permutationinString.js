@@ -59,6 +59,48 @@ const checkInclusion = function (s1, s2) {
 	return false;
 };
 
+/**
+ * LeetCode 已提交的最快运行时间的解法
+ * Time complexity: O(n) n = s2.length
+ * Space complexity: O(2*s1.length) = O(s1.length)
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+const checkInclusion2 = function (s1, s2) {
+	if (s1.length > s2.length) return false;
+
+	let checkSame = (list1, list2) => {
+		for (let i = 0; i < list1.length; i++) {
+			if (list1[i] !== list2[i]) return false;
+		}
+		return true;
+	};
+
+	let arr1 = new Array(26).fill(0);
+	let arr2 = new Array(26).fill(0);
+	for (let i = 0; i < s1.length; i++) {
+		arr1[s1.charCodeAt(i) - 'a'.charCodeAt()]++;
+		arr2[s2.charCodeAt(i) - 'a'.charCodeAt()]++;
+	}
+	if (checkSame(arr1, arr2)) {
+		return true;
+	}
+
+	let left = 0,
+		right = s1.length;
+	while (right < s2.length) {
+		arr2[s2.charCodeAt(left) - 'a'.charCodeAt()]--;
+		arr2[s2.charCodeAt(right) - 'a'.charCodeAt()]++;
+		if (checkSame(arr1, arr2)) {
+			return true;
+		}
+		right++;
+		left++;
+	}
+	return false;
+};
+
 let s1 = 'ab';
-let s2 = 'adesbcdbba';
-console.log(checkInclusion(s1, s2));
+let s2 = 'adesbcdbbea';
+console.log(checkInclusion2(s1, s2));
