@@ -50,6 +50,57 @@ const findAnagrams = function (s, p) {
 	return result;
 };
 
-let s = 'abab',
+/**
+ * Sliding Window
+ * Time complexity: O(s.length)
+ * Space complexity: O(2n) n=26个字母
+ * @param {string} s
+ * @param {string} p
+ * @return {number[]}
+ */
+const findAnagrams2 = function (s, p) {
+	if (p.length > s.length) return [];
+	let need = new Map();
+	let window = new Map();
+	for (let i = 0; i < p.length; i++) {
+		need.set(p[i], need.has(p[i]) ? need.get(p[i]) + 1 : 1);
+		window.set(p[i], 0);
+	}
+
+	let left = 0,
+		right = 0;
+	let valid = 0;
+	let result = [];
+
+	while (right < s.length) {
+		let char = s[right++];
+		if (need.has(char)) {
+			window.set(char, window.get(char) + 1);
+			if (window.get(char) === need.get(char)) {
+				valid++;
+			}
+		}
+
+		// 缩小窗口
+		while (right - left >= p.length) {
+			if (valid === need.size) {
+				result.push(left);
+			}
+
+			let lChar = s[left++];
+			if (need.has(lChar)) {
+				if (window.get(lChar) === need.get(lChar)) {
+					valid--;
+				}
+				window.set(lChar, window.get(lChar) - 1);
+			}
+		}
+	}
+
+	return result;
+};
+
+let s = 'abaabab',
 	p = 'ab';
 console.log(findAnagrams(s, p));
+console.log(findAnagrams2(s, p));
