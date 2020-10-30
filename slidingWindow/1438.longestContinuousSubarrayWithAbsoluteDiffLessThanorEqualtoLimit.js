@@ -16,6 +16,8 @@
  */
 
 /**
+ * Time complexity: O(n) n = nums.length
+ * Space complexity: O(n) 最坏情况下，limit 极大，maxQueue 或 minQueue 需要保存 nums 的全部元素
  * @param {number[]} nums
  * @param {number} limit
  * @return {number}
@@ -56,4 +58,5 @@ let nums = [10, 1, 2, 4, 7, 2],
 	limit = 5;
 (nums = [8, 2, 4, 7]), (limit = 4);
 (nums = [4, 2, 2, 2, 4, 4, 2, 2]), (limit = 0);
+(nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), (limit = 1000);
 console.log(longestSubarray(nums, limit));
