@@ -52,6 +52,8 @@ my leetcode practice
 
 ### 3. Binary Tree
 
+[Binary Tree](./tree/README.md)
+
 ### 4. Sliding Window
 
 [Sliding Window](./slidingWindow/README.md)
