@@ -56,4 +56,38 @@ const maxTurbulenceSize = function (A) {
 	return max;
 };
 
-console.log(maxTurbulenceSize([9, 9]));
+/**
+ * 大神解法
+ * 判断是否交叠的增减子数组，若不是那就又从新开始判断
+ * Time complexity: O(n) n=A.length
+ * Space complexity: O(1)
+ * @param {number[]} A
+ * @return {number}
+ */
+const maxTurbulenceSize2 = function (A) {
+	let max = 1;
+	let inc = 1,
+		dec = 1;
+	for (let i = 1; i < A.length; i++) {
+		if (A[i - 1] > A[i]) {
+			dec = inc + 1;
+			inc = 1;
+		} else if (A[i] > A[i - 1]) {
+			inc = dec + 1;
+			dec = 1;
+		} else {
+			inc = dec = 1;
+		}
+		max = Math.max(max, Math.max(dec, inc));
+	}
+	return max;
+};
+
+// Number.compare = (a, b) => {
+// 	if (a > b) return 1;
+// 	else if (a < b) return -1;
+// 	else return 0;
+// };
+
+console.log(maxTurbulenceSize([9, 9, 1, 2, 0, 5, 2]));
+console.log(maxTurbulenceSize2([9, 9, 1, 2, 0, 5, 2]));
