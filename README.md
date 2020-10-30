@@ -54,4 +54,4 @@ my leetcode practice
 
 ### 4. Sliding Window
 
-[Sliding Window](./slindingWindow/README.md)
+[Sliding Window](./slidingWindow/README.md)
