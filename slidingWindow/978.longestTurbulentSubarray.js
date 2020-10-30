@@ -83,11 +83,48 @@ const maxTurbulenceSize2 = function (A) {
 	return max;
 };
 
-// Number.compare = (a, b) => {
-// 	if (a > b) return 1;
-// 	else if (a < b) return -1;
-// 	else return 0;
-// };
+/**
+ * 骚操作
+ * @param {number} a
+ * @param {number} b
+ */
+Number.compare = (a, b) => {
+	if (a > b) return 1;
+	else if (a < b) return -1;
+	else return 0;
+};
 
-console.log(maxTurbulenceSize([9, 9, 1, 2, 0, 5, 2]));
-console.log(maxTurbulenceSize2([9, 9, 1, 2, 0, 5, 2]));
+/**
+ * 控制下一步 > < 的操作，如果不是所期望的 < 或 >，则重置以重新开始
+ * Time complexity: O(n) n=A.length
+ * Space complexity: O(1)
+ * @param {number[]} A
+ * @return {number}
+ */
+const maxTurbulenceSize3 = function (A) {
+	let max = 1;
+	let count = 0;
+	let change = 0;
+
+	for (let i = 0; i < A.length - 1; i++) {
+		if (A[i] > A[i + 1]) {
+			// Number.compare(A[i], A[i + 1]) > 0
+			count = change > 0 ? count + 1 : 1;
+			if (change < 1) change = 1;
+		} else if (A[i] < A[i + 1]) {
+			// Number.compare(A[i], A[i + 1]) < 0
+			count = change < 0 ? count + 1 : 1;
+			if (change > -1) change = -1;
+		} else {
+			change = 0;
+		}
+
+		change *= -1;
+		max = Math.max(max, count + 1);
+	}
+	return max;
+};
+
+// console.log(maxTurbulenceSize([9, 9, 1, 2, 0, 5, 2]));
+// console.log(maxTurbulenceSize2([9, 9, 1, 2, 0, 5, 2]));
+console.log(maxTurbulenceSize3([9, 9, 1, 2, 0, 5, 2]));
