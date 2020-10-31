@@ -63,6 +63,52 @@ const maxSatisfied = function (customers, grumpy, X) {
 	return max;
 };
 
+/**
+ * Time complexity: O(n) n = customers.length
+ * Space complexity: O(n)
+ * @param {number[]} customers
+ * @param {number[]} grumpy
+ * @param {number} X
+ * @return {number}
+ */
+const maxSatisfied2 = function (customers, grumpy, X) {
+	let left = 0,
+		right = 0;
+	let max = 0;
+	let windowCount = 0; //窗口内的值
+
+	let beforeCountDp = []; //窗口前的值
+	let beforeCount = 0;
+	for (let i = 0; i < customers.length; i++) {
+		if (grumpy[i] === 0) beforeCount += customers[i];
+		beforeCountDp[i] = beforeCount;
+	}
+
+	let afterCountDp = []; //窗口后的值
+	let afterCount = 0;
+	for (let i = customers.length - 1; i >= 0; i--) {
+		if (grumpy[i] === 0) {
+			afterCount += customers[i];
+		}
+		afterCountDp[i] = afterCount;
+	}
+
+	while (right < customers.length) {
+		windowCount += customers[right];
+		left = right - X;
+		if (left >= 0) {
+			windowCount -= customers[left];
+		}
+
+		let leftCount = left >= 0 ? beforeCountDp[left] : 0;
+		let rightCount = grumpy[right] === 0 ? afterCountDp[right] - customers[right] : afterCountDp[right];
+		max = Math.max(max, windowCount + leftCount + rightCount);
+		right++;
+	}
+
+	return max;
+};
+
 let customers = [1, 0, 1, 2, 1, 1, 7, 5, 10, 1, 1, 2],
 	grumpy = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
 	X = 3;
@@ -71,3 +117,4 @@ customers = [1, 0, 1, 2, 1, 1, 7, 5, 10, 1, 1, 1, 1];
 grumpy = [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0];
 X = 3;
 console.log(`result = `, maxSatisfied(customers, grumpy, X));
+console.log(`result = `, maxSatisfied2(customers, grumpy, X));
