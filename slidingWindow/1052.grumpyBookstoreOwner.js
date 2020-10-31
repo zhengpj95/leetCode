@@ -109,6 +109,37 @@ const maxSatisfied2 = function (customers, grumpy, X) {
 	return max;
 };
 
+/**
+ * Sliding Window
+ * 找出窗口内老板生气时的最大值 + 不生气的
+ * Time complexity: O(n) n = customers.length
+ * Space complexity: O(n)
+ * @param {number[]} customers
+ * @param {number[]} grumpy
+ * @param {number} X
+ * @return {number}
+ */
+const maxSatisfied3 = function (customers, grumpy, X) {
+	let winMax = 0;
+	let tempWinMax = 0;
+	let notGrumpyCount = 0;
+
+	for (let i = 0; i < customers.length; i++) {
+		if (grumpy[i] === 1) {
+			tempWinMax += customers[i];
+		} else {
+			notGrumpyCount += customers[i];
+		}
+		// 移除窗口
+		if (i >= X) {
+			tempWinMax -= customers[i - X] * grumpy[i - X];
+			// if (grumpy[i - X] == 1) tempWinMax -= customers[i - X];
+		}
+		winMax = Math.max(winMax, tempWinMax);
+	}
+	return notGrumpyCount + winMax;
+};
+
 let customers = [1, 0, 1, 2, 1, 1, 7, 5, 10, 1, 1, 2],
 	grumpy = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
 	X = 3;
@@ -118,3 +149,4 @@ grumpy = [0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0];
 X = 3;
 console.log(`result = `, maxSatisfied(customers, grumpy, X));
 console.log(`result = `, maxSatisfied2(customers, grumpy, X));
+console.log(`result = `, maxSatisfied3(customers, grumpy, X));
