@@ -46,9 +46,43 @@ const numMovesStones = function (a, b, c) {
 	// return [Math.min(list[1] - list[0], list[2] - list[1]) <= 2 ? 1 : 2, list[2] - list[0] - 2];
 };
 
+/**
+ * 大神解法
+ */
+const numMovesStones2 = function (a, b, c) {
+	let [diff1, diff2, diff3] = [Math.abs(a - b), Math.abs(b - c), Math.abs(a - c)];
+	let [min, max] = [Math.min(diff1, diff2, diff3), Math.max(diff1, diff2, diff3)];
+	return max === 2 ? [0, 0] : [min < 3 ? 1 : 2, max - 2];
+};
+
+const numMovesStones3 = function (a, b, c) {
+	let numsSorted = [a, b, c].sort((a, b) => a - b);
+
+	let min = numsSorted[0];
+	let mid = numsSorted[1];
+	let max = numsSorted[2];
+
+	let minDiff = mid - min - 1;
+	let maxDiff = max - mid - 1;
+
+	let minMoves;
+
+	if (minDiff == 1 || maxDiff == 1) {
+		minMoves = 1;
+	} else {
+		minMoves = Math.min(1, minDiff) + Math.min(1, maxDiff);
+	}
+
+	let maxMoves = minDiff + maxDiff;
+
+	return [minMoves, maxMoves];
+};
+
 let a = 1,
 	b = 4,
 	c = 12;
 // (a = 4), (b = 3), (c = 2);
 (a = 3), (b = 5), (c = 1);
 console.log(numMovesStones(a, b, c));
+console.log(numMovesStones2(a, b, c));
+console.log(numMovesStones3(a, b, c));
