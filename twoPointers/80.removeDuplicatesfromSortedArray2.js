@@ -17,12 +17,30 @@
  * @author zheng
  * @date 2020/11/01 11:01:46
  */
+
 /**
+ * 使用了 O(n) 的额外空间，确实不该，如果是未排序的数组，使用这种方式是可以的。
+ * 但是题目所给已经是有序的了，O(1) 的空间复杂度即可完成
+ * Time complexity: O(n) n = nums.length
+ * Space complexity: O(n)
  * @param {number[]} nums
  * @return {number}
  */
 const removeDuplicates = function (nums) {
 	if (!nums) return 0;
 	if (nums.length <= 2) return nums.length;
+
+	let idx = 0;
+	let map = new Map();
+	for (let i = 0; i < nums.length; i++) {
+		map.set(nums[i], map.has(nums[i]) ? map.get(nums[i]) + 1 : 1);
+		if (map.get(nums[i]) <= 2) {
+			nums[idx] = nums[i];
+			idx++;
+		}
+	}
+	return idx;
 };
-let nums = [1, 1, 1, 2, 2, 3];
+let nums = [0, 0, 1, 1, 1, 1, 2, 3, 3]; //[1, 1, 1, 2, 2, 3];
+console.log(removeDuplicates(nums));
+console.log(nums);
