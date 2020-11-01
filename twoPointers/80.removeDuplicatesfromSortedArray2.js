@@ -60,6 +60,22 @@ const removeDuplicates2 = function (nums) {
 	return idx + 1;
 };
 
+/**
+ * Time complexity: O(n) n = nums.length
+ * Space complexity: O(1)
+ * @param {number[]} nums
+ * @return {number}
+ */
+const removeDuplicates3 = function (nums) {
+	let idx = 0;
+	for (let num of nums) {
+		if (idx < 2 || num > nums[i - 2]) {
+			nums[idx++] = num;
+		}
+	}
+	return idx + 1;
+};
+
 let nums = [0, 0, 1, 1, 1, 1, 2, 3, 3]; //[1, 1, 1, 2, 2, 3];
-console.log(removeDuplicates2(nums));
+console.log(removeDuplicates3(nums));
 // console.log(nums);
