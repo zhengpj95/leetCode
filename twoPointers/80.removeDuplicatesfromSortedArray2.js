@@ -41,6 +41,25 @@ const removeDuplicates = function (nums) {
 	}
 	return idx;
 };
+
+/**
+ * Time complexity: O(n) n = nums.length
+ * Space complexity: O(1)
+ * @param {number[]} nums
+ * @return {number}
+ */
+const removeDuplicates2 = function (nums) {
+	if (!nums || !nums.length) return 0;
+
+	let idx = 1;
+	for (let i = 2; i < nums.length; i++) {
+		if (nums[i] !== nums[idx] || (nums[i] === nums[idx] && nums[idx] !== nums[idx - 1])) {
+			nums[++idx] = nums[i];
+		}
+	}
+	return idx + 1;
+};
+
 let nums = [0, 0, 1, 1, 1, 1, 2, 3, 3]; //[1, 1, 1, 2, 2, 3];
-console.log(removeDuplicates(nums));
-console.log(nums);
+console.log(removeDuplicates2(nums));
+// console.log(nums);
