@@ -69,13 +69,13 @@ const removeDuplicates2 = function (nums) {
 const removeDuplicates3 = function (nums) {
 	let idx = 0;
 	for (let num of nums) {
-		if (idx < 2 || num > nums[i - 2]) {
+		if (idx < 2 || num > nums[idx - 2]) {
 			nums[idx++] = num;
 		}
 	}
-	return idx + 1;
+	return idx;
 };
 
 let nums = [0, 0, 1, 1, 1, 1, 2, 3, 3]; //[1, 1, 1, 2, 2, 3];
 console.log(removeDuplicates3(nums));
-// console.log(nums);
+console.log(nums);
