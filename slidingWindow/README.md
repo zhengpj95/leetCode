@@ -83,7 +83,7 @@ const minWindow = function (s, t) {
 };
 ```
 
-## 使用单调栈或单调数组
+## 使用单调队列或单调数组
 
 ```javascript
 // LeetCode 的第239题，*239. Sliding Window Maximum*
