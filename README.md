@@ -34,6 +34,12 @@ my leetcode practice
 
 ### 2. 双指针
 
+[Two Pointers](./summary/twoPointers.md)
+
+### 3. 滑动窗口
+
+[Sliding Window](./summary/slidingWindow.md)
+
 ### 3. 回溯算法
 
 ### 4. 动态规划
@@ -59,8 +65,6 @@ my leetcode practice
 [Binary Tree](./tree/README.md)
 
 ### 4. Two Pointers
-
-[Two Pointers](./summary/twoPointers.md)
 
 ### 5. Sliding Window
 
