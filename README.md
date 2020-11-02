@@ -16,6 +16,8 @@ my leetcode practice
 
 ### 1. 栈与队列
 
+[Stack & Queue](./summary/stack&queue.md)
+
 ### 2. 链表
 
 ### 3. 二叉树
