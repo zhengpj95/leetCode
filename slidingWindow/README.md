@@ -1,45 +1,172 @@
 # Sliding Window
 
-滑动窗口就是双指针的一种技巧，运用的就是双指针，但是仅能维持一个指针移动，另一个指针呆着不动。
-
-当一个指针维持不动，另一个指针移动时，两个指针之间的部分就是一个窗口，这个窗口是不断的扩大和缩小的，直到末尾或找到结果。
-
-简单思路就是：
-
-1. *right* 指针不断向右扩张，直到出现满足条件的情况
-2. 开始让 *left* 指针向右移动，一旦出现不满足条件的情况，就停止
-3. 反复操作步骤1、2，直到右指针到末尾或退出循环
-
-对于窗口移动，不是很难理解的事情，难点在于窗口扩大或缩小过程中，如何判断窗口内数据满足了条件。
-如在做 LeetCode 的 76 题 Minimum Window Substring 时，我使用的是将窗口内的子字符串变成 Map，再去匹配，这样子就有两个 Map 要去匹配了，又是一个 for 循环判断，这样会耗时很大，用这种方法提交 LeetCode，直接判了 Time Limit Exceeded。
-
-**套路模板：**
+## 使用 HashTable
 
 ```javascript
-let left = 0;
-let right = 0;
-let window;
-while (right satisfy conditions) {
-  // 扩大窗口
-  window.add(xxx);
-  right++;
+// LeetCode 的第三题， *3. Longest Substring Without Repeating Characters* 返回最长的无重复的字串长度
+// 在这到题目中使用 Map 来记录窗口移动过程中字母的数量，但字母的数量大于 1 时，窗口就要开始缩小
 
-  // 出现满足条件的情况，开始缩小窗口
-  while or if (window meet conditions) {
-    window.remove(xxx);
-    left++;
+const lengthOfLongestSubstring3 = function (s) {
+  let size = s.length;
+  if (size <= 1) return size;
+
+  let left = 0,
+    right = 0;
+  let window = new Map();
+  let max = 0;
+
+  while (right < size) {
+    let char = s[right];
+    window.set(char, window.has(char) ? window.get(char) + 1 : 1);
+    right++;
+
+    while (window.get(char) > 1) {
+      let lChar = s[left];
+      window.set(lChar, window.get(lChar) - 1);
+      left++;
+    }
+
+    // [left, right) 左闭右开，此时 right 已经加多 1 了，不需包含 right 处字符
+    max = Math.max(max, right - left);
   }
-}
+  return max;
+};
 ```
 
-**窗口大小：** 分为固定和不固定的情况
+## 使用计数器
 
-1. 不固定大小：
-   * *right* 指针开始右移，直到出现满足条件的情况
-   * 然后 *left* 开始右移，直到出现不满足条件的情况
-   * 不断重复上面的步骤，直到 *right* 指针到末尾
-2. 固定大小：
-   * 先开始移动 *right* 指针，直到窗口大小等于固定大小时
-   * 当窗口大小等于固定大小时，就是要判断条件的时候
-   * 然后开始同步移动 *right*、*left* 指针
-   * 不断重复上面的步骤，直到 *right* 指针到末尾
+```javascript
+// LeetCode 的第76题，*76. Minimum Window Substring*，给定两个字符串 S，T，在 S 中找出包含 T 的所有字符的字串
+// 在这道题中，我们需要一个变量来记录已经匹配 T 中的字母，因为 T 中可存在重复的字母
+
+const minWindow = function (s, t) {
+  if (!t || !t.length || !s || !s.length || s.length < t.length) return '';
+
+  let needMap = new Map();
+  let windowMap = new Map();
+  for (let i = 0; i < t.length; i++) {
+    needMap.set(t[i], needMap.has(t[i]) ? needMap.get(t[i]) + 1 : 1);
+    windowMap.set(t[i], 0);
+  }
+
+  let res = null;
+  let valid = 0; //t的字母数量
+  let left = 0,
+    right = 0;
+
+  // 右指针未到末尾
+  while (right < s.length) {
+    // 扩张窗口
+    let addChar = s[right];
+    right++;
+    if (needMap.has(addChar)) {
+      windowMap.set(addChar, windowMap.get(addChar) + 1);
+      if (needMap.get(addChar) === windowMap.get(addChar)) valid++;
+    }
+
+    // 有满足条件的子字符串，开始收缩窗口，寻找最小字符串
+    while (valid === needMap.size) {
+      let str = s.slice(left, right);
+      if (res === null || str.length < res.length) res = str;
+
+      let removeChar = s[left];
+      left++;
+
+      // 这一步刚好和扩张窗口对称
+      if (needMap.has(removeChar)) {
+        if (needMap.get(removeChar) === windowMap.get(removeChar)) valid--;
+        windowMap.set(removeChar, windowMap.get(removeChar) - 1);
+      }
+    }
+  }
+  return res === null ? '' : res;
+};
+```
+
+## 使用单调栈或单调数组
+
+```javascript
+// LeetCode 的第239题，*239. Sliding Window Maximum*
+// 给一个数组，找出数组中每 k 个元素组成的子数组的最大值，
+// 这个数组是无序的，如果每个子数组都要去遍历找到最大值，那显然时间复杂度会很高，
+// 此时，我们可以使用一个单调队列/单调数组来记录窗口滑动过程中，窗口内数组的排序
+// 因为是要排序的，而且窗口大小固定，队列内比新加入的元素小的可以移除
+
+// 定义一个单调队列
+class MonotonicQueue {
+  constructor() {
+    this.queue = [];
+  }
+
+  isEmpty() {
+    return this.queue.length === 0;
+  }
+
+  getSize() {
+    return this.queue.length;
+  }
+
+  getHead() {
+    return this.isEmpty() ? null : this.queue[0];
+  }
+
+  getTail() {
+    return this.isEmpty() ? null : this.queue[this.getSize() - 1];
+  }
+
+  addData(ele) {
+    while (!this.isEmpty() && this.getTail() < ele) {
+      this.queue.pop();
+    }
+    this.queue.push(ele);
+    return true;
+  }
+
+  removeData(ele) {
+    if (!this.isEmpty() && this.getHead() === ele) {
+      this.queue.shift();
+    }
+    return true;
+  }
+}
+// 使用单调队列解法
+const maxSlidingWindow = function (nums, k) {
+  let window = new MonotonicQueue();
+  let res = [];
+  let left = 0,
+    right = 0;
+
+  while (right < nums.length) {
+    left = right - k + 1;
+    window.addData(nums[right]);
+    if (left >= 0) {
+      res.push(window.getHead());
+      window.removeData(nums[left]);
+    }
+    right++;
+  }
+  return res;
+};
+
+// 另外我们也可以使用数组来实现
+const maxSlidingWindowWithArray = function (nums, k) {
+  let result = [];
+  let sortedArr = []; //单调数组
+
+  for (let i = 0; i < nums.length; i++) {
+    // 数组内比新加入的元素小的都移除
+    while (sortedArr.length > 0 && sortedArr[sortedArr.length - 1] < nums[i]) {
+      sortedArr.pop();
+    }
+    sortedArr.push(nums[i]);
+
+    let idx = i - k + 1;
+    if (idx >= 0) {
+      result.push(sortedArr[0]);
+      // 移除窗口的元素不一定是队列头元素，故要加判断
+      if (sortedArr[0] == nums[idx]) sortedArr.shift();
+    }
+  }
+  return result;
+};
+```
