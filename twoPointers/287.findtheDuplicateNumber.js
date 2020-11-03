@@ -60,8 +60,35 @@ const findDuplicate2 = function (nums) {
 	return -1;
 };
 
+/**
+ * Approach 3: Floyd's Tortoise and Hare (Cycle Detection)
+ * 题意是 n+1 个元素，每个元素在 [1, n] 之间，所以符合此算法思想
+ * 双指针判断环问题，与判断链表是否有环一样的思路，可参考 142. Linked List Cycle II
+ * Time complexity: O(n)
+ * Space complexity: O(1)
+ * @param {number[]} nums
+ * @return {number}
+ */
+const findDuplicate3 = function (nums) {
+	let tortoise = nums[0],
+		hare = nums[0];
+
+	while (tortoise !== hare) {
+		tortoise = nums[tortoise];
+		hare = nums[nums[hare]];
+	}
+
+	tortoise = nums[0];
+	while (tortoise !== hare) {
+		tortoise = nums[tortoise];
+		hare = nums[hare];
+	}
+	return tortoise;
+};
+
 let nums = [1, 3, 4, 2, 2];
 console.log(findDuplicate(nums));
 console.log(findDuplicate2([3, 1, 3, 4, 2]));
 console.log(findDuplicate2([1, 1]));
 console.log(findDuplicate2([1, 1, 2]));
+console.log(findDuplicate3([3, 1, 3, 4, 2]));
