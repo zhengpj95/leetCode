@@ -68,6 +68,8 @@ my leetcode practice
 
 ### 4. Two Pointers
 
+[Two Pointers](./twoPointers/README.md)
+
 ### 5. Sliding Window
 
 [Sliding Window](./slidingWindow/README.md)
