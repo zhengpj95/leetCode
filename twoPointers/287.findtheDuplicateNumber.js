@@ -73,10 +73,10 @@ const findDuplicate3 = function (nums) {
 	let tortoise = nums[0],
 		hare = nums[0];
 
-	while (tortoise !== hare) {
+	do {
 		tortoise = nums[tortoise];
 		hare = nums[nums[hare]];
-	}
+	} while (tortoise !== hare);
 
 	tortoise = nums[0];
 	while (tortoise !== hare) {
@@ -87,8 +87,8 @@ const findDuplicate3 = function (nums) {
 };
 
 let nums = [1, 3, 4, 2, 2];
-console.log(findDuplicate(nums));
-console.log(findDuplicate2([3, 1, 3, 4, 2]));
-console.log(findDuplicate2([1, 1]));
-console.log(findDuplicate2([1, 1, 2]));
+// console.log(findDuplicate(nums));
+// console.log(findDuplicate2([3, 1, 3, 4, 2]));
+// console.log(findDuplicate2([1, 1]));
+// console.log(findDuplicate2([1, 1, 2]));
 console.log(findDuplicate3([3, 1, 3, 4, 2]));
