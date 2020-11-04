@@ -2,7 +2,9 @@
 
 双指针可分为 **快慢指针**， **左右指针** 和 **滑动窗口**。
 
-## 1. 快慢指针判断有环(Floyd's Tortoise and Hare (Cycle Detection))
+## 快慢指针常见用法
+
+### 1. 快慢指针判断有环(Floyd's Tortoise and Hare (Cycle Detection))
 
 ```javascript
 // 287. Find the Duplicate Number 和 142. Linked List Cycle II 这两道题都用到了此算法思想
@@ -31,3 +33,70 @@ while (slow !== fast) {
 [287. Find the Duplicate Number](./287.findtheDuplicateNumber.js)
 
 [142. Linked List Cycle II](../linkedList/142.linkedListCycle2.js)
+
+### 2. 链表的中点
+
+使用快慢指针，快指针一次两步，慢指针一一步，当快指针到达链表尾时，慢指针就处于链表的中间位置，或者是中间偏右的位置（偶数个结点）
+
+```javascript
+while (fast !== null && fast.next !== null) {
+  fast = fast.next.next;
+  slow = slow.next;
+}
+// 此时 slow 就处于中间位置或中间偏右位置
+// 我们可以加多一个 preSlow 来记录 slow 的前一个位置，以便操作
+```
+
+### 3. 寻找链表的倒数第k个元素
+
+这里是让快指针先行 k 步，然后快慢指针同时同步前进。当快指针到达指针末尾时，慢指针就是倒数第k个元素了。
+
+```javascript
+while (k-- > 0) {
+  fast = fast.next;
+}
+
+while (fast !== null) {
+  fast = fast.next;
+  slow = slow.next;
+}
+// 此时 slow 就是倒数第k个元素
+```
+
+## 左右指针常见用法
+
+### 1. 二分查找
+
+```javascript
+// 基础的二分查找
+const binarySearch = (nums, target) => {
+  let left = 0, right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[mid] === target) return mid;
+    else if (nums[mid] < target) left = mid + 1;
+    else if (nums[mid] > target) right = mid - 1;
+  }
+  return -1;
+}
+```
+
+### 2. 反转数组
+
+```javascript
+let left = 0, right = nums.length - 1;
+
+while (left <= right) {
+  [nums[left], nums[right]] = [nums[right], nums[left]];
+  left++;
+  right--;
+}
+```
+
+## 滑动窗口
+
+滑动窗口是双指针的高级应用了，可参考：
+
+[滑动窗口思想](../summary/slidingWindow.md)
+
+[滑动窗口解题技巧](../slidingWindow/README.md)
