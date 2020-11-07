@@ -52,4 +52,47 @@ const generate2 = function (numRows) {
 	return result;
 };
 
-console.log(generate2(5));
+/**
+ * Time complexity: O(n^2)
+ * Space complexity: O(n^2)
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+const generate3 = function (numRows) {
+	let triangle = [];
+	for (let i = 1; i <= numRows; i++) {
+		let row = [];
+		row.push(1);
+		let preRow = triangle[i - 2];
+		for (let j = 1; j < i - 1; j++) {
+			row.push(preRow[j] + preRow[j - 1]);
+		}
+		if (i > 1) row.push(1);
+		triangle.push(row);
+	}
+	return triangle;
+};
+
+/**
+ * Time complexity: O(n^2)
+ * Space complexity: O(n^2)
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+const generate4 = function (numRows) {
+	if (numRows === 0) return [];
+	if (numRows === 1) return [[1]];
+	let triangle = [[1]];
+	for (let i = 1; i < numRows; i++) {
+		let row = [1];
+		for (let j = 1; j < i; j++) {
+			row.push(triangle[i - 1][j] + triangle[i - 1][j - 1]);
+		}
+		row.push(1);
+		triangle.push(row);
+	}
+	return triangle;
+};
+
+console.log(generate3(5));
+console.log(generate4(3));
