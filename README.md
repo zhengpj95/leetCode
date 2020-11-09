@@ -73,3 +73,7 @@ my leetcode practice
 ### 5. Sliding Window
 
 [Sliding Window](./slidingWindow/README.md)
+
+## 6. BackTracking
+
+[BackTracking](./backTracking/README.md)
