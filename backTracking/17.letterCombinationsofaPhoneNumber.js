@@ -46,4 +46,42 @@ const letterCombinations = function (digits) {
 	return result;
 };
 
-console.log(letterCombinations('234'));
+/**
+ * @param {string} digits
+ * @return {string[]}
+ */
+const letterCombinations2 = function (digits) {
+	if (!digits || !digits.length) return [];
+	const map = {
+		2: 'abc',
+		3: 'def',
+		4: 'ghi',
+		5: 'jkl',
+		6: 'mno',
+		7: 'pqrs',
+		8: 'tuv',
+		9: 'wxyz',
+	};
+
+	let result = [];
+	let backtrack = (index, str) => {
+		if (str.length === digits.length) {
+			result.push(str);
+			return;
+		}
+
+		for (let letter of map[digits[index]]) {
+			// 做选择，递归，撤销选择
+			str = str + letter;
+			backtrack(index + 1, str);
+			str = str.slice(0, -1);
+			// 简洁
+			// backtrack(index + 1, str + letter);
+		}
+	};
+	backtrack(0, '');
+	return result;
+};
+
+// console.log(letterCombinations('234'));
+console.log(letterCombinations2('23'));
