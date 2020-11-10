@@ -5,6 +5,8 @@
  */
 
 /**
+ * Time complexity: O(n!) n = nums.length 不是很确定回溯的时空复杂度
+ * Space complexity: O(n!) ??
  * @param {number[]} nums
  * @return {number[][]}
  */
@@ -19,7 +21,8 @@ const permute = function (nums) {
 		}
 
 		for (let num of nums) {
-			if (track.indexOf(num) >= 0) continue;
+			// if (track.indexOf(num) >= 0) continue;
+			if (track.includes(num)) continue;
 			track.push(num);
 			backtrack(nums, track);
 			track.pop();
