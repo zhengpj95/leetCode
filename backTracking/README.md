@@ -22,7 +22,7 @@ for遍历选择列表
   该选择重新加入选择列表中
 ```
 
-## 2. 去重
+## 2. 有序数组的去重
 
 有的题目需要去重，在递归下一层的时候就去重是最好的。
 
@@ -56,6 +56,50 @@ const combinationSum2 = function (candidates, target) {
   };
 
   backtrace(candidates, [], 0);
+  return result;
+};
+```
+
+## 3.使用 Hash 去重
+
+例如题目 *47.Permutation2* 中，是元素的排列，每个排列的元素都是有序的。如 [1,1,2] 和 [1,2,1] 就是两个排列，但是它们算一个组合[1,1,2]。
+
+这道题目中我们不能像 *40. Combination Sum2* 一样的去重方式。
+
+在这道题目中，我们使用了 *Hash* 表，因为我们是遍历 Hash 表，那么在每个位置上我们的元素都是唯一的。
+
+```javascript
+const permuteUnique = function (nums) {
+  let result = [];
+
+  let map = new Map();
+  for (let num of nums) {
+    map.set(num, map.has(num) ? map.get(num) + 1 : 1);
+  }
+
+  /**
+   * @param {number[]} nums
+   * @param {number[]} track
+   * @param {Map} map
+   */
+  let backtrack = (nums, track, map) => {
+    if (track.length === nums.length) {
+      result.push([...track]);
+      return;
+    }
+
+    // 遍历map，在同一个位置就不会出现重复的数字了
+    for (let entry of map.entries()) {
+      let [key, value] = entry;
+      if (value === 0) continue;
+      track.push(key);
+      map.set(key, value - 1);
+      backtrack(nums, track, map);
+      track.pop();
+      map.set(key, value);
+    }
+  };
+  backtrack(nums, [], map);
   return result;
 };
 ```
