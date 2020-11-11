@@ -29,7 +29,6 @@
  */
 const permuteUnique = function (nums) {
 	let result = [];
-	nums.sort((a, b) => a - b);
 
 	let map = new Map();
 	for (let num of nums) {
@@ -42,7 +41,6 @@ const permuteUnique = function (nums) {
 	 * @param {Map} map
 	 */
 	let backtrack = (nums, track, map) => {
-		console.log(track, map);
 		if (track.length === nums.length) {
 			result.push([...track]);
 			return;
