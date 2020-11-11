@@ -37,6 +37,29 @@ const combine = function (n, k) {
 	return result;
 };
 
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {number[][]}
+ */
+const combine2 = function (n, k) {
+	let result = [];
+	let backtrack = (track, index, n, k) => {
+		if (track.length === k) {
+			result.push([...track]);
+			return;
+		}
+
+		for (let i = index; i <= n; i++) {
+			track.push(i);
+			backtrack(track, i + 1, n, k);
+			track.pop();
+		}
+	};
+	backtrack([], 1, n, k);
+	return result;
+};
 let n = 4,
 	k = 2;
 console.log(combine(n, k));
+console.log(combine2(n, k));
