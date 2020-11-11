@@ -56,6 +56,49 @@ const combinationSum2 = function (candidates, target) {
 	return result;
 };
 
+/**
+ * 如果像 题目47.Permutation2 一样使用了hash表，得到的将是满足条件的组合的排列
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+const combinationSum22 = function (candidates, target) {
+	let result = [];
+	let map = new Map();
+	for (let can of candidates) {
+		map.set(can, map.has(can) ? map.get(can) + 1 : 1);
+	}
+	/**
+	 * @param {number[]} candidates
+	 * @param {number[]} track
+	 * @param {Map} map
+	 */
+	let backtrack = (track, map) => {
+		let sum = track.reduce((a, b) => a + b, 0);
+		if (sum === target) {
+			result.push([...track]);
+			return;
+		}
+		if (sum > target) {
+			return;
+		}
+		// 遍历map，在同一个位置就不会出现重复的数字了
+		for (let entry of map.entries()) {
+			let [key, value] = entry;
+			if (value === 0) continue;
+			track.push(key);
+			map.set(key, value - 1);
+			backtrack(track, map);
+			track.pop();
+			map.set(key, value);
+		}
+	};
+
+	backtrack([], map);
+	return result;
+};
+
 let candidates = [10, 1, 2, 7, 6, 1, 5],
 	target = 8;
 console.log(combinationSum2(candidates, target));
+console.log(combinationSum22(candidates, target));
