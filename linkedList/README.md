@@ -116,3 +116,29 @@ const reverseList = function (head, tail) {
   return prev;
 }
 ```
+
+## 6. 链表两两结点交换
+
+```javascript
+const swapPairs = function (head) {
+  if (!head || !head.next) return head;
+  let dummyHead = new ListNode(0); //添加头结点
+  dummyHead.next = head;
+
+  let curr = head;
+  let head1 = dummyHead;
+  let nextN = null;
+  while (curr && curr.next) {
+    nextN = curr.next;
+    // 交换两结点
+    curr.next = nextN.next;
+    nextN.next = curr;
+
+    head1.next = nextN;
+    head1 = curr;
+    curr = curr.next;
+  }
+
+  return dummyHead.next;
+};
+```
