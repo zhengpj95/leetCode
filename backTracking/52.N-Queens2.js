@@ -63,9 +63,37 @@ const isValid = (board, row, column) => {
 };
 
 /**
+ * 使用boolean控制列、主对角线、副对角线是否存在Queen即可
+ * 因为是方阵，对角线的行列号相加减是一样的
  * @param {number} n
  * @return {number}
  */
-const totalNQueens2 = function (n) {};
+const totalNQueens2 = function (n) {
+	let columns = [];
+	let diagonal = []; // 辅对角线 /
+	let diagonal2 = []; // 主对角线 \
+	let count = 0;
 
+	let backtrack = (row) => {
+		if (row >= n) count++;
+
+		for (let col = 0; col < n; col++) {
+			let idx1 = row + col;
+			let idx2 = row - col + n; //因为row-col可为负数，+n是为了匹配数组的序号
+			if (columns[col] || diagonal[idx1] || diagonal2[idx2]) continue;
+
+			[columns[col], diagonal[idx1], diagonal2[idx2]] = [true, true, true];
+			backtrack(row + 1);
+			[columns[col], diagonal[idx1], diagonal2[idx2]] = [false, false, false];
+		}
+	};
+	backtrack(0);
+	return count;
+};
+
+console.time();
 console.log(totalNQueens(4));
+console.timeEnd();
+console.time();
+console.log(totalNQueens2(4));
+console.timeEnd();
