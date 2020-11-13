@@ -44,6 +44,8 @@ my leetcode practice
 
 ### 3. 回溯算法
 
+[Backtracking](./summary/backtracking.md)
+
 ### 4. 动态规划
 
 ### 5. 前缀和思路
