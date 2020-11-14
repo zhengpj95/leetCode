@@ -14,6 +14,7 @@
 | 17   |                   Letter Combinations of a Phone Number                    |               String Backtracking                |   Medium   |
 | 18   |                                    4Sum                                    |         Array, Hash Table, Two Pointers          |   Medium   |
 | 19   |                      Remove Nth Node From End of List                      |            Linked List, Two Pointers             |   Medium   |
+| 20   |                             Valid Parentheses                              |                  String, Stack                   |    Easy    |
 | 21   |                           Merge Two Sorted Lists                           |                   Linked List                    |    Easy    |
 | 22   |                            Generate Parentheses                            |               String Backtracking                |   Medium   |
 | 23   |                            Merge k Sorted Lists                            |      Linked List, Divide and Conquer, Heap       |    Hard    |
@@ -38,12 +39,15 @@
 | 49   |                               Group Anagrams                               |                Hash Table, String                |   Medium   |
 | 51   |                                  N-Queens                                  |                   Backtracking                   |    Hard    |
 | 52   |                                N-Queens II                                 |                   Backtracking                   |    Hard    |
+| 53   |                              Maximum Subarray                              |          Array, Divide and Conquer, DP           |    Easy    |
 | 58   |                            Length of Last Word                             |                      String                      |    Easy    |
 | 60   |                            Permutation Sequence                            |                Math Backtracking                 |    Hard    |
 | 61   |                                Rotate List                                 |            Linked List, Two Pointers             |   Medium   |
 | 66   |                                  Plus One                                  |                      Array                       |    Easy    |
 | 67   |                                 Add Binary                                 |                   Math, String                   |    Easy    |
 | 69   |                                  Sqrt(x)                                   |               Math, Binary Search                |    Easy    |
+| 70   |                               Clibing Stairs                               |                        DP                        |    Easy    |
+| 71   |                               Simplify Path                                |                  String, Stack                   |   Medium   |
 | 75   |                                Sort Colors                                 |            Array, Two Pointers, Sort             |   Medium   |
 | 76   |                          Minimum Window Substring                          | Hash Table, Two Pointers, String, Sliding Window |    Hard    |
 | 77   |                                Combinations                                |                Math Backtracking                 |   Medium   |
@@ -141,6 +145,7 @@
 | 652  |                          Find Duplicate Subtrees                           |                       Tree                       |   Medium   |
 | 654  |                            Maximum Binary Tree                             |                       Tree                       |   Medium   |
 | 713  |                        Subarray Porduct Less Than K                        |               Array, Two Pointers                |   Medium   |
+| 844  |                          Backspace String Compare                          |               Two Pointers, Stack                |    Easy    |
 | 849  |                                                                            |                                                  |            |
 | 876  |                         Middle of the Linked List                          |                   Linked List                    |    Easy    |
 | 925  |                             Long Pressed Name                              |               Two Pointers, String               |    Easy    |
