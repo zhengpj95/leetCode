@@ -7,6 +7,7 @@
 | 1    |                                  Two Sum                                   |                Array, Hash Table                 |    Easy    |
 | 2    |                              Add Two Numbers                               |                Linked List, Math                 |   Medium   |
 | 3    |               Longest Substring Without Repeating Characters               | Hash Table, Two Pointers, String, Sliding Window |   Medium   |
+| 4    |                        Median of Two Sorted Arrays                         |     Array, Binary Search, Divide and Conquer     |    Hard    |
 | 11   |                         Container With Most Water                          |               Array, Two Pointers                |   Medium   |
 | 15   |                                    3Sum                                    |               Array, Two Pointers                |   Medium   |
 | 16   |                                3Sum Closest                                |               Array, Two Pointers                |   Medium   |
@@ -21,8 +22,11 @@
 | 26   |                    Remove Duplicates from Sorted Array                     |               Array, Two Pointers                |    Easy    |
 | 27   |                               Remove Element                               |               Array, Two Pointers                |    Easy    |
 | 28   |                             Implement strStr()                             |               Two Pointers, String               |    Easy    |
+| 29   |                            Divide Two Integers                             |               Math, Binary Search                |   Medium   |
 | 30   |                 Substring with Concatenation of All Words                  |         Hash Table, Two Pointers, String         |    Hard    |
 | 31   |                              Next Permutation                              |                      Array                       |   Medium   |
+| 33   |                          Search in Rotated Array                           |               Array, Binary Search               |   Medium   |
+| 35   |                           Search Insert Position                           |               Array, Binary Search               |    Easy    |
 | 36   |                                Valid Sudoku                                |                    Hash Table                    |   Medium   |
 | 37   |                               Sudoku Solver                                |             Hash Table, Backtracking             |    Hard    |
 | 38   |                               Count and Say                                |                      String                      |    Easy    |
@@ -39,6 +43,7 @@
 | 61   |                                Rotate List                                 |            Linked List, Two Pointers             |   Medium   |
 | 66   |                                  Plus One                                  |                      Array                       |    Easy    |
 | 67   |                                 Add Binary                                 |                   Math, String                   |    Easy    |
+| 69   |                                  Sqrt(x)                                   |               Math, Binary Search                |    Easy    |
 | 75   |                                Sort Colors                                 |            Array, Two Pointers, Sort             |   Medium   |
 | 76   |                          Minimum Window Substring                          | Hash Table, Two Pointers, String, Sliding Window |    Hard    |
 | 77   |                                Combinations                                |                Math Backtracking                 |   Medium   |
@@ -112,6 +117,7 @@
 | 287  |                         Find the Duplicate Number                          |        Array, Two Pointers, Binary Search        |   Medium   |
 | 290  |                                Word Pattern                                |                    Hash Table                    |    Easy    |
 | 297  |                   Serialize and Deserialize Binary Tree                    |                   Tree, Design                   |    Hard    |
+| 300  |                       Longest Increasing Subsequence                       |        Binary Search, Dynamic Programming        |   Medium   |
 | 328  |                            Odd Even Linked List                            |                   Linked List                    |   Medium   |
 | 337  |                              House Robber III                              |                    Tree, DFS                     |   Medium   |
 | 344  |                               Reverse String                               |               Two Pointers, String               |    Easy    |
