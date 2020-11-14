@@ -116,3 +116,26 @@
 | 349                |                         Intersection of Two Arrays                         |   Hash Table, Two Ponters, Binary Search, Sort   |    Easy    |
 | 350                |                       Intersection of Two Arrays II                        |   Hash Table, Two Ponters, Binary Search, Sort   |    Easy    |
 | 560                |                           Subarray Sum Equals K                            |                Array, Hash Table                 |   Medium   |
+| **Two Pointers**   |                                                                            |                                                  |            |
+| 11                 |                         Container With Most Water                          |               Array, Two Pointers                |   Medium   |
+| 15                 |                                    3Sum                                    |               Array, Two Pointers                |   Medium   |
+| 16                 |                                3Sum Closest                                |               Array, Two Pointers                |   Medium   |
+| 18                 |                                    4Sum                                    |         Array, Hash Table, Two Pointers          |   Medium   |
+| 26                 |                    Remove Duplicates from Sorted Array                     |               Array, Two Pointers                |    Easy    |
+| 27                 |                               Remove Element                               |               Array, Two Pointers                |    Easy    |
+| 28                 |                             Implement strStr()                             |               Two Pointers, String               |    Easy    |
+| 42                 |                            Trapping Rain Water                             |            Array, Two Pointers, Stack            |    Hard    |
+| 75                 |                                Sort Colors                                 |            Array, Two Pointers, Sort             |   Medium   |
+| 80                 |                   Remove Duplicates from Sorted Array II                   |               Array, Two Pointers                |   Medium   |
+| 88                 |                             Merge Sorted Array                             |               Array, Two Pointers                |    Easy    |
+| 125                |                              Valid Palidrome                               |               Two Pointers, String               |    Easy    |
+| 209                |                         Minimum Size Subarray Sum                          |        Array, Two Pointers, Binary Search        |    Easy    |
+| 283                |                                 Move Zeros                                 |               Array, Two Pointers                |    Easy    |
+| 287                |                         Find the Duplicate Number                          |        Array, Two Pointers, Binary Search        |   Medium   |
+| 344                |                               Reverse String                               |               Two Pointers, String               |    Easy    |
+| 345                |                         Reverse Vowels of a String                         |               Two Pointers, String               |    Easy    |
+| 457                |                            Circular Array Loop                             |               Array, Two Pointers                |   Medium   |
+| 524                |                Longest Word in Dictionary through Deleting                 |                Two Pointers, Sort                |   Medium   |
+| 532                |                          K-diff Pairs in an Array                          |               Array, Two Pointers                |   Medium   |
+| 925                |                             Long Pressed Name                              |               Two Pointers, String               |    Easy    |
+| 977                |                         Squares of a Sorted Array                          |               Array, Two Pointers                |    Easy    |
