@@ -139,3 +139,12 @@
 | 532                |                          K-diff Pairs in an Array                          |               Array, Two Pointers                |   Medium   |
 | 925                |                             Long Pressed Name                              |               Two Pointers, String               |    Easy    |
 | 977                |                         Squares of a Sorted Array                          |               Array, Two Pointers                |    Easy    |
+| **Array**          |                                                                            |                                                  |            |
+| 31                 |                              Next Permutation                              |                      Array                       |   Medium   |
+| 66                 |                                  Plus One                                  |                      Array                       |    Easy    |
+| 118                |                             Pascal's Triangle                              |                      Array                       |    Easy    |
+| 119                |                            Pascal's Triangle II                            |                      Array                       |    Easy    |
+| 238                |                        Product of Array Except Self                        |                      Array                       |    Easy    |
+| 849                |                                                                            |                                                  |            |
+| 1089               |                              Duplicate Zeros                               |                      Array                       |    Easy    |
+| 1295               |                  Find Numbers with Even Number of Digits                   |                      Array                       |    Easy    |
