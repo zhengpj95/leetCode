@@ -16,6 +16,10 @@
  */
 
 /**
+ * 解析：每个单元格都需要从上下左右四个方向上去递归判断，还需注意行列的范围，避免超出
+ */
+
+/**
  * @param {character[][]} board
  * @param {string} word
  * @return {boolean}
