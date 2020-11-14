@@ -83,6 +83,7 @@
 | 124  |                        Binary Tree Maximum Path Sum                        |                    Tree, DFS                     |    Hard    |
 | 125  |                              Valid Palidrome                               |               Two Pointers, String               |    Easy    |
 | 129  |                          Sum Root to Leaf Numbers                          |                    Tree, DFS                     |   Medium   |
+| 136  |                               Single Number                                |           Hash Table, Bit Manipulation           |    Easy    |
 | 138  |                       Copy List with Random Pointer                        |             Hash Table, Linked List              |   Medium   |
 | 141  |                             Linked List Cycle                              |            Linked List, Two Pointers             |    Easy    |
 | 142  |                            Linked List Cycle II                            |            Linked List, Two Pointers             |   Medium   |
@@ -146,6 +147,7 @@
 | 977  |                         Squares of a Sorted Array                          |               Array, Two Pointers                |    Easy    |
 | 978  |                         Longest Turbulent Subarray                         |    Array, Dynamic Programming, Sliding Window    |   Medium   |
 | 1004 |                          Max Consecutive Ones II                           |           Two Pointers, Sliding Window           |   Medium   |
+| 1033 |                      Moving Stones Until Consecutive                       |                   Brainteaser                    |    Easy    |
 | 1052 |                           Grumpy Bookstore Owner                           |              Array, Sliding Window               |   Medium   |
 | 1089 |                              Duplicate Zeros                               |                      Array                       |    Easy    |
 | 1295 |                  Find Numbers with Even Number of Digits                   |                      Array                       |    Easy    |
