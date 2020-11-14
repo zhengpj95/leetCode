@@ -168,5 +168,7 @@
 | 20                           |                             Valid Parentheses                              |                  String, Stack                   |    Easy    |
 | 71                           |                               Simplify Path                                |                  String, Stack                   |   Medium   |
 | 844                          |                          Backspace String Compare                          |               Two Pointers, Stack                |    Easy    |
+| **Union Find**               |                                                                            |                                                  |            |
+| 128                          |                        Longest Consecutive Sequence                        |                Array, Union Find                 |    Hard    |
 | **Other**                    |                                                                            |                                                  |            |
 | 1033                         |                      Moving Stones Until Consecutive                       |                   Brainteaser                    |    Easy    |

@@ -86,6 +86,7 @@
 | 119  |                            Pascal's Triangle II                            |                      Array                       |    Easy    |
 | 124  |                        Binary Tree Maximum Path Sum                        |                    Tree, DFS                     |    Hard    |
 | 125  |                              Valid Palidrome                               |               Two Pointers, String               |    Easy    |
+| 128  |                        Longest Consecutive Sequence                        |                Array, Union Find                 |    Hard    |
 | 129  |                          Sum Root to Leaf Numbers                          |                    Tree, DFS                     |   Medium   |
 | 136  |                               Single Number                                |           Hash Table, Bit Manipulation           |    Easy    |
 | 138  |                       Copy List with Random Pointer                        |             Hash Table, Linked List              |   Medium   |
