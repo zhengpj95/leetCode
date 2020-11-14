@@ -78,10 +78,51 @@ const getPermutation2 = function (n, k) {
 	return result;
 };
 
+/**
+ * 新思路：一位一位的确定
+ * 如 n = 4，k = 15 时
+ * 则 第一位分别是 1, 2, 3, 4 时，则其各有 (n-1)! 个子项
+ * 类似的第二位是非第一位数字时，也有 (n-2)! 个子项
+ * 。。。
+ * 当我们找 k = 15 时，可以跳过第一位是1和2的，从第一位是3开始，
+ * 此时就在第一位是3的第15-12 (15 - (4-1)! * 2)个，此时又可以跳过第二位是1的，从2开始，
+ * 此时就在第二位是2的第15-12-2 (15 - (4-1)! * 2 - (3-1)! * 1)个，此时就是第二位是2的第1个元素了
+ *
+ * Runtime: 60 ms, faster than 100.00% of JavaScript online submissions for Permutation Sequence.
+ * Memory Usage: 38.8 MB, less than 82.57% of JavaScript online submissions for Permutation Sequence.
+ * @param {number} n
+ * @param {number} k
+ * @return {string}
+ */
+const getPermutation3 = function (n, k) {
+	if (n === 1) return '1';
+	let factorial = [1];
+	let nums = [];
+	for (let i = 1; i <= n; i++) {
+		nums.push(i);
+		factorial.push(factorial[i - 1] * i);
+	}
+
+	let result = '';
+	k--; //需先减1，因为每个组都是从下标0开始算的
+	for (let i = 1; i <= n; i++) {
+		let index = Math.floor(k / factorial[n - i]); //对于每一位，计算跳过多少组
+		result += nums[index]; //确定当前位
+		nums.splice(index, 1); //把当前位从nums中移除，此位不会再出现
+		k -= index * factorial[n - i]; //对于每一位，在此组的第几个位置
+	}
+	return result;
+};
+
 let n = 3,
 	k = 3;
 
 (n = 9), (k = 25996);
-// (n = 4), (k = 9);
+// (n = 4), (k = 15);
 // (n = 3), (k = 1);
+console.time('a');
+console.time('b');
 console.log(getPermutation2(n, k));
+console.timeEnd('a');
+console.log(getPermutation3(n, k));
+console.timeEnd('b');
