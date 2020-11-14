@@ -25,6 +25,7 @@
 | 31   |                              Next Permutation                              |                      Array                       |   Medium   |
 | 36   |                                Valid Sudoku                                |                    Hash Table                    |   Medium   |
 | 37   |                               Sudoku Solver                                |             Hash Table, Backtracking             |    Hard    |
+| 38   |                               Count and Say                                |                      String                      |    Easy    |
 | 39   |                              Combination Sum                               |                Array Backtracking                |   Medium   |
 | 40   |                             Combination Sum II                             |                Array Backtracking                |   Medium   |
 | 42   |                            Trapping Rain Water                             |            Array, Two Pointers, Stack            |    Hard    |
@@ -33,9 +34,11 @@
 | 49   |                               Group Anagrams                               |                Hash Table, String                |   Medium   |
 | 51   |                                  N-Queens                                  |                   Backtracking                   |    Hard    |
 | 52   |                                N-Queens II                                 |                   Backtracking                   |    Hard    |
+| 58   |                            Length of Last Word                             |                      String                      |    Easy    |
 | 60   |                            Permutation Sequence                            |                Math Backtracking                 |    Hard    |
 | 61   |                                Rotate List                                 |            Linked List, Two Pointers             |   Medium   |
 | 66   |                                  Plus One                                  |                      Array                       |    Easy    |
+| 67   |                                 Add Binary                                 |                   Math, String                   |    Easy    |
 | 75   |                                Sort Colors                                 |            Array, Two Pointers, Sort             |   Medium   |
 | 76   |                          Minimum Window Substring                          | Hash Table, Two Pointers, String, Sliding Window |    Hard    |
 | 77   |                                Combinations                                |                Math Backtracking                 |   Medium   |
