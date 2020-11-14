@@ -152,3 +152,10 @@
 | 38                 |                               Count and Say                                |                      String                      |    Easy    |
 | 58                 |                            Length of Last Word                             |                      String                      |    Easy    |
 | 67                 |                                 Add Binary                                 |                   Math, String                   |    Easy    |
+| **Binary Search**  |                                                                            |                                                  |            |
+| 4                  |                        Median of Two Sorted Arrays                         |     Array, Binary Search, Divide and Conquer     |    Hard    |
+| 29                 |                            Divide Two Integers                             |               Math, Binary Search                |   Medium   |
+| 33                 |                          Search in Rotated Array                           |               Array, Binary Search               |   Medium   |
+| 35                 |                           Search Insert Position                           |               Array, Binary Search               |    Easy    |
+| 69                 |                                  Sqrt(x)                                   |               Math, Binary Search                |    Easy    |
+| 300                |                       Longest Increasing Subsequence                       |        Binary Search, Dynamic Programming        |   Medium   |
