@@ -149,6 +149,8 @@
 | 1089                         |                              Duplicate Zeros                               |                      Array                       |    Easy    |
 | 1295                         |                  Find Numbers with Even Number of Digits                   |                      Array                       |    Easy    |
 | **String**                   |                                                                            |                                                  |            |
+| 13                           |                              Roman to Integer                              |                   Math, String                   |    Easy    |
+| 14                           |                           Longest Common Prefix                            |                      String                      |    Easy    |
 | 38                           |                               Count and Say                                |                      String                      |    Easy    |
 | 58                           |                            Length of Last Word                             |                      String                      |    Easy    |
 | 67                           |                                 Add Binary                                 |                   Math, String                   |    Easy    |

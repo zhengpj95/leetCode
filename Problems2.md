@@ -11,6 +11,8 @@
 | 7    |                              Reverse Integer                               |                       Math                       |    Easy    |
 | 9    |                             Palindrome Number                              |                       Math                       |    Easy    |
 | 11   |                         Container With Most Water                          |               Array, Two Pointers                |   Medium   |
+| 13   |                              Roman to Integer                              |                   Math, String                   |    Easy    |
+| 14   |                           Longest Common Prefix                            |                      String                      |    Easy    |
 | 15   |                                    3Sum                                    |               Array, Two Pointers                |   Medium   |
 | 16   |                                3Sum Closest                                |               Array, Two Pointers                |   Medium   |
 | 17   |                   Letter Combinations of a Phone Number                    |               String Backtracking                |   Medium   |
