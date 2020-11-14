@@ -4,11 +4,9 @@
 
 | #                  |                                   Title                                    |                       Tags                       | Difficulty |
 | ------------------ | :------------------------------------------------------------------------: | :----------------------------------------------: | :--------: |
-| 1                  |                                    Two                                     |                 Array HashTable                  |    Easy    |
 | **BackTracking**   |                                                                            |                                                  |            |
 | 17                 |                   Letter Combinations of a Phone Number                    |               String Backtracking                |   Medium   |
 | 22                 |                            Generate Parentheses                            |               String Backtracking                |   Medium   |
-| 37                 |                               Sudoku Solver                                |              HashTable Backtracking              |    Hard    |
 | 39                 |                              Combination Sum                               |                Array Backtracking                |   Medium   |
 | 40                 |                             Combination Sum II                             |                Array Backtracking                |   Medium   |
 | 46                 |                                Permutations                                |                   Backtracking                   |   Medium   |
@@ -94,8 +92,27 @@
 | 76                 |                          Minimum Window Substring                          | Hash Table, Two Pointers, String, Sliding Window |    Hard    |
 | 239                |                           Sliding Window Maximum                           |               Heap Sliding Window                |    Hard    |
 | 424                |                  Longest Repeating Character Replacement                   |           Two Pointers, Sliding Window           |   Medium   |
+| 438                |                       Find All Anagrams in a String                        |                    Hash Table                    |   Medium   |
+| 485                |                            Max Consecutive Ones                            |                      Array                       |    Easy    |
 | 567                |                           Permutation is String                            |           Two Pointers, Sliding Window           |   Medium   |
+| 713                |                        Subarray Porduct Less Than K                        |               Array, Two Pointers                |   Medium   |
 | 978                |                         Longest Turbulent Subarray                         |    Array, Dynamic Programming, Sliding Window    |   Medium   |
 | 1004               |                          Max Consecutive Ones II                           |           Two Pointers, Sliding Window           |   Medium   |
 | 1052               |                           Grumpy Bookstore Owner                           |              Array, Sliding Window               |   Medium   |
 | 1438               | Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit |              Array, Sliding Window               |   Medium   |
+| **Hash Table**     |                                                                            |                                                  |            |
+| 1                  |                                  Two Sum                                   |                Array, Hash Table                 |    Easy    |
+| 30                 |                 Substring with Concatenation of All Words                  |         Hash Table, Two Pointers, String         |    Hard    |
+| 36                 |                                Valid Sudoku                                |                    Hash Table                    |   Medium   |
+| 37                 |                               Sudoku Solver                                |             Hash Table, Backtracking             |    Hard    |
+| 49                 |                               Group Anagrams                               |                Hash Table, String                |   Medium   |
+| 202                |                                Happy Number                                |                 Hash Table, Math                 |    Easy    |
+| 204                |                                Count Primes                                |                 Hash Table, Math                 |    Easy    |
+| 205                |                             Isomorphic Strings                             |                    Hash Table                    |    Easy    |
+| 217                |                             Contains Duplicate                             |                Array, Hash Table                 |    Easy    |
+| 219                |                           Contains Duplicate II                            |                Array, Hash Table                 |    Easy    |
+| 242                |                               Valid Anagram                                |                 Hash Table, Sort                 |    Easy    |
+| 290                |                                Word Pattern                                |                    Hash Table                    |    Easy    |
+| 349                |                         Intersection of Two Arrays                         |   Hash Table, Two Ponters, Binary Search, Sort   |    Easy    |
+| 350                |                       Intersection of Two Arrays II                        |   Hash Table, Two Ponters, Binary Search, Sort   |    Easy    |
+| 560                |                           Subarray Sum Equals K                            |                Array, Hash Table                 |   Medium   |
