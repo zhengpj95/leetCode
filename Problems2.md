@@ -8,6 +8,8 @@
 | 2    |                              Add Two Numbers                               |                Linked List, Math                 |   Medium   |
 | 3    |               Longest Substring Without Repeating Characters               | Hash Table, Two Pointers, String, Sliding Window |   Medium   |
 | 4    |                        Median of Two Sorted Arrays                         |     Array, Binary Search, Divide and Conquer     |    Hard    |
+| 7    |                              Reverse Integer                               |                       Math                       |    Easy    |
+| 9    |                             Palindrome Number                              |                       Math                       |    Easy    |
 | 11   |                         Container With Most Water                          |               Array, Two Pointers                |   Medium   |
 | 15   |                                    3Sum                                    |               Array, Two Pointers                |   Medium   |
 | 16   |                                3Sum Closest                                |               Array, Two Pointers                |   Medium   |

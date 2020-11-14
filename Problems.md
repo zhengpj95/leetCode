@@ -170,5 +170,8 @@
 | 844                          |                          Backspace String Compare                          |               Two Pointers, Stack                |    Easy    |
 | **Union Find**               |                                                                            |                                                  |            |
 | 128                          |                        Longest Consecutive Sequence                        |                Array, Union Find                 |    Hard    |
+| **Math**                     |                                                                            |                                                  |            |
+| 7                            |                              Reverse Integer                               |                       Math                       |    Easy    |
+| 9                            |                             Palindrome Number                              |                       Math                       |    Easy    |
 | **Other**                    |                                                                            |                                                  |            |
 | 1033                         |                      Moving Stones Until Consecutive                       |                   Brainteaser                    |    Easy    |
