@@ -55,5 +55,36 @@ const restoreIpAddresses = function (s) {
 	return result;
 };
 
+/**
+ * @param {string} s
+ * @return {string[]}
+ */
+const restoreIpAddresses2 = function (s) {
+	let result = [];
+
+	/**
+	 * @param {string} s 剩下的ip地址
+	 * @param {string} track	路径
+	 * @param {number} count	ip地址的第几段（以.划分）
+	 */
+	let backtrack = (s, track, count) => {
+		if (count > 4) return;
+		else if (count === 4 && s === '') {
+			result.push(track);
+			return;
+		}
+
+		for (let i = 1; i <= 3 && i <= s.length; i++) {
+			let path = s.substring(0, i);
+			if (parseInt(path) > 255 || (path[0] === '0' && i > 1)) continue;
+			backtrack(s.slice(i), track ? track + '.' + path : path, count + 1);
+		}
+	};
+
+	backtrack(s, '', 0);
+	return result;
+};
+
 let s = '101023';
-console.log(restoreIpAddresses(s));
+// console.log(restoreIpAddresses(s));
+console.log(`result = `, restoreIpAddresses2(s));
