@@ -170,6 +170,7 @@
 | **Stack**                    |                                                                            |                                                  |            |
 | 20                           |                             Valid Parentheses                              |                  String, Stack                   |    Easy    |
 | 71                           |                               Simplify Path                                |                  String, Stack                   |   Medium   |
+| 155                          |                                 Min Stack                                  |                  Stack, Design                   |    Easy    |
 | 844                          |                          Backspace String Compare                          |               Two Pointers, Stack                |    Easy    |
 | **Union Find**               |                                                                            |                                                  |            |
 | 128                          |                        Longest Consecutive Sequence                        |                Array, Union Find                 |    Hard    |

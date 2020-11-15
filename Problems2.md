@@ -102,6 +102,7 @@
 | 145  |                      Binary Tree Postorder Traversal                       |                   Stack, Tree                    |   Medium   |
 | 147  |                                Reorder List                                |                Linked List, Sort                 |   Medium   |
 | 148  |                                 Sort List                                  |                Linked List, Sort                 |   Medium   |
+| 155  |                                 Min Stack                                  |                  Stack, Design                   |    Easy    |
 | 160  |                      Intersection of Two Linked Lists                      |                   Linked List                    |    Easy    |
 | 173  |                        Binary Search Tree Iterator                         |               Stack, Tree, Design                |   Medium   |
 | 199  |                        Binary Tree Right Side View                         |                  Tree, DFS, BFS                  |   Medium   |
