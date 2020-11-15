@@ -15,6 +15,10 @@
  * 有BUG
  * 这里使用多一个栈来维持单调栈，但是这个单调栈后面入的元素如果比栈顶元素小，则前面的元素要出栈，此元素再入栈
  * 所以如果此额外栈空了，但是原本的栈没空，则获取最小元素时得到结果不对
+ *
+ * ==================================================
+ * 没有BUG
+ * 入栈的时候，改变一下方式，如果入栈的元素比维持的一个单调栈的元素小才入栈，不像上面方式一样先出栈bi当前元素大的
  */
 
 /**
@@ -31,10 +35,17 @@ const MinStack = function () {
  */
 MinStack.prototype.push = function (x) {
 	this.stack.push(x);
-	while (this.minStack.length && this.minStack[this.minStack.length - 1] > x) {
-		this.minStack.pop();
+
+	// 这种方式是minStack的栈顶元素小于当前元素的，则需要其出栈
+	// while (this.minStack.length && this.minStack[this.minStack.length - 1] > x) {
+	// 	this.minStack.pop();
+	// }
+	// this.minStack.push(x);
+
+	// 改变方式，比minStack的栈顶元素小才入栈，此处的minStack不应该有出栈的操作
+	if (!this.minStack.length || x <= this.minStack[this.minStack.length - 1]) {
+		this.minStack.push(x);
 	}
-	this.minStack.push(x);
 };
 
 /**
@@ -80,4 +91,5 @@ console.log(min.getMin()); //-3
 min.pop();
 console.log(min.top()); //0
 console.log(min); //stack: [-2, 0], minStack: []
-console.log(min.getMin()); //0，错误！此时minStack已空，得到的是stack的栈顶元素
+// console.log(min.getMin()); //0，错误！此时minStack已空，得到的是stack的栈顶元素
+console.log(min.getMin()); // 改后，此处输出-2
