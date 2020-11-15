@@ -18,6 +18,7 @@
 | 78                           |                                  Subsets                                   |        Array Backtracking BitManipulation        |   Medium   |
 | 79                           |                                Word Search                                 |                Array Backtracking                |   Medium   |
 | 90                           |                                 Subsets II                                 |                Array Backtracking                |   Medium   |
+| 93                           |                            Restore IP Addresses                            |               String, Backtracking               |   Medium   |
 | **Linked List**              |                                                                            |                                                  |            |
 | 2                            |                              Add Two Numbers                               |                Linked List, Math                 |   Medium   |
 | 19                           |                      Remove Nth Node From End of List                      |            Linked List, Two Pointers             |   Medium   |

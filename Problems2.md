@@ -64,6 +64,7 @@
 | 88   |                             Merge Sorted Array                             |               Array, Two Pointers                |    Easy    |
 | 90   |                                 Subsets II                                 |                Array Backtracking                |   Medium   |
 | 92   |                           Reverse Linked List II                           |                   Linked List                    |   Medium   |
+| 93   |                            Restore IP Addresses                            |               String, Backtracking               |   Medium   |
 | 94   |                       Binary Tree Inorder Traversal                        |             Hash Table, Stack, Tree              |   Medium   |
 | 95   |                       Unique Binary Search Trees II                        |            Dynamic Programming, Tree             |   Medium   |
 | 96   |                         Unique Binary Search Trees                         |             DynamicProgramming, Tree             |   Medium   |
