@@ -58,6 +58,28 @@ const fib3 = function (N) {
 	return memo[N];
 };
 
+/**
+ * Iterative Top-Down Approach
+ * Time complexity: O(N)
+ * Space complexity: O(1)
+ * @param {number} N
+ * @returns {number}
+ */
+const fib4 = function (N) {
+	if (N <= 1) return N;
+	else if (N === 2) return 1;
+
+	let sum = 0;
+	let prev = 1;
+	let prev2 = 1;
+	for (let i = 3; i <= N; i++) {
+		sum = prev + prev2;
+		prev2 = prev;
+		prev = sum;
+	}
+	return sum;
+};
+
 // console.log(fib1(2));
 // console.log(fib2(2));
 // console.log(fib2(3));
@@ -69,3 +91,4 @@ const fib3 = function (N) {
 // console.timeEnd('b');
 
 console.log(fib3(40));
+console.log(fib4(40));
