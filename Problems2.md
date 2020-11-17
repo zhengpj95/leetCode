@@ -111,6 +111,7 @@
 | 204  |                                Count Primes                                |                 Hash Table, Math                 |    Easy    |
 | 205  |                             Isomorphic Strings                             |                    Hash Table                    |    Easy    |
 | 206  |                            Reverse Linked List                             |                   Linked List                    |    Easy    |
+| 208  |                        Implement Trie (Prefix Tree)                        |                   Degign,Trie                    |   Medium   |
 | 209  |                         Minimum Size Subarray Sum                          |        Array, Two Pointers, Binary Search        |    Easy    |
 | 217  |                             Contains Duplicate                             |                Array, Hash Table                 |    Easy    |
 | 219  |                           Contains Duplicate II                            |                Array, Hash Table                 |    Easy    |

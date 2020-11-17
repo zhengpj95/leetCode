@@ -178,5 +178,7 @@
 | **Math**                     |                                                                            |                                                  |            |
 | 7                            |                              Reverse Integer                               |                       Math                       |    Easy    |
 | 9                            |                             Palindrome Number                              |                       Math                       |    Easy    |
+| **Trie**                     |                                                                            |                                                  |            |
+| 208                          |                        Implement Trie (Prefix Tree)                        |                   Degign,Trie                    |   Medium   |
 | **Other**                    |                                                                            |                                                  |            |
 | 1033                         |                      Moving Stones Until Consecutive                       |                   Brainteaser                    |    Easy    |
