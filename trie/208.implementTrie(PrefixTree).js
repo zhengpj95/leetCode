@@ -21,8 +21,7 @@
  * Initialize your data structure here.
  */
 const Trie = function () {
-	this.value = '';
-	this.childs = [];
+	this.root = {};
 };
 
 /**
@@ -30,21 +29,72 @@ const Trie = function () {
  * @param {string} word
  * @return {void}
  */
-Trie.prototype.insert = function (word) {};
+Trie.prototype.insert = function (word) {
+	let obj = this.root;
+	for (let i = 0; i < word.length; i++) {
+		let c = word[i];
+		if (!obj[c]) {
+			obj[c] = {};
+		}
+		obj = obj[c];
+	}
+	obj.isEnd = true;
+};
 
 /**
  * Returns if the word is in the trie.
  * @param {string} word
  * @return {boolean}
  */
-Trie.prototype.search = function (word) {};
+Trie.prototype.search = function (word) {
+	// let obj = this.root;
+	// for (let i = 0; i < word.length; i++) {
+	// 	let c = word[i];
+	// 	if (!obj[c]) {
+	// 		return false;
+	// 	} else {
+	// 		obj = obj[c];
+	// 	}
+	// }
+
+	let obj = this.commonSearch(word);
+	return obj && obj.isEnd ? true : false;
+};
 
 /**
  * Returns if there is any word in the trie that starts with the given prefix.
  * @param {string} prefix
  * @return {boolean}
  */
-Trie.prototype.startsWith = function (prefix) {};
+Trie.prototype.startsWith = function (prefix) {
+	// let obj = this.root;
+	// for (let char of prefix.split('')) {
+	// 	if (!obj[char]) {
+	// 		return false;
+	// 	} else {
+	// 		obj = obj[char];
+	// 	}
+	// }
+
+	let obj = this.commonSearch(prefix);
+	return !!obj;
+};
+
+/**
+ * @param {string} word
+ * @returns {boolean}
+ */
+Trie.prototype.commonSearch = function (word) {
+	let obj = this.root;
+	for (let char of word.split('')) {
+		if (!obj[char]) {
+			return null;
+		} else {
+			obj = obj[char];
+		}
+	}
+	return obj;
+};
 
 /**
  * Your Trie object will be instantiated and called as such:
@@ -53,3 +103,13 @@ Trie.prototype.startsWith = function (prefix) {};
  * var param_2 = obj.search(word)
  * var param_3 = obj.startsWith(prefix)
  */
+
+let trie = new Trie();
+trie.insert('bed');
+trie.insert('beded');
+trie.insert('today');
+trie.insert('tomorrow');
+console.log(trie);
+console.log(trie.startsWith('bed'));
+console.log(trie.startsWith('to'));
+console.log(trie.startsWith('y'));
