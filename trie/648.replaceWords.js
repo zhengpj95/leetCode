@@ -24,6 +24,11 @@
  */
 
 /**
+ * 方式一：每个单词片段都需要遍历，使用hashtable或者直接使用数组的indexOf即可
+ * 方式二：把dictionary插入到trie中，再遍历sentence的每一个单词，一旦匹配到就返回，这样就能保证是最短词根；一旦有一个字母不匹配到就直接返回空
+ */
+
+/**
  * Time complexity: O(Sum(w_i)^2) 每个单词长度的平方之和
  * Space complexity: O(n) 单词
  * @param {string[]} dictionary
