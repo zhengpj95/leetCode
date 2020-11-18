@@ -29,6 +29,20 @@ const longestWord2 = function (words) {
 	return result;
 };
 
+/**
+ * 时间复杂度主要花费在查找的回溯算法上
+ * @param {string[]} words
+ * @return {string}
+ */
+const longestWord = function (words) {
+	let trie = new Trie();
+	for (let word of words) {
+		trie.insert(word);
+	}
+	return trie.findWord();
+};
+
 let words = ['w', 'wo', 'worl', 'wor', 'world'];
 words = ['yo', 'ew', 'fc', 'zrc', 'yodn', 'fcm', 'qm', 'qmo', 'fcmz', 'z', 'ewq', 'yod', 'ewqz', 'y'];
-console.log(`result = `, longestWord2(words));
+// console.log(`result = `, longestWord2(words));
+console.log(`result = `, longestWord(words));
