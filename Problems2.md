@@ -153,7 +153,9 @@
 | 567  |                           Permutation is String                            |           Two Pointers, Sliding Window           |   Medium   |
 | 652  |                          Find Duplicate Subtrees                           |                       Tree                       |   Medium   |
 | 654  |                            Maximum Binary Tree                             |                       Tree                       |   Medium   |
+| 677  |                               Map Sum Pairs                                |                       Trie                       |   Medium   |
 | 713  |                        Subarray Porduct Less Than K                        |               Array, Two Pointers                |   Medium   |
+| 720  |                         Longest Word in Dictionary                         |                 Hash Table, Trie                 |    Easy    |
 | 844  |                          Backspace String Compare                          |               Two Pointers, Stack                |    Easy    |
 | 849  |                                                                            |                                                  |            |
 | 876  |                         Middle of the Linked List                          |                   Linked List                    |    Easy    |

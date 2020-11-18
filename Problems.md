@@ -180,5 +180,7 @@
 | 9                            |                             Palindrome Number                              |                       Math                       |    Easy    |
 | **Trie**                     |                                                                            |                                                  |            |
 | 208                          |                        Implement Trie (Prefix Tree)                        |                   Degign,Trie                    |   Medium   |
+| 677                          |                               Map Sum Pairs                                |                       Trie                       |   Medium   |
+| 720                          |                         Longest Word in Dictionary                         |                 Hash Table, Trie                 |    Easy    |
 | **Other**                    |                                                                            |                                                  |            |
 | 1033                         |                      Moving Stones Until Consecutive                       |                   Brainteaser                    |    Easy    |
