@@ -182,5 +182,6 @@
 | 208                          |                        Implement Trie (Prefix Tree)                        |                   Degign,Trie                    |   Medium   |
 | 677                          |                               Map Sum Pairs                                |                       Trie                       |   Medium   |
 | 720                          |                         Longest Word in Dictionary                         |                 Hash Table, Trie                 |    Easy    |
+| 648                          |                               Replace Words                                |                 Hash Table, Trie                 |   Medium   |
 | **Other**                    |                                                                            |                                                  |            |
 | 1033                         |                      Moving Stones Until Consecutive                       |                   Brainteaser                    |    Easy    |

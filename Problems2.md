@@ -151,6 +151,7 @@
 | 532  |                          K-diff Pairs in an Array                          |               Array, Two Pointers                |   Medium   |
 | 560  |                           Subarray Sum Equals K                            |                Array, Hash Table                 |   Medium   |
 | 567  |                           Permutation is String                            |           Two Pointers, Sliding Window           |   Medium   |
+| 648  |                               Replace Words                                |                 Hash Table, Trie                 |   Medium   |
 | 652  |                          Find Duplicate Subtrees                           |                       Tree                       |   Medium   |
 | 654  |                            Maximum Binary Tree                             |                       Tree                       |   Medium   |
 | 677  |                               Map Sum Pairs                                |                       Trie                       |   Medium   |
