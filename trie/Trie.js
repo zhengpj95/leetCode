@@ -63,6 +63,27 @@ class Trie {
 		backtrack(this.root, [], 0);
 		return result;
 	}
+
+	/**
+	 * 648.replaceWords 的方法
+	 * @param {string} word
+	 */
+	findWordForReplace(word) {
+		let root = this.root;
+		let result = '';
+		for (let i = 0; i < word.length; i++) {
+			let part = word[i];
+			if (root.isEnd) {
+				return result;
+			}
+			if (!root[part]) {
+				return '';
+			}
+			result += part;
+			root = root[part];
+		}
+		return result;
+	}
 }
 
 module.exports.Trie = Trie;

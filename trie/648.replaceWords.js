@@ -76,7 +76,35 @@ const replaceWords2 = function (dictionary, sentence) {
 	return result;
 };
 
+const { Trie } = require('./Trie');
+
+/**
+ * Time complexity: O(n) n为sentence的单词个数
+ * Space complexity: O(n)
+ * @param {string[]} dictionary
+ * @param {string} sentence
+ * @return {string}
+ */
+const replaceWords3 = function (dictionary, sentence) {
+	let trie = new Trie();
+	dictionary.forEach((item) => trie.insert(item));
+
+	let result = [];
+	for (let word of sentence.split(' ')) {
+		let part = trie.findWordForReplace(word);
+		if (part) {
+			result.push(part);
+		} else {
+			result.push(word);
+		}
+	}
+	return result.join(' ');
+};
+
 let dictionary = ['cat', 'bat', 'rat'],
 	sentence = 'the cattle was rattled by the battery';
-console.log(replaceWords(dictionary, sentence));
-console.log(replaceWords2(dictionary, sentence));
+// console.log(replaceWords(dictionary, sentence));
+// console.log(replaceWords2(dictionary, sentence));
+
+(dictionary = ['a', 'aa', 'aaa', 'aaaa']), (sentence = 'a aa a aaaa aaa aaa aaa aaaaaa bbb baba ababa');
+console.log(replaceWords3(dictionary, sentence));
