@@ -76,10 +76,10 @@ my leetcode practice
 
 [Sliding Window](./slidingWindow/README.md)
 
-## 6. BackTracking
+### 6. BackTracking
 
 [BackTracking](./backTracking/README.md)
 
-## 7. Trie
+### 7. Trie
 
 [Trie](./trie/README.md)
