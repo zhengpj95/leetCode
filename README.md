@@ -79,3 +79,7 @@ my leetcode practice
 ## 6. BackTracking
 
 [BackTracking](./backTracking/README.md)
+
+## 7. Trie
+
+[Trie](./trie/README.md)
