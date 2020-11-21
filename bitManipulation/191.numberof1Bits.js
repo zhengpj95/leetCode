@@ -48,5 +48,13 @@ var hammingWeight2 = function (n) {
 	return result;
 };
 
+/**
+ * @param {number} n
+ */
+var hammingWeight3 = function (n) {
+	console.log(n.toString(2).replace(/0/g, '').length);
+};
+
 console.log(hammingWeight(00000000000000000000000000001011));
 console.log(hammingWeight2(00000000000000000000000000001011));
+console.log(hammingWeight3(00000000000000000000000000001011));
