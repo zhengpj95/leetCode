@@ -50,6 +50,8 @@ my leetcode practice
 
 ### 5. 前缀和思路
 
+[前缀和技巧](./summary/presum.md)
+
 ### 6. 二分查找
 
 ### 7. 二进制操作
