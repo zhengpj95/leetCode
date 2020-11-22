@@ -51,9 +51,11 @@ while (right satisfy conditions) {
 我们以 LeetCode 的 *76. Minimum Window Substring* 题目来讲解 **滑动窗口** 的思路。
 
 ```text
-Given two strings s and t, return the minimum window in s which will contain all the characters in t. If there is no such window in s that covers all characters in t, return the empty string "".
+Given two strings s and t, return the minimum window in s which will contain all the characters in t. 
+If there is no such window in s that covers all characters in t, return the empty string "".
 
-Note that If there is such a window, it is guaranteed that there will always be only one unique minimum window in s.
+Note that If there is such a window, 
+it is guaranteed that there will always be only one unique minimum window in s.
 
 Constraints: 1 <= s.length, t.length <= 10^5; s and t consist of English letters.
 ```
