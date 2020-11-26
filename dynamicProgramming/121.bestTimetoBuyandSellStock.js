@@ -24,6 +24,14 @@ var maxProfit = function (prices) {
 };
 
 /**
+ * dp数组含义：dp[i]代表第i天卖出去所得利润，
+ * 第一天时候买入又卖出，利润是0，以后的每一天都尝试卖出去，同时我会更新股价最低的情况
+ * 这里的解法没用利用到前面的计算结果，单独用一个变量表示最大利润就有利用到，看下一解法即可。
+ * 返回结果时候算利用到
+ *
+ * subProblem: 第i天卖出股票所得利润
+ * dp数组含义：见上，也算满足reuse吧
+ * bottom-up: 满足自底向上
  * Time complexity: O(n)
  * Space complexity: O(n)
  * @param {number[]} prices
