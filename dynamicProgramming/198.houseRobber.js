@@ -67,7 +67,20 @@ var rob = function (nums) {
 	dp[0] = [nums[0], 0]; //[rob, not rob]
 	dp[1] = [nums[1], nums[0]];
 	for (let i = 2; i < nums.length; i++) {
-		dp[i] = [nums[i] + Math.max(...dp[i - 2]), Math.max(nums[i], dp[i - 2][1], ...dp[i - 1])];
+		dp[i] = [nums[i] + Math.max(...dp[i - 2]), Math.max(nums[i], ...dp[i - 2], ...dp[i - 1])];
 	}
 	return Math.max(...dp[dp.length - 1]);
+};
+
+/**
+ * dp[i] 表示到当前房子时抢到的最大金额，不分抢不抢当前房子情况
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob2 = function (nums) {
+	let dp = [nums[0], Math.max(nums[0], nums[1])];
+	for (let i = 2; i < nums.length; i++) {
+		dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
+	}
+	return dp[nums.length - 1] || 0;
 };
