@@ -38,7 +38,7 @@ var robWithRecursion = function (nums) {
  * @param {number[]} nums
  * @return {number}
  */
-var robWithRecursion = function (nums) {
+var robWithRecursionandMemo = function (nums) {
 	let memo = [];
 	let dp = (nums, start) => {
 		if (start >= nums.length) {
@@ -51,4 +51,23 @@ var robWithRecursion = function (nums) {
 	};
 
 	return dp(nums, 0);
+};
+
+/**
+ * bottom-up
+ * Runtime: 72 ms, faster than 92.22% of JavaScript online submissions for House Robber.
+ * Memory Usage: 38.6 MB, less than 41.96% of JavaScript online submissions for House Robber.
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function (nums) {
+	if (!nums || !nums.length) return 0;
+	if (nums.length <= 2) return Math.max(...nums);
+	let dp = [];
+	dp[0] = [nums[0], 0]; //[rob, not rob]
+	dp[1] = [nums[1], nums[0]];
+	for (let i = 2; i < nums.length; i++) {
+		dp[i] = [nums[i] + Math.max(...dp[i - 2]), Math.max(nums[i], dp[i - 2][1], ...dp[i - 1])];
+	}
+	return Math.max(...dp[dp.length - 1]);
 };
