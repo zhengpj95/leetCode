@@ -41,3 +41,55 @@ var isSubsequence = function (s, t) {
 	if (slow >= s.length) return true;
 	return false;
 };
+
+/**
+ * Binary Search
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence2 = function (s, t) {
+	// 找出t中所有字母的下标，同ASCII码的同一个数组
+	let idx = [];
+	for (let i = 0; i < t.length; i++) {
+		let code = t[i].charCodeAt();
+		if (!idx[code]) {
+			idx[code] = [];
+		}
+		idx[code].push(i);
+	}
+
+	// 找出t的每一个字母，其在t的序号是否是有序的
+	// 使用二分法
+	let sIdx = -1;
+	for (let i = 0; i < s.length; i++) {
+		let code = s[i].charCodeAt();
+		let codeIdx = idx[code]; //此字母在t中下标的数组
+		// 如果没有，或者所应该开始的下标不满足
+		if (!codeIdx || codeIdx[codeIdx.length - 1] <= sIdx) {
+			return false;
+		}
+
+		// 使用二分法开始匹配此字母是否符合有序条件
+		// 下面的代码需要注意左右边界情况，左边界可以+1，右边界不行
+		let left = 0,
+			right = codeIdx.length - 1;
+		while (left < right) {
+			let mid = Math.floor((left + right) / 2);
+			if (codeIdx[mid] <= sIdx) {
+				left = mid + 1;
+			} else {
+				right = mid;
+			}
+		}
+		sIdx = codeIdx[left]; //此字母在t中的序号
+	}
+	return true;
+};
+
+let s = 'abc',
+	t = 'ahbgdcabac';
+// (s = ''), (t = 'ahbgdc');
+// (s = 'acb'), (t = 'ahbgdc');
+(s = 'aaaaaa'), (t = 'bbaaaa');
+console.log(isSubsequence2(s, t));
