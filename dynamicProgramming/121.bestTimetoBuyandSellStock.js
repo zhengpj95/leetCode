@@ -24,6 +24,22 @@ var maxProfit = function (prices) {
 };
 
 /**
+ * 看似递归，但是数组已经反转，此递归也没有了意义
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfitWithRecursion = function (prices) {
+	prices = prices.reverse();
+	let getMax = (prices, i, minprice) => {
+		if (i < 0) return 0;
+		minprice = Math.min(prices[i], minprice);
+		return Math.max(prices[i] - minprice, getMax(prices, i - 1, minprice));
+	};
+	let lastIdx = prices.length - 1;
+	return getMax(prices, lastIdx, prices[lastIdx]);
+};
+
+/**
  * dp数组含义：dp[i]代表第i天卖出去所得利润，
  * 第一天时候买入又卖出，利润是0，以后的每一天都尝试卖出去，同时我会更新股价最低的情况
  * 这里的解法没用利用到前面的计算结果，单独用一个变量表示最大利润就有利用到，看下一解法即可。
@@ -81,5 +97,6 @@ var maxProfit3 = function (prices) {
 	return max;
 };
 
+console.log(maxProfitWithRecursion([11, 1, 5, 3, 6, 4]));
 console.log(maxProfit2([7, 1, 5, 3, 6, 4]));
 // console.log(maxProfit2([7, 6, 4, 3, 1]));
