@@ -49,6 +49,21 @@ var maxProfit2 = function (prices) {
 };
 
 /**
+ * dp[i] 表示第i天所得到的最大利润，此利润可能是当前操作股票所得，也可能是玩日所得最高利润
+ * @param {number[]} prices
+ */
+var maxProfit22 = function (prices) {
+	if (!prices || !prices.length) return 0;
+	let dp = [0];
+	let minPrice = prices[0];
+	for (let i = 1; i < prices.length; i++) {
+		minPrice = Math.min(minPrice, prices[i]);
+		dp[i] = Math.max(dp[i - 1], prices[i] - minPrice);
+	}
+	return dp[dp.length - 1];
+};
+
+/**
  * Time complexity: O(n)
  * Time complexity: O(1)
  * @param {number[]} prices
@@ -66,5 +81,5 @@ var maxProfit3 = function (prices) {
 	return max;
 };
 
-console.log(maxProfit3([7, 1, 5, 3, 6, 4]));
-console.log(maxProfit3([7, 6, 4, 3, 1]));
+console.log(maxProfit2([7, 1, 5, 3, 6, 4]));
+// console.log(maxProfit2([7, 6, 4, 3, 1]));
