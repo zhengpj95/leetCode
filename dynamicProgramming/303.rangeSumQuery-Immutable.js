@@ -15,25 +15,50 @@
  * @date 2020/11/27 11:17:27
  */
 
+// /**
+//  * @param {number[]} nums
+//  */
+// var NumArray = function (nums) {
+// 	this.nums = nums;
+// };
+
+// /**
+//  * 最基础解法
+//  * @param {number} i
+//  * @param {number} j
+//  * @return {number}
+//  */
+// NumArray.prototype.sumRange = function (i, j) {
+// 	let sum = 0;
+// 	for (; i <= j; i++) {
+// 		sum += this.nums[i];
+// 	}
+// 	return sum;
+// };
+
 /**
  * @param {number[]} nums
  */
 var NumArray = function (nums) {
 	this.nums = nums;
+	this.dp = null;
 };
 
 /**
- * 最基础解法
+ * Time complexity: O(n) 或 O(1)
  * @param {number} i
  * @param {number} j
  * @return {number}
  */
 NumArray.prototype.sumRange = function (i, j) {
-	let sum = 0;
-	for (; i <= j; i++) {
-		sum += this.nums[i];
+	if (!this.dp) {
+		this.dp = [];
+		for (let i = 0; i < this.nums.length; i++) {
+			this.dp[i] = i === 0 ? this.nums[0] : this.nums[i] + this.dp[i - 1];
+		}
 	}
-	return sum;
+	if (i === 0) return this.dp[j];
+	return this.dp[j] + (this.nums[i] - this.dp[i]);
 };
 
 /**
