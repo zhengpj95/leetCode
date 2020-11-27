@@ -58,7 +58,24 @@ NumArray.prototype.sumRange = function (i, j) {
 		}
 	}
 	if (i === 0) return this.dp[j];
-	return this.dp[j] + (this.nums[i] - this.dp[i]);
+	// this.dp[i-1]为i前面的之和，所以减去其就可以了
+	return this.dp[j] - this.dp[i - 1];
+};
+
+/**
+ * Time complexity: O(n) 或 O(1)
+ * @param {number} i
+ * @param {number} j
+ * @return {number}
+ */
+NumArray.prototype.sumRange2 = function (i, j) {
+	if (!this.dp) {
+		this.dp = [0];
+		for (let i = 0; i < this.nums.length; i++) {
+			this.dp[i + 1] = this.nums[i] + this.dp[i - 1];
+		}
+	}
+	return this.dp[j + 1] - this.dp[i];
 };
 
 /**
