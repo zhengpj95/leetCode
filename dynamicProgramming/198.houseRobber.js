@@ -67,7 +67,9 @@ var rob = function (nums) {
 	dp[0] = [nums[0], 0]; //[rob, not rob]
 	dp[1] = [nums[1], nums[0]];
 	for (let i = 2; i < nums.length; i++) {
-		dp[i] = [nums[i] + Math.max(...dp[i - 2]), Math.max(nums[i], ...dp[i - 2], ...dp[i - 1])];
+		// 抢：当前的值+dp[i-2]中抢与不抢的最大值
+		// 不强：dp[i-1]中的最大值
+		dp[i] = [nums[i] + Math.max(...dp[i - 2]), Math.max(...dp[i - 1])];
 	}
 	return Math.max(...dp[dp.length - 1]);
 };
@@ -84,3 +86,8 @@ var rob2 = function (nums) {
 	}
 	return dp[nums.length - 1] || 0;
 };
+
+let nums = [1, 2, 3, 1];
+// nums = [2, 7, 9, 3, 1];
+nums = [2, 1, 1, 2];
+console.log(rob(nums));
