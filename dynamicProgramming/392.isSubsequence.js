@@ -25,21 +25,29 @@
  * @return {boolean}
  */
 var isSubsequence = function (s, t) {
-	if (!s && !t) return true;
-	if (!s) return true;
-	if (!t) return false;
+	// if (!s && !t) return true;
+	// if (!s) return true;
+	// if (!t) return false;
 
-	let fast = 0,
-		slow = 0;
-	while (fast < t.length && slow < s.length) {
-		if (t[fast] == s[slow]) {
-			slow++;
+	// let fast = 0,
+	// 	slow = 0;
+	// while (fast < t.length && slow < s.length) {
+	// 	if (t[fast] == s[slow]) {
+	// 		slow++;
+	// 	}
+
+	// 	fast++;
+	// }
+	// if (slow >= s.length) return true;
+	// return false;
+
+	let count = 0;
+	for (let i = 0; i < t.length; i++) {
+		if (t[i] === s[count]) {
+			count++;
 		}
-
-		fast++;
 	}
-	if (slow >= s.length) return true;
-	return false;
+	return count === s.length;
 };
 
 /**
