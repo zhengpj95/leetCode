@@ -74,3 +74,20 @@ var minCostClimbingStairsWithDP2 = function (cost) {
 	}
 	return dp[dp.length - 1];
 };
+
+/**
+ * O(T): O(n)
+ * O(M): O(1)
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minCostClimbingStairsWithDP3 = function (cost) {
+	let min1 = cost[0] ?? 0;
+	let min2 = cost[1] ?? 0;
+	for (let i = 2; i < cost.length; i++) {
+		let min = Math.min(min1, min2) + cost[i];
+		min1 = min2;
+		min2 = min;
+	}
+	return Math.min(min1, min2);
+};
