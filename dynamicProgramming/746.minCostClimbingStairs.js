@@ -17,7 +17,7 @@
  * @param {number[]} cost
  * @return {number}
  */
-var minCostClimbingStairs = function (cost) {
+var minCostClimbingStairs1 = function (cost) {
 	let helper = (cost, index) => {
 		if (index < 0) return 0;
 		return Math.min(helper(cost, index - 1) + cost[index], helper(cost, index - 2) + cost[index]);
@@ -32,7 +32,7 @@ var minCostClimbingStairs = function (cost) {
  * @param {number[]} cost
  * @return {number}
  */
-var minCostClimbingStairs = function (cost) {
+var minCostClimbingStairs2 = function (cost) {
 	let memo = [];
 	let helper = (cost, index) => {
 		if (index < 0) return 0;
@@ -42,4 +42,35 @@ var minCostClimbingStairs = function (cost) {
 	};
 	cost.push(0);
 	return helper(cost, cost.length - 1);
+};
+
+/**
+ * O(T):O(n)
+ * O(M):O(n)
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minCostClimbingStairsWithDP1 = function (cost) {
+	if (!cost || !cost.length) return 0;
+	if (cost.length <= 2) return Math.min(...cost);
+	let dp = [cost[0], cost[1]];
+	for (let i = 2; i < cost.length; i++) {
+		dp[i] = Math.min(dp[i - 1] + cost[i], dp[i - 2] + cost[i]);
+	}
+	return Math.min(dp[dp.length - 1], dp[dp.length - 2]);
+};
+
+/**
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minCostClimbingStairsWithDP2 = function (cost) {
+	if (!cost || !cost.length) return 0;
+	if (cost.length <= 2) return Math.min(...cost);
+	cost.push(0); //加多一个，表示这个点是顶点
+	let dp = [cost[0], cost[1]];
+	for (let i = 2; i < cost.length; i++) {
+		dp[i] = Math.min(dp[i - 1] + cost[i], dp[i - 2] + cost[i]);
+	}
+	return dp[dp.length - 1];
 };
