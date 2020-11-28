@@ -20,7 +20,8 @@
 var minCostClimbingStairs1 = function (cost) {
 	let helper = (cost, index) => {
 		if (index < 0) return 0;
-		return Math.min(helper(cost, index - 1) + cost[index], helper(cost, index - 2) + cost[index]);
+		if (index < 2) return cost[index];
+		return Math.min(helper(cost, index - 1), helper(cost, index - 2)) + cost[index];
 	};
 	cost.push(0);
 	return helper(cost, cost.length - 1);
@@ -36,8 +37,9 @@ var minCostClimbingStairs2 = function (cost) {
 	let memo = [];
 	let helper = (cost, index) => {
 		if (index < 0) return 0;
+		if (index < 2) return cost[index];
 		if (memo[index]) return memo[index];
-		memo[index] = Math.min(helper(cost, index - 1) + cost[index], helper(cost, index - 2) + cost[index]);
+		memo[index] = Math.min(helper(cost, index - 1), helper(cost, index - 2)) + cost[index];
 		return memo[index];
 	};
 	cost.push(0);
@@ -51,11 +53,9 @@ var minCostClimbingStairs2 = function (cost) {
  * @return {number}
  */
 var minCostClimbingStairsWithDP1 = function (cost) {
-	if (!cost || !cost.length) return 0;
-	if (cost.length <= 2) return Math.min(...cost);
 	let dp = [cost[0], cost[1]];
 	for (let i = 2; i < cost.length; i++) {
-		dp[i] = Math.min(dp[i - 1] + cost[i], dp[i - 2] + cost[i]);
+		dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i];
 	}
 	return Math.min(dp[dp.length - 1], dp[dp.length - 2]);
 };
@@ -65,12 +65,10 @@ var minCostClimbingStairsWithDP1 = function (cost) {
  * @return {number}
  */
 var minCostClimbingStairsWithDP2 = function (cost) {
-	if (!cost || !cost.length) return 0;
-	if (cost.length <= 2) return Math.min(...cost);
 	cost.push(0); //加多一个，表示这个点是顶点
 	let dp = [cost[0], cost[1]];
 	for (let i = 2; i < cost.length; i++) {
-		dp[i] = Math.min(dp[i - 1] + cost[i], dp[i - 2] + cost[i]);
+		dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i];
 	}
 	return dp[dp.length - 1];
 };
@@ -90,4 +88,22 @@ var minCostClimbingStairsWithDP3 = function (cost) {
 		min2 = min;
 	}
 	return Math.min(min1, min2);
+};
+
+/**
+ * O(T): O(n)
+ * O(M): O(1)
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minCostClimbingStairsWithDP4 = function (cost) {
+	let min1 = cost[0] ?? 0;
+	let min2 = cost[1] ?? 0;
+	cost.push(0);
+	for (let i = 2; i < cost.length; i++) {
+		let min = Math.min(min1, min2) + cost[i];
+		min1 = min2;
+		min2 = min;
+	}
+	return min2;
 };
