@@ -87,6 +87,43 @@ var isSubsequence2 = function (s, t) {
 	return true;
 };
 
+/**
+ * dp解法
+ * Time complexity: O(mn) m=s.length, n=t.length
+ * Space complexity: O(mn)
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequenceWithDP = function (s, t) {
+	let dpFunc = (s, t) => {
+		let dp = [];
+		let sSize = s.length;
+		let tSize = t.length;
+		for (let i = 0; i <= sSize; i++) {
+			dp.push([]);
+		}
+		for (let i = 0; i <= sSize; i++) {
+			dp[i][0] = 0;
+		}
+		for (let i = 0; i <= tSize; i++) {
+			dp[0][i] = 0;
+		}
+		for (let i = 1; i <= sSize; i++) {
+			for (let j = 1; j <= tSize; j++) {
+				if (s[i - 1] === t[j - 1]) {
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+				} else {
+					dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+				}
+			}
+		}
+		return dp[sSize][tSize];
+	};
+
+	return dpFunc(s, t) === s.length;
+};
+
 let s = 'abc',
 	t = 'ahbgdcabac';
 // (s = ''), (t = 'ahbgdc');
