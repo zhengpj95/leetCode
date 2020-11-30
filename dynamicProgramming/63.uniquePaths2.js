@@ -50,3 +50,69 @@ var uniquePathsWithObstacles = function (obstacleGrid) {
 	}
 	return dp[m - 1][n - 1];
 };
+
+/**
+ * O(T) = O(mn)
+ * O(S) = O(1) 在 obstacleGrid 中操作
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles2 = function (obstacleGrid) {
+	if (obstacleGrid[0][0] === 1) return 0;
+
+	let m = obstacleGrid.length,
+		n = obstacleGrid[0].length;
+	let row = false;
+	for (let i = 0; i < n; i++) {
+		if (obstacleGrid[0][i] == 1) row = true;
+		obstacleGrid[0][i] = row ? 0 : 1;
+	}
+	let col = false;
+	for (let i = 1; i < m; i++) {
+		if (obstacleGrid[i][0] == 1) col = true;
+		obstacleGrid[i][0] = col ? 0 : 1;
+	}
+
+	for (let i = 1; i < m; i++) {
+		for (let j = 1; j < n; j++) {
+			obstacleGrid[i][j] = obstacleGrid[i][j] == 1 ? 0 : obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1];
+		}
+	}
+	return obstacleGrid[m - 1][n - 1];
+};
+
+/**
+ * O(T) = O(mn)
+ * O(S) = O(1) 在 obstacleGrid 中操作
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles3 = function (obstacleGrid) {
+	if (obstacleGrid[0][0] === 1) return 0;
+
+	let m = obstacleGrid.length,
+		n = obstacleGrid[0].length;
+
+	obstacleGrid[0][0] = 1;
+	for (let i = 1; i < n; i++) {
+		// 当前的为0且前面的为1，才为1；否则为0
+		obstacleGrid[0][i] = obstacleGrid[0][i - 1] == 1 && obstacleGrid[0][i] == 0 ? 1 : 0;
+	}
+	for (let i = 1; i < m; i++) {
+		obstacleGrid[i][0] = obstacleGrid[i - 1][0] == 1 && obstacleGrid[i][0] == 0 ? 1 : 0;
+	}
+
+	for (let i = 1; i < m; i++) {
+		for (let j = 1; j < n; j++) {
+			obstacleGrid[i][j] = obstacleGrid[i][j] == 1 ? 0 : obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1];
+		}
+	}
+	return obstacleGrid[m - 1][n - 1];
+};
+
+let grid = [
+	[0, 1],
+	[0, 0],
+];
+// grid = [[1], [0]];
+console.log(uniquePathsWithObstacles3(grid));
