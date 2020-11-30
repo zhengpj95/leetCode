@@ -110,9 +110,65 @@ var uniquePathsWithObstacles3 = function (obstacleGrid) {
 	return obstacleGrid[m - 1][n - 1];
 };
 
+/**
+ * O(T) = O(mn)
+ * O(S) = O(mn)
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles4 = function (obstacleGrid) {
+	let m = obstacleGrid.length,
+		n = obstacleGrid[0].length;
+	let dp = new Array(m + 1);
+	for (let i = 0; i < m + 1; i++) {
+		dp[i] = new Array(n + 1).fill(0);
+	}
+
+	// dp[0][1] = dp[1][0] = 1;
+	dp[0][1] = 1;
+	for (let i = 1; i <= m; i++) {
+		for (let j = 1; j <= n; j++) {
+			if (!obstacleGrid[i - 1][j - 1]) {
+				dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+			}
+		}
+	}
+	return dp[m][n];
+};
+
+/**
+ * O(T) = O(mn)
+ * O(S) = O(n)
+ * Runtime: 72 ms, faster than 98.80% of JavaScript online submissions for Unique Paths II.
+ * Memory Usage: 38.6 MB, less than 90.12% of JavaScript online submissions for Unique Paths II.
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles5 = function (obstacleGrid) {
+	let m = obstacleGrid.length,
+		n = obstacleGrid[0].length;
+
+	let dp = new Array(n).fill(0);
+	dp[0] = 1;
+	for (let i = 0; i < m; i++) {
+		for (let j = 0; j < n; j++) {
+			if (obstacleGrid[i][j] === 1) {
+				dp[j] = 0;
+			} else if (j > 0) {
+				dp[j] = dp[j] + dp[j - 1];
+			}
+		}
+	}
+	return dp[n - 1];
+};
 let grid = [
 	[0, 1],
 	[0, 0],
 ];
 // grid = [[1], [0]];
-console.log(uniquePathsWithObstacles3(grid));
+grid = [
+	[0, 0, 0],
+	[0, 1, 0],
+	[0, 0, 0],
+];
+console.log(uniquePathsWithObstacles4(grid));
