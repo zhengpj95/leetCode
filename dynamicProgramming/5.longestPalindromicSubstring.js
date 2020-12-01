@@ -93,3 +93,43 @@ var longestPalindromeWithDP = function (s) {
 	}
 	return result;
 };
+
+/**
+ * Runtime: 1360 ms, faster than 20.66% of JavaScript online submissions for Longest Palindromic Substring.
+ * Memory Usage: 67 MB, less than 12.58% of JavaScript online submissions for Longest Palindromic Substring.
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindromeWithDP2 = function (s) {
+	let len = s.length;
+	let dp = new Array(len);
+	for (let i = 0; i < dp.length; i++) {
+		dp[i] = new Array(len).fill(false);
+	}
+
+	let result = '';
+	for (let i = len - 1; i >= 0; i--) {
+		for (let j = i; j < len; j++) {
+			// 只有1,2,3长度的子串时候，很容易判断是否是palindrome
+			// let isP = s[i] == s[j];
+			// if (i == j) {
+			// 	dp[i][j] = true; //one char
+			// } else if (i + 1 == j) {
+			// 	dp[i][j] = isP; // two chars
+			// } else if (i + 2 == j) {
+			// 	dp[i][j] = isP; // three chars
+			// } else if (dp[i + 1][j - 1]) {
+			// 	dp[i][j] = isP;
+			// }
+
+			// 简化上面内容
+			//dp[i + 1][j - 1] means that substring (i + 1, j - 1) is a palindrome.
+			dp[i][j] = s[i] == s[j] && (j - i < 3 || dp[i + 1][j - 1]);
+
+			if (dp[i][j] && j - i + 1 > result.length) {
+				result = s.substring(i, j + 1);
+			}
+		}
+	}
+	return result;
+};
