@@ -48,6 +48,8 @@ my leetcode practice
 
 ### 4. 动态规划
 
+[DP](./dynamicProgramming/README.md)
+
 ### 5. 前缀和思路
 
 [前缀和技巧](./summary/presum.md)
@@ -85,3 +87,7 @@ my leetcode practice
 ### 7. Trie
 
 [Trie](./trie/README.md)
+
+### 8. Dynamic Programming
+
+[DP](./dynamicProgramming/README.md)
