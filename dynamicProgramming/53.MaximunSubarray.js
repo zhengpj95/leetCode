@@ -1,6 +1,6 @@
 /**
- * Given an integer array nums, 
- * find the contiguous subarray (containing at least one number) 
+ * Given an integer array nums,
+ * find the contiguous subarray (containing at least one number)
  * which has the largest sum and return its sum.
  */
 
@@ -24,22 +24,6 @@ var maxSubArray = function (nums) {
 	return max;
 };
 
-const maxSubArray2 = function (nums) {
-	if (!nums.length) {
-		return 0;
-	}
-	let dp = nums[0];
-	let dp1 = 0;
-	let res = dp;
-
-	for (let i = 1; i < nums.length; i++) {
-		dp1 = Math.max(nums[i], nums[i] + dp);
-		dp = dp1;
-		res = Math.max(res, dp1);
-	}
-	return res;
-}
-
 const maxSubArray3 = function (nums) {
 	if (!nums.length) {
 		return 0;
@@ -51,7 +35,41 @@ const maxSubArray3 = function (nums) {
 	}
 	arr.sort((a, b) => b - a);
 	return arr[0];
-}
+};
+
+/**
+ * DP解法
+ * O(T)=O(n)
+ * O(S)=O(n)
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArrayWithDP = function (nums) {
+	if (!nums || !nums.length) return 0;
+
+	let dp = [nums[0]];
+	let res = dp[0];
+	for (let i = 1; i < nums.length; i++) {
+		dp[i] = Math.max(nums[i], nums[i] + dp[i - 1]);
+		if (dp[i] > res) res = dp[i];
+	}
+	return res;
+};
+
+const maxSubArray2 = function (nums) {
+	if (!nums.length) {
+		return 0;
+	}
+
+	let dp = nums[0];
+	let res = dp;
+
+	for (let i = 1; i < nums.length; i++) {
+		dp = Math.max(nums[i], nums[i] + dp);
+		res = Math.max(res, dp);
+	}
+	return res;
+};
 
 console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
 console.log(maxSubArray([-2, -1]));
