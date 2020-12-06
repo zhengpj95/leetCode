@@ -57,3 +57,5 @@ DP 问题是有一定的套路的，我需要总结自己的一套思路或者�
 ## 参考
 
 1、[什么是动态规划？动态规划的意义是什么？](https://www.zhihu.com/question/23995189/answer/1160796300)
+2、[你靠哪些讲解学会了曾经怎么也学不会的算法？](https://www.zhihu.com/question/265531567)
+3、[动态规划之武林秘籍](https://mp.weixin.qq.com/s/-DT0b_W1Vqs0tVANhCB4-w)
