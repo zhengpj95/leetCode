@@ -94,10 +94,13 @@ var rob2 = function (nums) {
 var rob3 = function (nums) {
 	let rob = 0,
 		notrob = 0;
-	for (let i = 0; i < nums.length; i++) {
-		let temp = rob;
-		rob = notrob + nums[i]; //抢当前的i，则其前i-1不可以抢，那就是 notrob + nums[i]
-		notrob = Math.max(notrob, temp); //不抢的时候，其就是其前面抢与不抢的最大值了
+	// for (let i = 0; i < nums.length; i++) {
+	// 	let temp = rob;
+	// 	rob = notrob + nums[i]; //抢当前的i，则其前i-1不可以抢，那就是 notrob + nums[i]
+	// 	notrob = Math.max(notrob, temp); //不抢的时候，其就是其前面抢与不抢的最大值了
+	// }
+	for (let num of nums) {
+		[rob, notrob] = [notrob + num, Math.max(notrob, rob)];
 	}
 	return Math.max(rob, notrob);
 };
@@ -106,3 +109,4 @@ let nums = [1, 2, 3, 1];
 // nums = [2, 7, 9, 3, 1];
 nums = [2, 1, 1, 2];
 console.log(rob(nums));
+console.log(rob3(nums));
