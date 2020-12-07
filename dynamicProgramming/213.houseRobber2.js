@@ -19,7 +19,9 @@
 /**
  * Runtime: 76 ms, faster than 75.62% of JavaScript online submissions for House Robber II.
  * Memory Usage: 38.5 MB, less than 54.30% of JavaScript online submissions for House Robber II.
- * 既然houses[n]和houses[1]是相连的，那么抢 houses[1]-houses[n-1] 或者 houses[2]-houses[n]，那么houses[1]和houses[n]就不会被同时抢到了
+ *
+ * 既然houses[n]和houses[1]是相连的，
+ * 那么抢 houses[1]-houses[n-1] 或者 houses[2]-houses[n]，houses[1]和houses[n]就不会被同时抢到了
  * @param {number[]} nums
  * @return {number}
  */
@@ -58,5 +60,6 @@ var rob2 = function (nums) {
 };
 
 let nums = [2, 3, 2];
+nums = [3];
 console.log(rob(nums));
 console.log(rob2(nums));
