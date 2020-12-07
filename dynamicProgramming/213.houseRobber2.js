@@ -19,7 +19,7 @@
 /**
  * Runtime: 76 ms, faster than 75.62% of JavaScript online submissions for House Robber II.
  * Memory Usage: 38.5 MB, less than 54.30% of JavaScript online submissions for House Robber II.
- * 既然最后一位和第一位是相连的，那么抢 houses[1]-houses[n-1] 或者 houses[2]-houses[n]，那么houses[1]和houses[n]就不会被同时抢到了
+ * 既然houses[n]和houses[1]是相连的，那么抢 houses[1]-houses[n-1] 或者 houses[2]-houses[n]，那么houses[1]和houses[n]就不会被同时抢到了
  * @param {number[]} nums
  * @return {number}
  */
@@ -38,3 +38,22 @@ var rob = function (nums) {
 	}
 	return Math.max(dp[dp.length - 1], dp1[dp1.length - 1]);
 };
+
+/**
+ * Recursion
+ * @param {number[]} nums
+ */
+var rob2 = function (nums) {
+	let subRob = (nums, start, end) => {
+		let [rob, notrob] = [0, 0];
+		for (let i = start; i <= end; i++) {
+			[rob, notrob] = [notrob + nums[i], Math.max(notrob, rob)];
+		}
+		return Math.max(rob, notrob);
+	};
+	return Math.max(subRob(nums, 0, nums.length - 2), subRob(nums, 1, nums.length - 1));
+};
+
+let nums = [2, 3, 2];
+console.log(rob(nums));
+console.log(rob2(nums));
