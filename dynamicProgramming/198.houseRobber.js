@@ -87,6 +87,21 @@ var rob2 = function (nums) {
 	return dp[nums.length - 1] || 0;
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob3 = function (nums) {
+	let rob = 0,
+		notrob = 0;
+	for (let i = 0; i < nums.length; i++) {
+		let temp = rob;
+		rob = notrob + nums[i];
+		notrob = Math.max(notrob, temp);
+	}
+	return Math.max(rob, notrob);
+};
+
 let nums = [1, 2, 3, 1];
 // nums = [2, 7, 9, 3, 1];
 nums = [2, 1, 1, 2];
