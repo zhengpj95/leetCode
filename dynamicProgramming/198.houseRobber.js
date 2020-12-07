@@ -96,8 +96,8 @@ var rob3 = function (nums) {
 		notrob = 0;
 	for (let i = 0; i < nums.length; i++) {
 		let temp = rob;
-		rob = notrob + nums[i];
-		notrob = Math.max(notrob, temp);
+		rob = notrob + nums[i]; //抢当前的i，则其前i-1不可以抢，那就是 notrob + nums[i]
+		notrob = Math.max(notrob, temp); //不抢的时候，其就是其前面抢与不抢的最大值了
 	}
 	return Math.max(rob, notrob);
 };
