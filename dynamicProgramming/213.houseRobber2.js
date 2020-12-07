@@ -44,6 +44,9 @@ var rob = function (nums) {
  * @param {number[]} nums
  */
 var rob2 = function (nums) {
+	if (!nums || !nums.length) return 0;
+	if (nums.length <= 3) return Math.max(...nums);
+
 	let subRob = (nums, start, end) => {
 		let [rob, notrob] = [0, 0];
 		for (let i = start; i <= end; i++) {
