@@ -30,6 +30,8 @@ var maximalSquareWithBruteForce = function (matrix) {
 			if (matrix[i][j] == '1') {
 				let subLen = 1;
 				let flag = true;
+				// 从 i,j 开始往右下匹配 square
+				// 注意 subLen+i 和 subLen+j，其是匹配到的 square 的大小
 				while (subLen + i < rows && subLen + j < cols && flag) {
 					// 行
 					for (let k = j; k <= subLen + j; k++) {
