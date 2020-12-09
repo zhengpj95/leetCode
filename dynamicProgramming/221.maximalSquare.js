@@ -55,3 +55,32 @@ var maximalSquareWithBruteForce = function (matrix) {
 	}
 	return maxLen * maxLen;
 };
+
+/**
+ * Runtime: 88 ms, faster than 86.53% of JavaScript online submissions for Maximal Square.
+ * Memory Usage: 41.5 MB, less than 57.21% of JavaScript online submissions for Maximal Square.
+ * @param {character[][]} matrix
+ * @return {number}
+ */
+var maximalSquareWithDP = function (matrix) {
+	let rows = matrix.length;
+	let cols = rows > 0 ? matrix[0].length : 0;
+	let maxLen = 0;
+
+	let dp = new Array(rows + 1);
+	for (let i = 0; i < dp.length; i++) {
+		dp[i] = new Array(cols + 1).fill(0);
+	}
+
+	for (let i = 1; i <= rows; i++) {
+		for (let j = 1; j <= cols; j++) {
+			if (matrix[i - 1][j - 1] == 1) {
+				// 三个角的最小值
+				// dp[i][j] 表示以当前 i,j 为quare的右下角的最大情况
+				dp[i][j] = Math.min(dp[i][j - 1], dp[i - 1][j - 1], dp[i - 1][j]) + 1;
+				maxLen = Math.max(maxLen, dp[i][j]);
+			}
+		}
+	}
+	return maxLen * maxLen;
+};
