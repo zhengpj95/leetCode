@@ -59,6 +59,9 @@ var maximalSquareWithBruteForce = function (matrix) {
 /**
  * Runtime: 88 ms, faster than 86.53% of JavaScript online submissions for Maximal Square.
  * Memory Usage: 41.5 MB, less than 57.21% of JavaScript online submissions for Maximal Square.
+ *
+ * Time complexity : O(mn). Single pass.
+ * Space complexity : O(mn). Another matrix of same size is used for dp.
  * @param {character[][]} matrix
  * @return {number}
  */
