@@ -87,3 +87,41 @@ var maximalSquareWithDP = function (matrix) {
 	}
 	return maxLen * maxLen;
 };
+
+/**
+ * 上面的解法，使用了一个新的matrix保存dp值。
+ * 但是仔细思考，我们使用一个行长度的数组即可完成上面的解法了。
+ *
+ * 上面的解法中，我们更新 dp[i][j] 时，需要dp[i-1][j-1], dp[i][j-1], dp[i-1][j]
+ * 重新使用一个单行的dp时，更新dp[k]时可以使用上一轮的dp[k]
+ * dp[i-1][j-1]和dp[i][j-1]就要巧妙的保存了，dp[i-1][j-1]使用一个新变量保存，dp[i][j-1]就是dp[k-1]了
+ *
+ * Runtime: 92 ms, faster than 75.59% of JavaScript online submissions for Maximal Square.
+ * Memory Usage: 41.1 MB, less than 87.16% of JavaScript online submissions for Maximal Square.
+ *
+ * Time complexity : O(mn). Single pass.
+ * Space complexity : O(n). Another array which stores elements in a row is used for dp.
+ * @param {character[][]} matrix
+ * @return {number}
+ */
+var maximalSquareWithDP2 = function (matrix) {
+	let rows = matrix.length;
+	let cols = rows > 0 ? matrix[0].length : 0;
+	let maxLen = 0;
+	let prev = 0;
+	let dp = new Array(cols + 1).fill(0);
+
+	for (let i = 1; i <= rows; i++) {
+		for (let j = 1; j <= cols; j++) {
+			let temp = dp[j]; //下一轮时，这一步的dp[j]就相当于dp[i-1][j-1]
+			if (matrix[i - 1][j - 1] == 1) {
+				dp[j] = Math.min(prev, dp[j - 1], dp[j]) + 1;
+				maxLen = Math.max(maxLen, dp[j]);
+			} else {
+				dp[j] = 0;
+			}
+			prev = temp;
+		}
+	}
+	return maxLen * maxLen;
+};
