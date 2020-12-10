@@ -30,7 +30,7 @@ var partition = function (s) {
 
 	let backtrack = (track, idx) => {
 		if (idx >= s.length) {
-			result.push(track);
+			result.push([...track]);
 		}
 
 		for (let i = idx; i < s.length; i++) {
@@ -57,3 +57,6 @@ var isPalindrome = (s, low, high) => {
 	}
 	return true;
 };
+
+let s = 'aaa';
+console.log(partition(s));
