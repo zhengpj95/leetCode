@@ -55,3 +55,11 @@ var addDigits3 = function (num) {
 	if (num % 9 == 0) return 9;
 	return num % 9;
 };
+
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits4 = function (num) {
+	return num == 0 ? 0 : ((num - 1) % 9) + 1;
+};
