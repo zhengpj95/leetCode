@@ -28,10 +28,17 @@ var addDigits = function (num) {
  * @return {number}
  */
 var addDigits = function (num) {
-	let result = 0;
-	while (num > 0) {
-		result += num % 10;
-		num /= 10;
+	let helper = (num) => {
+		let sum = 0;
+		while (num > 0) {
+			sum += num % 10;
+			num = Math.floor(num / 10);
+		}
+		return sum;
+	};
+
+	while (num >= 10) {
+		num = helper(num);
 	}
-	return result;
+	return num;
 };
