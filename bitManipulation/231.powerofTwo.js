@@ -34,7 +34,7 @@ var isPowerOfTwo2 = function (n) {
 
 /**
  * 奇数，则二进制最低位一定是1
- * 若 n 为奇， n & (n - 1) 相与后一定 (n - 1)，否则为 0
+ * 若 n 为奇， n & (n - 1) 相与后一定不为0，否则为 0
  * @param {number} n
  * @return {boolean}
  */
