@@ -34,3 +34,37 @@ var nthUglyNumber = function (n) {
 	}
 	return dp[n - 1];
 };
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var nthUglyNumber2 = function (n) {
+	if (n < 1) return 0;
+	if (n == 1) return 1;
+	let t2 = 0,
+		t3 = 0,
+		t5 = 0;
+	let val2 = 2,
+		val3 = 3,
+		val5 = 5;
+
+	let dp = [1];
+	let i = 1;
+	let res = 1;
+	while (i < n) {
+		res = Math.min(val2, val3, val5);
+		dp[i] = res;
+		if (val2 == res) {
+			val2 = dp[++t2] * 2;
+		}
+		if (val3 == res) {
+			val3 = dp[++t3] * 3;
+		}
+		if (val5 == res) {
+			val5 = dp[++t5] * 5;
+		}
+		i++;
+	}
+	return res;
+};
