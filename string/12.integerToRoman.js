@@ -6,15 +6,15 @@
  * @date 2020/12/14 22:58:26
  */
 
-const roman = {
-	I: 1,
-	V: 5,
-	X: 10,
-	L: 50,
-	C: 100,
-	D: 500,
-	M: 1000,
-};
+// const roman = {
+// 	I: 1,
+// 	V: 5,
+// 	X: 10,
+// 	L: 50,
+// 	C: 100,
+// 	D: 500,
+// 	M: 1000,
+// };
 
 /**
  * Runtime: 160 ms, faster than 73.40% of JavaScript online submissions for Integer to Roman.
@@ -77,6 +77,26 @@ var intToRoman = function (num) {
 		a = Math.floor(num / 1);
 		result += 'I'.repeat(a);
 		num %= 1;
+	}
+	return result;
+};
+
+/**
+ * Runtime: 152 ms, faster than 88.75% of JavaScript online submissions for Integer to Roman.
+ * Memory Usage: 45.2 MB, less than 61.66% of JavaScript online submissions for Integer to Roman.
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman2 = function (num) {
+	if (num < 0) return '';
+	let result = '';
+	let val = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+	let roman = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C', 'CD', 'D', 'CM', 'M'];
+
+	for (let i = val.length - 1; i >= 0; i--) {
+		let count = Math.floor(num / val[i]);
+		result += roman[i].repeat(count);
+		num %= val[i];
 	}
 	return result;
 };
