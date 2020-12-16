@@ -51,12 +51,13 @@ MyHashSet.prototype.remove = function (key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function (key) {
-	for (let item of this.set) {
-		if (item === key) {
-			return true;
-		}
-	}
-	return false;
+	// for (let item of this.set) {
+	// 	if (item === key) {
+	// 		return true;
+	// 	}
+	// }
+	// return false;
+	return this.set.includes(key);
 };
 
 /**
