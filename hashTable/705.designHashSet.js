@@ -64,11 +64,46 @@
 
 // ===========================方式二：对象Object===========================
 
+// /**
+//  * Initialize your data structure here.
+//  */
+// var MyHashSet = function () {
+// 	this.set = {};
+// };
+
+// /**
+//  * @param {number} key
+//  * @return {void}
+//  */
+// MyHashSet.prototype.add = function (key) {
+// 	if (this.set[key]) return;
+// 	this.set[key] = key;
+// };
+
+// /**
+//  * @param {number} key
+//  * @return {void}
+//  */
+// MyHashSet.prototype.remove = function (key) {
+// 	delete this.set[key];
+// };
+
+// /**
+//  * Returns true if this set contains the specified element
+//  * @param {number} key
+//  * @return {boolean}
+//  */
+// MyHashSet.prototype.contains = function (key) {
+// 	return this.set[key] != null || this.set[key] != undefined;
+// };
+
+// ===========================方式三：Map===========================
+
 /**
  * Initialize your data structure here.
  */
 var MyHashSet = function () {
-	this.set = {};
+	this.set = new Map();
 };
 
 /**
@@ -76,8 +111,8 @@ var MyHashSet = function () {
  * @return {void}
  */
 MyHashSet.prototype.add = function (key) {
-	if (this.set[key]) return;
-	this.set[key] = key;
+	if (this.set.get(key)) return;
+	this.set.set(key, key);
 };
 
 /**
@@ -85,7 +120,9 @@ MyHashSet.prototype.add = function (key) {
  * @return {void}
  */
 MyHashSet.prototype.remove = function (key) {
-	delete this.set[key];
+	if (this.set.get(key)) {
+		this.set.delete(key);
+	}
 };
 
 /**
@@ -94,7 +131,7 @@ MyHashSet.prototype.remove = function (key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function (key) {
-	return this.set[key] != null || this.set[key] != undefined;
+	return this.set.has(key);
 };
 
 /**
