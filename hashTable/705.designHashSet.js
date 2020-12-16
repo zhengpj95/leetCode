@@ -100,10 +100,12 @@
 // ===========================方式三：Map===========================
 
 /**
+ * Runtime: 168 ms, faster than 94.38% of JavaScript online submissions for Design HashSet.
+ * Memory Usage: 46.6 MB, less than 89.89% of JavaScript online submissions for Design HashSet.
  * Initialize your data structure here.
  */
 var MyHashSet = function () {
-	this.set = new Map();
+	this.hashSet = new Map();
 };
 
 /**
@@ -111,8 +113,8 @@ var MyHashSet = function () {
  * @return {void}
  */
 MyHashSet.prototype.add = function (key) {
-	if (this.set.get(key)) return;
-	this.set.set(key, key);
+	if (this.hashSet.has(key)) return;
+	this.hashSet.set(key, key);
 };
 
 /**
@@ -120,8 +122,8 @@ MyHashSet.prototype.add = function (key) {
  * @return {void}
  */
 MyHashSet.prototype.remove = function (key) {
-	if (this.set.get(key)) {
-		this.set.delete(key);
+	if (this.hashSet.has(key)) {
+		this.hashSet.delete(key);
 	}
 };
 
@@ -131,7 +133,7 @@ MyHashSet.prototype.remove = function (key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function (key) {
-	return this.set.has(key);
+	return this.hashSet.has(key);
 };
 
 /**
