@@ -14,13 +14,61 @@
  * @date 2020/12/16 23:01:32
  */
 
+// ===========================方式一：数组===========================
+
+// /**
+//  * Runtime: 380 ms, faster than 13.86% of JavaScript online submissions for Design HashSet.
+//  * Memory Usage: 46.3 MB, less than 91.39% of JavaScript online submissions for Design HashSet.
+//  * Initialize your data structure here.
+//  */
+// var MyHashSet = function () {
+// 	this.set = [];
+// };
+
+// /**
+//  * @param {number} key
+//  * @return {void}
+//  */
+// MyHashSet.prototype.add = function (key) {
+// 	if (this.contains(key)) return;
+// 	this.set.push(key);
+// };
+
+// /**
+//  * @param {number} key
+//  * @return {void}
+//  */
+// MyHashSet.prototype.remove = function (key) {
+// 	for (let i = 0; i < this.set.length; i++) {
+// 		if (this.set[i] == key) {
+// 			this.set.splice(i, 1);
+// 			break;
+// 		}
+// 	}
+// };
+
+// /**
+//  * Returns true if this set contains the specified element
+//  * @param {number} key
+//  * @return {boolean}
+//  */
+// MyHashSet.prototype.contains = function (key) {
+// 	// for (let item of this.set) {
+// 	// 	if (item === key) {
+// 	// 		return true;
+// 	// 	}
+// 	// }
+// 	// return false;
+// 	return this.set.includes(key);
+// };
+
+// ===========================方式二：对象Object===========================
+
 /**
- * Runtime: 380 ms, faster than 13.86% of JavaScript online submissions for Design HashSet.
- * Memory Usage: 46.3 MB, less than 91.39% of JavaScript online submissions for Design HashSet.
  * Initialize your data structure here.
  */
 var MyHashSet = function () {
-	this.set = [];
+	this.set = {};
 };
 
 /**
@@ -28,8 +76,8 @@ var MyHashSet = function () {
  * @return {void}
  */
 MyHashSet.prototype.add = function (key) {
-	if (this.contains(key)) return;
-	this.set.push(key);
+	if (this.set[key]) return;
+	this.set[key] = key;
 };
 
 /**
@@ -37,12 +85,7 @@ MyHashSet.prototype.add = function (key) {
  * @return {void}
  */
 MyHashSet.prototype.remove = function (key) {
-	for (let i = 0; i < this.set.length; i++) {
-		if (this.set[i] == key) {
-			this.set.splice(i, 1);
-			break;
-		}
-	}
+	delete this.set[key];
 };
 
 /**
@@ -51,13 +94,7 @@ MyHashSet.prototype.remove = function (key) {
  * @return {boolean}
  */
 MyHashSet.prototype.contains = function (key) {
-	// for (let item of this.set) {
-	// 	if (item === key) {
-	// 		return true;
-	// 	}
-	// }
-	// return false;
-	return this.set.includes(key);
+	return this.set[key] != null || this.set[key] != undefined;
 };
 
 /**
