@@ -15,6 +15,8 @@
  */
 
 /**
+ * Runtime: 212 ms, faster than 32.28% of JavaScript online submissions for Design HashMap.
+ * Memory Usage: 48.2 MB, less than 74.76% of JavaScript online submissions for Design HashMap.
  * Initialize your data structure here.
  */
 var MyHashMap = function () {
