@@ -11,3 +11,20 @@
 var toLowerCase = function (str) {
 	return str.toLowerCase();
 };
+
+/**
+ * @param {string} str
+ * @return {string}
+ */
+var toLowerCase2 = function (str) {
+	let result = '';
+	for (let i = 0; i < str.length; i++) {
+		let idx = str[i].charCodeAt();
+		if (65 <= idx && idx <= 90) {
+			result += String.fromCharCode(idx + 32);
+		} else {
+			result += str[i];
+		}
+	}
+	return result;
+};
