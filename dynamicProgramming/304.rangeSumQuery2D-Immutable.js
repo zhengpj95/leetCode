@@ -92,3 +92,45 @@ NumMatrix.prototype.sumRegion = function (row1, col1, row2, col2) {
  * var obj = new NumMatrix(matrix)
  * var param_1 = obj.sumRegion(row1,col1,row2,col2)
  */
+
+// =======================Approach 3: DP=======================
+
+// /**
+//  * Runtime: 104 ms, faster than 80.61% of JavaScript online submissions for Range Sum Query 2D - Immutable.
+//  * Memory Usage: 43.8 MB, less than 25.86% of JavaScript online submissions for Range Sum Query 2D - Immutable.
+//  * @param {number[][]} matrix
+//  */
+// var NumMatrix = function (matrix) {
+// 	if (matrix.length == 0 || matrix[0].length == 0) return;
+// 	let rows = matrix.length;
+// 	let cols = matrix[0].length;
+// 	this.dp = new Array(rows + 1);
+// 	for (let i = 0; i < this.dp.length; i++) {
+// 		this.dp[i] = new Array(cols + 1).fill(1);
+// 	}
+
+// 	for (let i = 1; i <= rows; i++) {
+// 		for (let j = 1; j <= cols; j++) {
+// 			this.dp[i][j] = matrix[i - 1][j - 1] + this.dp[i - 1][j] + this.dp[i][j - 1] - this.dp[i - 1][j - 1];
+// 		}
+// 	}
+// };
+
+// NumMatrix.prototype.dp = [];
+
+// /**
+//  * @param {number} row1
+//  * @param {number} col1
+//  * @param {number} row2
+//  * @param {number} col2
+//  * @return {number}
+//  */
+// NumMatrix.prototype.sumRegion = function(row1, col1, row2, col2) {
+//     return this.dp[row2+1][col2+1] - this.dp[row2+1][col1] - this.dp[row1][col2+1] + this.dp[row1][col1];
+// };
+
+// /**
+//  * Your NumMatrix object will be instantiated and called as such:
+//  * var obj = new NumMatrix(matrix)
+//  * var param_1 = obj.sumRegion(row1,col1,row2,col2)
+//  */
