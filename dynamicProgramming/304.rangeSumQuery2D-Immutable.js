@@ -17,6 +17,11 @@ var matrix = [];
 /**
  * Runtime: 172 ms, faster than 27.76% of JavaScript online submissions for Range Sum Query 2D - Immutable.
  * Memory Usage: 43.4 MB, less than 68.06% of JavaScript online submissions for Range Sum Query 2D - Immutable.
+ * 
+ * Time complexity : O(mn) time per query. 
+ * 		Assume that m and n represents the number of rows and columns respectively, 
+ * 		each sumRegion query can go through at most times m*n elements.
+ Space complexity : O(1). Note that data is a reference to matrix and is not a copy of it.
  * @param {number[][]} matrix
  */
 var NumMatrix = function (matrix) {
