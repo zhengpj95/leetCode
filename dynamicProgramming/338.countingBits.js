@@ -47,3 +47,33 @@ var countBits = function (num) {
 	}
 	return dp;
 };
+
+/**
+ * 分成两部分求解：最后一位，其余位，
+ * 		最后一位：直接 num & 1 即可知道最后一位是否有1了
+ * 		其余位：就相当于右移一位的结果，也就是 num/2 的结果
+ * Runtime: 88 ms, faster than 98.23% of JavaScript online submissions for Counting Bits.
+ * Memory Usage: 44.6 MB, less than 59.88% of JavaScript online submissions for Counting Bits.
+ * @param {number} num
+ * @return {number[]}
+ */
+var countBits2 = function (num) {
+	if (num == 0) return [0];
+	let dp = [0, 1];
+
+	for (let i = 2; i <= num; i++) {
+		// =======
+		// if (i & 1) {
+		// 	dp[i] = dp[Math.floor(i / 2)] + 1;
+		// } else {
+		// 	dp[i] = dp[Math.floor(i / 2)];
+		// }
+
+		// =======
+		// dp[i] = dp[Math.floor(i / 2)] + (i & 1);
+
+		// =======
+		dp[i] = dp[i >> 1] + (i & 1);
+	}
+	return dp;
+};
