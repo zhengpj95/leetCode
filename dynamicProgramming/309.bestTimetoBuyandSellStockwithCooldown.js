@@ -101,3 +101,21 @@ var maxProfit4 = function (prices) {
 
 	return Math.max(sold, rest);
 };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit5 = function (prices) {
+	if (!prices || prices.length <= 1) return 0;
+
+	let buy = [0, -prices[0]]; //第i天买入后最大收益情况
+	let sell = [0, 0]; //第i天卖出后最大收益情况
+
+	for (let i = 2; i <= prices.length; i++) {
+		buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i - 1]);
+		sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i - 1]);
+	}
+
+	return sell[sell.length - 1];
+};
