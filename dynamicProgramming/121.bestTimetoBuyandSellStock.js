@@ -97,6 +97,26 @@ var maxProfit3 = function (prices) {
 	return max;
 };
 
+/**
+ * O(T)=O(n)
+ * O(S)=O(n)  可以优化成O(1)
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit4 = function (prices) {
+	if (!prices || !prices.length) return 0;
+	let sell = [0];
+	let buy = [-prices[0]];
+
+	for (let i = 1; i <= prices.length; i++) {
+		//买入的情况，因为是负的，故是取最大值，只能买卖一次，每次操作-prices[i - 1]即可
+		buy[i] = Math.max(buy[i - 1], -prices[i - 1]);
+		//卖出的最大利润
+		sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i - 1]);
+	}
+	return sell[sell.length - 1];
+};
+
 console.log(maxProfitWithRecursion([11, 1, 5, 3, 6, 4]));
 console.log(maxProfit2([7, 1, 5, 3, 6, 4]));
 // console.log(maxProfit2([7, 6, 4, 3, 1]));
