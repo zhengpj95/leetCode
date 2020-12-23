@@ -19,3 +19,12 @@ var reverseBits = function (n) {
 	}
 	return result;
 };
+
+/**
+ * @param {number} n - a positive integer
+ * @return {number} - a positive integer
+ */
+var reverseBits2 = function (n) {
+	let str = n.toString(2).split('').reverse().join('').padEnd(32, 0);
+	return Number.parseInt(str, 2);
+};
