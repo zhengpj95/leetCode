@@ -51,3 +51,18 @@ var maxProfit2 = function (prices) {
 	}
 	return sell;
 };
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit3 = function (prices) {
+	if (!prices || prices.length < 2) return 0;
+	let buy = -prices[0],
+		sell = 0;
+
+	for (let i = 1; i <= prices.length; i++) {
+		[buy, sell] = [Math.max(buy, sell - prices[i - 1]), Math.max(sell, buy + prices[i - 1])];
+	}
+	return sell;
+};
