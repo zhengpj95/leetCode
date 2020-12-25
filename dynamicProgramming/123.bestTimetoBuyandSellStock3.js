@@ -33,3 +33,30 @@ var maxProfit = function (prices) {
 
 	return sell_2[sell_2.length - 1];
 };
+
+/**
+ * Runtime: 96 ms, faster than 98.31% of JavaScript online submissions for Best Time to Buy and Sell Stock III.
+ * Memory Usage: 50.2 MB, less than 61.18% of JavaScript online submissions for Best Time to Buy and Sell Stock III.
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit2 = function (prices) {
+	if (!prices || prices.length < 2) return 0;
+
+	// t_i10:第i天卖出一次，t_i11:第i天买入一次
+	let t_i10 = 0,
+		t_i11 = -prices[0];
+
+	// t_i20:第i天卖出2次，t_i21:第i天买入第二次 (i表示第i天，2买卖两次，1表示买入持有，0表示卖出不持有)
+	let t_i20 = 0,
+		t_i21 = -prices[0];
+
+	for (let price of prices) {
+		t_i11 = Math.max(t_i11, -price); //买入
+		t_i10 = Math.max(t_i10, t_i11 + price); //卖出
+
+		t_i21 = Math.max(t_i21, t_i10 - price); //买入
+		t_i20 = Math.max(t_i20, t_i21 + price); //卖出
+	}
+	return t_i20;
+};
