@@ -50,3 +50,23 @@ var maxProfit2 = function (prices, fee) {
 	}
 	return sell[sell.length - 1];
 };
+
+/**
+ * @param {number[]} prices
+ * @param {number} fee
+ * @return {number}
+ */
+var maxProfit3 = function (prices, fee) {
+	if (!prices || !prices.length) return 0;
+	let dp = [0, Number.MIN_SAFE_INTEGER];
+
+	for (let i = 1; i <= prices.length; i++) {
+		// let temp = dp[0];
+		// dp[0] = Math.max(dp[0], dp[1] + prices[i - 1] - fee);
+		// dp[1] = Math.max(dp[1], temp - prices[i - 1]);
+
+		[dp[0], dp[1]] = [Math.max(dp[0], dp[1] + prices[i - 1] - fee), Math.max(dp[1], dp[0] - prices[i - 1])];
+	}
+
+	return dp[0];
+};
