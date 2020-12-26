@@ -42,7 +42,7 @@ var maxProfit = function (prices, fee) {
  */
 var maxProfit2 = function (prices, fee) {
 	if (!prices || !prices.length) return 0;
-	let buy = [-prices[0]];
+	let buy = [-prices[0]]; //[Number.MIN_SAFE_INTEGER];
 	let sell = [0];
 	for (let i = 1; i <= prices.length; i++) {
 		buy[i] = Math.max(buy[i - 1], sell[i - 1] - prices[i - 1]);
