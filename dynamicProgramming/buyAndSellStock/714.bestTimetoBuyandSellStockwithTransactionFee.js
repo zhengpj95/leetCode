@@ -70,3 +70,20 @@ var maxProfit3 = function (prices, fee) {
 
 	return dp[0];
 };
+
+/**
+ * @param {number[]} prices
+ * @param {number} fee
+ * @return {number}
+ */
+var maxProfit4 = function (prices, fee) {
+	if (!prices || !prices.length) return 0;
+	let t_ik0 = 0,
+		t_ik1 = Number.MIN_SAFE_INTEGER;
+
+	for (let price of prices) {
+		[t_ik0, t_ik1] = [Math.max(t_ik0, t_ik1 + price - fee), Math.max(t_ik1, t_ik0 - price)];
+	}
+
+	return t_ik0;
+};
