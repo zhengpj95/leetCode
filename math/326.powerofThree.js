@@ -22,3 +22,13 @@ var isPowerOfThree = function (n) {
 	}
 	return product === n;
 };
+
+/**
+ * 3**19 是少于 2**31-1 最大的3的倍数
+ * 其对 n 求余为0，则 n 会是3的倍数
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfThree2 = function (n) {
+	return n > 0 && 3 ** 19 % n == 0;
+};
