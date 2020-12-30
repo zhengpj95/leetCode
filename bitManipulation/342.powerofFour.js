@@ -20,3 +20,13 @@ var isPowerOfFour = function (n) {
 	}
 	return n == num;
 };
+
+/**
+ * 4的二进制是0100，如果是4的倍数，相当于4的二进制左移2位
+ * 所以只要以1开始，多个(00)的二进制就是4的倍数
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfFour2 = function (n) {
+	return /^1(00)*$/.test(n.toString(2));
+};
