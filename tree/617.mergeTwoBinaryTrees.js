@@ -4,14 +4,7 @@
  */
 
 let { TreeNode, createTree } = require('./TreeNode');
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
+
 /**
  * @param {TreeNode} t1
  * @param {TreeNode} t2
@@ -31,6 +24,35 @@ var mergeTrees = function (t1, t2) {
 		return root1;
 	};
 	return merge(t1, t2);
+};
+
+/**
+ * @param {TreeNode} t1
+ * @param {TreeNode} t2
+ * @return {TreeNode}
+ */
+var mergeTrees2 = function (t1, t2) {
+	if (!t1) return t2;
+	if (!t2) return t1;
+	let stack = [[t1, t2]];
+	while (stack.length > 0) {
+		let [leftNode, rightNode] = stack.shift();
+		if (!leftNode || !rightNode) {
+			continue;
+		}
+		leftNode.val += rightNode.val;
+		if (!leftNode.left) {
+			leftNode.left = rightNode.left;
+		} else {
+			stack.push([leftNode.left, rightNode.left]);
+		}
+		if (!leftNode.right) {
+			leftNode.right = rightNode.right;
+		} else {
+			stack.push([leftNode.right, rightNode.right]);
+		}
+	}
+	return t1;
 };
 
 // let levelTraversal = (root) => {
