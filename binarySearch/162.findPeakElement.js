@@ -22,3 +22,21 @@ var findPeakElement = function (nums) {
 	}
 	return idx;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findPeakElement2 = function (nums) {
+	let low = 0,
+		high = nums.length - 1;
+	while (low < high) {
+		let mid = Math.floor((low + high) / 2);
+		if (nums[mid + 1] > nums[mid]) {
+			low = mid + 1;
+		} else {
+			high = mid;
+		}
+	}
+	return low;
+};
