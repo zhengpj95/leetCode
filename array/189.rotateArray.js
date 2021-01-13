@@ -20,10 +20,26 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function (nums, k) {
+	k = k % nums.length;
 	if (k == nums.length) {
 		return;
 	}
 	while (k-- > 0) {
 		nums.unshift(nums.pop());
 	}
+};
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var rotate2 = function (nums, k) {
+	let len = nums.length;
+	if (k == len) {
+		return;
+	}
+	let idx = len - (k % len);
+	nums.push(...nums.slice(0, idx));
+	nums.splice(0, idx);
 };
