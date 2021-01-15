@@ -33,3 +33,26 @@ var compareVersion = function (version1, version2) {
 	}
 	return 0;
 };
+
+/**
+ * @param {string} version1
+ * @param {string} version2
+ * @return {number}
+ */
+var compareVersion2 = function (version1, version2) {
+	let v1 = version1.split('.');
+	let v2 = version2.split('.');
+
+	let i = 0;
+	while (i < v1.length || i < v2.length) {
+		let num1 = v1[i] ? parseInt(v1[i]) : 0;
+		let num2 = v2[i] ? parseInt(v2[i]) : 0;
+		if (num1 < num2) {
+			return -1;
+		} else if (num1 > num2) {
+			return 1;
+		}
+		i++;
+	}
+	return 0;
+};
