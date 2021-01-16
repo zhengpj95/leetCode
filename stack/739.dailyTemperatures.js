@@ -17,23 +17,14 @@
  * @return {number[]}
  */
 var dailyTemperatures = function (T) {
-	let res = [];
+	let res = new Array(T.length).fill(0);
 	let stack = [];
 	for (let i = 0; i < T.length; i++) {
-		if (!stack.length || T[i] <= stack[stack.length - 1][1]) {
-			stack.push([i, T[i]]);
-			continue;
-		}
-
 		while (stack.length && T[i] > stack[stack.length - 1][1]) {
 			let top = stack.pop();
 			res[top[0]] = i - top[0];
 		}
 		stack.push([i, T[i]]);
-	}
-	while (stack.length) {
-		let top = stack.pop();
-		res[top[0]] = 0;
 	}
 	return res;
 };
