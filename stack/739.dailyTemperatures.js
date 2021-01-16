@@ -28,3 +28,22 @@ var dailyTemperatures = function (T) {
 	}
 	return res;
 };
+
+/**
+ * Runtime: 148 ms, faster than 93.17% of JavaScript online submissions for Daily Temperatures.
+ * Memory Usage: 49.4 MB, less than 61.11% of JavaScript online submissions for Daily Temperatures.
+ * @param {number[]} T
+ * @return {number[]}
+ */
+var dailyTemperatures2 = function (T) {
+	let res = new Array(T.length).fill(0);
+	let stack = [];
+	for (let i = 0; i < T.length; i++) {
+		while (stack.length && T[i] > T[stack[stack.length - 1]]) {
+			let top = stack.pop();
+			res[top] = i - top;
+		}
+		stack.push(i);
+	}
+	return res;
+};
