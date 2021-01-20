@@ -78,3 +78,13 @@ var maxDepth3 = function (root) {
 	}
 	return max;
 };
+
+/**
+ * @param {Node} root
+ * @return {number}
+ */
+var maxDepth4 = function (root) {
+	if (!root) return 0;
+	if (!root.children.length) return 1;
+	return 1 + Math.max(...root.children.map((item) => maxDepth(item)));
+};
