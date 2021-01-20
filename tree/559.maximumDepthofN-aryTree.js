@@ -58,3 +58,23 @@ var maxDepth2 = function (root) {
 	dfs(root, 1);
 	return max;
 };
+
+/**
+ * @param {Node} root
+ * @return {number}
+ */
+var maxDepth3 = function (root) {
+	if (!root) return 0;
+	let max = 0;
+	let stack = [[root, 1]];
+	while (stack.length) {
+		let [node, depth] = [...stack.pop()];
+		if (!node) continue;
+		max = Math.max(max, depth);
+		if (!node.children) continue;
+		for (let i = 0; i < node.children.length; i++) {
+			stack.push([node.children[i], depth + 1]);
+		}
+	}
+	return max;
+};
