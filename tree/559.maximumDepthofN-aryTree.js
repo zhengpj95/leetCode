@@ -12,6 +12,7 @@
  */
 
 /**
+ * BFS
  * Runtime: 88 ms, faster than 86.46% of JavaScript online submissions for Maximum Depth of N-ary Tree.
  * Memory Usage: 41.9 MB, less than 57.11% of JavaScript online submissions for Maximum Depth of N-ary Tree.
  * @param {Node} root
@@ -34,5 +35,26 @@ var maxDepth = function (root) {
 		max++;
 		stack = [...stack1];
 	}
+	return max;
+};
+
+/**
+ * DFS
+ * Runtime: 84 ms, faster than 95.71% of JavaScript online submissions for Maximum Depth of N-ary Tree.
+ * Memory Usage: 41.4 MB, less than 86.23% of JavaScript online submissions for Maximum Depth of N-ary Tree.
+ * @param {Node} root
+ * @return {number}
+ */
+var maxDepth2 = function (root) {
+	if (!root) return 0;
+	let max = 0;
+	let dfs = (root, depth) => {
+		if (!root || !root.children) return 0;
+		max = Math.max(max, depth);
+		for (let i = 0; i < root.children.length; i++) {
+			dfs(root.children[i], depth + 1);
+		}
+	};
+	dfs(root, 1);
 	return max;
 };
