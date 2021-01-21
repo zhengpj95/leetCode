@@ -28,6 +28,8 @@ my leetcode practice
 
 ### 1. 排序
 
+1. [快速排序算法](./sort/quicksort.md)
+
 ### 2. 查找
 
 ## **算法思维篇**
