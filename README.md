@@ -8,7 +8,7 @@ my leetcode practice
 
 记录自己在leetcode刷题的过程，及时总结刷题的套路和算法思维。一步一步的总结并写下来，一定要慢慢磨练自己写文章的能力和总结能力，不断优化系列文章。坚持下去，不求完美，但求一步一步完善。
 
-## **数据结构篇**
+## **一、数据结构篇**
 
 数据结构是相互之间存在一种或多种特定关系的数据元素的集合。
 
@@ -24,7 +24,7 @@ my leetcode practice
 
 ### 4. 二进制
 
-## **基础算法篇**
+## **二、基础算法篇**
 
 ### 1. 排序
 
@@ -32,7 +32,7 @@ my leetcode practice
 
 ### 2. 查找
 
-## **算法思维篇**
+## **三、算法思维篇**
 
 ### 1. 递归
 
@@ -60,36 +60,20 @@ my leetcode practice
 
 ### 7. 二进制操作
 
-## 刷题分类总结
+## **四、刷题分类总结**
 
-### 1. LinkedList
+1. [LinkedList](./linkedList/README.md)
 
-[LinkedList](./linkedList/README.md)
+2. [Bit Manipulation](./bitManipulation/README.md)
 
-### 2. Bit Manipulation
+3. [Binary Tree](./tree/README.md)
 
-[Bit Manipulation](./bitManipulation/README.md)
+4. [Two Pointers](./twoPointers/README.md)
 
-### 3. Binary Tree
+5. [Sliding Window](./slidingWindow/README.md)
 
-[Binary Tree](./tree/README.md)
+6. [BackTracking](./backTracking/README.md)
 
-### 4. Two Pointers
+7. [Trie](./trie/README.md)
 
-[Two Pointers](./twoPointers/README.md)
-
-### 5. Sliding Window
-
-[Sliding Window](./slidingWindow/README.md)
-
-### 6. BackTracking
-
-[BackTracking](./backTracking/README.md)
-
-### 7. Trie
-
-[Trie](./trie/README.md)
-
-### 8. Dynamic Programming
-
-[DP](./dynamicProgramming/README.md)
+8. [DP](./dynamicProgramming/README.md)
