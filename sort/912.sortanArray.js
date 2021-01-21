@@ -21,7 +21,7 @@ var sortArray = function (nums) {
 var sortArrayWithQuickSort = function (nums) {
 	if (!nums) return [];
 	if (nums.length < 2) return nums;
-	return quickSort(nums, 0, nums.length - 1);
+	return quickSort2(nums, 0, nums.length - 1);
 };
 
 /**
@@ -66,6 +66,44 @@ var quickSort = (nums, begin, end) => {
  */
 var swap = (nums, i, j) => {
 	[nums[i], nums[j]] = [nums[j], nums[i]];
+};
+
+/**
+ * Runtime: 92 ms, faster than 99.89% of JavaScript online submissions for Sort an Array.
+ * Memory Usage: 43.9 MB, less than 67.35% of JavaScript online submissions for Sort an Array.
+ * @param {number[]} nums
+ * @param {number} begin
+ * @param {number} end
+ */
+var quickSort2 = (nums, begin, end) => {
+	if (begin >= end) return;
+	let midVal = nums[begin];
+	let i = begin,
+		j = end;
+
+	while (i < j) {
+		// 先从右交换
+		while (i < j && nums[j] >= midVal) {
+			j--;
+		}
+		if (i < j) {
+			nums[i] = nums[j];
+			i++;
+		}
+		// 后从左交换
+		while (i < j && nums[i] <= midVal) {
+			i++;
+		}
+		if (i < j) {
+			nums[j] = nums[i];
+			j--;
+		}
+	}
+
+	nums[i] = midVal;
+	quickSort2(nums, begin, i - 1);
+	quickSort2(nums, i + 1, end);
+	return nums;
 };
 
 let nums = [5, 9, 1, 9, 5, 3, 7, 6, 1];
