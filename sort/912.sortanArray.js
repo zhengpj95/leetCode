@@ -106,6 +106,33 @@ var quickSort2 = (nums, begin, end) => {
 	return nums;
 };
 
+var sortArray3 = function (nums) {
+	if (!nums) return [];
+	if (nums.length < 2) return nums;
+	return quickSort(nums, 0, nums.length - 1);
+
+	function quickSort(nums, low, high) {
+		if (low >= high) return nums;
+		let pos = parition(nums, low, high);
+		quickSort(nums, low, pos - 1);
+		quickSort(nums, pos + 1, high);
+		return nums;
+	}
+
+	function parition(nums, low, high) {
+		let pivot = nums[low]; //当前表的第一个元素这位基准值
+		while (low < high) {
+			while (low < high && nums[high] >= pivot) high--;
+			nums[low] = nums[high]; //将比基准值小的移到左边
+			while (low < high && nums[low] <= pivot) low++;
+			nums[high] = nums[low]; //将比基准值大的移到右边
+		}
+		nums[low] = pivot; //基准值存放到最终位置
+		return low; //返回最终位置，把待排序表划分左右两部分
+	}
+};
+
 let nums = [5, 9, 1, 9, 5, 3, 7, 6, 1];
 console.log(sortArray(nums));
 console.log(sortArrayWithQuickSort(nums));
+console.log(sortArray3(nums));
