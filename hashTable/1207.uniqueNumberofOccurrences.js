@@ -30,3 +30,22 @@ var uniqueOccurrences = function (arr) {
 	let values = [...map.values()];
 	return new Set(values).size == values.length;
 };
+
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var uniqueOccurrences2 = function (arr) {
+	let obj = {};
+	for (let item of arr) {
+		obj[item] = (obj[item] || 0) + 1;
+	}
+
+	let obj2 = {};
+	let res = true;
+	Object.values(obj).map((item) => {
+		if (obj2[item]) res = false;
+		obj2[item] = true;
+	});
+	return res;
+};
