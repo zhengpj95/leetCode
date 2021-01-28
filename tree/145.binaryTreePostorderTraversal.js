@@ -60,6 +60,28 @@ var postorderTraversal2 = function (root) {
 	return res;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var postorderTraversal3 = function (root) {
+	let res = [];
+	let stack = [];
+	let node = root;
+	while (node) {
+		if (node.left) {
+			stack.push(node.left);
+		}
+		if (node.right) {
+			stack.push(node.right);
+		}
+		res.push(node.val);
+		node = stack.pop();
+	}
+	res = res.reverse();
+	return res;
+};
+
 let node5 = new TreeNode(5);
 let node4 = new TreeNode(4);
 let node3 = new TreeNode(3, null, node5);

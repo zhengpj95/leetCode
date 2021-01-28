@@ -45,6 +45,28 @@ const preorderTraversal2 = function (root) {
 };
 
 /**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal3 = function (root) {
+	if (!root) return [];
+	let res = [];
+	let stack = [root];
+	while (stack.length) {
+		let top = stack.pop();
+		res.push(top.val);
+
+		if (top.right) {
+			stack.push(top.right);
+		}
+		if (top.left) {
+			stack.push(top.left);
+		}
+	}
+	return res;
+};
+
+/**
  * Morris Traversal
  * @param {TreeNode} root
  * @returns {number[]}
