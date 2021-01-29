@@ -92,26 +92,25 @@ var inorderTraversal2 = function (root) {
  */
 var inorderTraversal3 = function (root) {
 	let res = [];
-	let currNode = root;
-	let preNode;
-	while (currNode) {
-		if (!currNode.left) {
-			// 没有左侧节点
-			res.push(currNode.val);
-			currNode = currNode.right;
+	let node = root;
+	while (node) {
+		if (!node.left) {
+			// 没有左子树
+			res.push(node.val);
+			node = node.right;
 		} else {
 			// 有左侧子树
-			preNode = currNode.left;
-			// 找出最右侧的右子节点（已是叶子节点或者没有右子节点的节点）
-			while (preNode.right) {
-				preNode = preNode.right;
+			// 找出左子树的最右侧的右子节点（已是叶子节点或者没有右子节点的节点）
+			let newNode = node.left;
+			while (newNode.right) {
+				newNode = newNode.right;
 			}
 			// 将当前根节点当作上寻找到的最右侧节点的右子节点
-			preNode.right = currNode;
+			newNode.right = node;
 			// 进入左子树
-			let temp = currNode;
-			currNode = currNode.left; //回到之前currNode的左子树，这一步之前 currNode 的左子树还存在的
-			temp.left = null; //当前preNode.right的右子节点 currNode (temp) 的左子树为 null
+			let temp = node;
+			node = node.left; //回到之前node的左子树，这一步之前 node 的左子树还存在的
+			temp.left = null; //当前newNode.right的右子节点 node (temp) 的左子树为 null
 		}
 	}
 	return res;
