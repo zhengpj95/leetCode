@@ -16,6 +16,11 @@ function TreeNode(val, left, right) {
  * 			3
  * 		9	   20
  * 			 15  7
+ * 例如：[1, null, 2, 3, 4, null, 5] 只要有一个一个节点不存在，其子孩子的都不需用null替代
+ * 			1
+ * 			     2
+ * 			  3     4
+ * 			   5
  * @param {any[]} nums
  * @returns {TreeNode}
  */
