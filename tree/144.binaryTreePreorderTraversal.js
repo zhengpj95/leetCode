@@ -1,9 +1,4 @@
-//  Definition for a binary tree node.
-function TreeNode(val, left, right) {
-	this.val = !val ? 0 : val;
-	this.left = !left ? null : left;
-	this.right = !right ? null : right;
-}
+const { TreeNode, createTree } = require('./TreeNode');
 
 /**
  * @param {TreeNode} root
@@ -86,20 +81,15 @@ const morrisTraversal = function (root) {
 			}
 			// 此子节点的右节点设置为curNode.right，因为curNode已经输出了
 			preNode.right = curNode.right;
-			let tempNode = curNode;
+			// let tempNode = curNode;
 			curNode = curNode.left;
-			tempNode.left = null;
+			// tempNode.left = null;
 		}
 	}
 	return res;
 };
 
-let node5 = new TreeNode(5);
-let node4 = new TreeNode(4);
-let node3 = new TreeNode(3, null, node5);
-let node2 = new TreeNode(2, node3, node4);
-let node1 = new TreeNode(1, null, node2);
-
-console.log(preorderTraversal(node1));
-console.log(preorderTraversal2(node1));
-console.log(morrisTraversal(node1));
+let root = createTree([1, null, 2, 3, 4, null, 5]);
+console.log(preorderTraversal(root));
+console.log(preorderTraversal2(root));
+console.log(morrisTraversal(root));
