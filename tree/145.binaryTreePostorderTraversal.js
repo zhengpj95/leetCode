@@ -1,25 +1,4 @@
-/**
- * Definition for a binary tree node.
- * class TreeNode {
- *     val: number
- *     left: TreeNode | null
- *     right: TreeNode | null
- *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.left = (left===undefined ? null : left)
- *         this.right = (right===undefined ? null : right)
- *     }
- * }
- */
-
-class TreeNode {
-	constructor(val, left, right) {
-		this.val = !val ? 0 : val;
-		this.left = !left ? null : left;
-		this.right = !right ? null : right;
-	}
-}
-
+const { TreeNode, createTree } = require('./TreeNode');
 /**
  * @param {TreeNode} root
  * @return {number[]}
@@ -82,11 +61,37 @@ var postorderTraversal3 = function (root) {
 	return res;
 };
 
-let node5 = new TreeNode(5);
-let node4 = new TreeNode(4);
-let node3 = new TreeNode(3, null, node5);
-let node2 = new TreeNode(2, node3, node4);
-let node1 = new TreeNode(1, null, node2);
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var morrisTraversal = (root) => {
+	let res = [];
+	let tail = null;
+	let node = root;
+	while (node) {
+		tail = node.right;
+		if (!tail) {
+			res.push(node.val);
+		} else {
+			while (tail.left != null && tail.left != node) {
+				tail = tail.left;
+			}
+			if (!tail.left) {
+				tail.left = node;
+				res.push(node.val);
+				node = node.right;
+				continue;
+			} else {
+				tail.left = null;
+			}
+		}
+		node = node.left;
+	}
+	return res.reverse();
+};
 
-console.log(postorderTraversal(node1));
-console.log(postorderTraversal2(node1));
+let root = createTree([1, 3, 4, 5, 7, 6, 8]);
+console.log(postorderTraversal(root).join('-'));
+console.log(postorderTraversal2(root).join('-'));
+console.log(morrisTraversal(root).join('-'));
