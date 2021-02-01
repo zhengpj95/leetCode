@@ -57,6 +57,10 @@ my leetcode practice
 
 [前缀和技巧](./summary/presum.md)
 
+### 6. 二叉堆
+
+[基于二叉堆的优先队列](./head/priorityQueue.md)
+
 ### 6. 二分查找
 
 ### 7. 二进制操作
