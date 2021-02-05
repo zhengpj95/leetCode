@@ -1,14 +1,8 @@
-// Definition for a binary tree node.
-function TreeNode(val, left, right) {
-	this.val = (val === undefined ? 0 : val);
-	this.left = (left === undefined ? null : left);
-	this.right = (right === undefined ? null : right);
-}
+const { TreeNode } = require('./TreeNode');
 
 /**
  * Given an integer n, generate all structurally unique BST's (binary search trees) that store values 1 ... n.
  * Constraints: 0 <= n <= 8
- * 
  * Time complexity: O(n^2)
  * @param {number} n
  * @return {TreeNode[]}
@@ -42,4 +36,4 @@ const getTrees = (start, end) => {
 };
 
 let res = generateTrees(3);
-console.log(res);
+// console.log(res);
