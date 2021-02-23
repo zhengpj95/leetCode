@@ -30,5 +30,37 @@ var findMode = function (root) {
 	return result;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var findMode2 = function (root) {
+	if (!root) return [];
+	let result = [];
+	let cur_count = 0;
+	let max_count = 0;
+	let preNode = null;
+
+	let dfs = (root) => {
+		if (!root) return;
+		dfs(root.left);
+
+		cur_count = preNode && root.val == preNode.val ? cur_count + 1 : 1;
+
+		if (cur_count == max_count) {
+			result.push(root.val);
+		} else if (cur_count > max_count) {
+			result = [root.val];
+			max_count = cur_count;
+		}
+
+		preNode = root;
+		dfs(root.right);
+	};
+	dfs(root);
+
+	return result;
+};
+
 let root = createTree([1, null, 2, 2]);
 console.log(findMode(root));
