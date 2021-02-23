@@ -4,7 +4,9 @@
  */
 
 const { TreeNode, createTree } = require('./TreeNode');
+
 /**
+ * Recursion + Object
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -31,6 +33,7 @@ var findMode = function (root) {
 };
 
 /**
+ * Recursion
  * @param {TreeNode} root
  * @return {number[]}
  */
@@ -59,6 +62,40 @@ var findMode2 = function (root) {
 	};
 	dfs(root);
 
+	return result;
+};
+
+/**
+ * Iteration
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var findMode3 = function (root) {
+	if (!root) return [];
+	let result = [];
+	let preNode = null;
+	let stack = [];
+	let [curCount, maxCount] = [0, 0];
+	while (root || stack.length) {
+		while (root) {
+			stack.push(root);
+			root = root.left;
+		}
+
+		root = stack.pop();
+
+		curCount = preNode && root.val == preNode.val ? curCount + 1 : 1;
+
+		if (curCount == maxCount) {
+			result.push(root.val);
+		} else if (curCount > maxCount) {
+			result = [root.val];
+			maxCount = curCount;
+		}
+
+		preNode = root;
+		root = root.right;
+	}
 	return result;
 };
 
