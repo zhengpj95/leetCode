@@ -26,10 +26,15 @@ var findFrequentTreeSum = function (root) {
 	};
 
 	dfs(root);
-	for (let [k, v] of Object.entries(obj)) {
-		if (v == maxCount) {
-			result.push(parseInt(k));
-		}
-	}
+
+	// for (let [k, v] of Object.entries(obj)) {
+	// 	if (v == maxCount) {
+	// 		result.push(parseInt(k));
+	// 	}
+	// }
+
+	result = Object.entries(obj)
+		.filter(([, b]) => b == maxCount)
+		.map((a) => parseInt(a));
 	return result;
 };
