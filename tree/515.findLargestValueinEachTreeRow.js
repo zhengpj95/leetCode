@@ -27,5 +27,29 @@ var largestValues = function (root) {
 	return result;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var largestValues2 = function (root) {
+	if (!root) return [];
+	let result = [];
+	let stack = [root];
+
+	while (stack.length) {
+		let size = stack.length;
+		let max = Number.MIN_SAFE_INTEGER;
+		for (let i = 0; i < size; i++) {
+			let node = stack.shift();
+			max = Math.max(node.val, max);
+			if (node.left) stack.push(node.left);
+			if (node.right) stack.push(node.right);
+		}
+		result.push(max);
+	}
+
+	return result;
+};
+
 let root = createTree([1, 3, 2, 5, 3, null, 9]);
 console.log(largestValues(root));
