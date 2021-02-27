@@ -20,6 +20,8 @@ my leetcode practice
 
 ### 2. 链表
 
+[LinkedList](./summary/linkedlist.md)
+
 ### 3. 二叉树
 
 ### 4. 二进制
