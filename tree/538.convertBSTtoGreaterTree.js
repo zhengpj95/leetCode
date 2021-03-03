@@ -12,12 +12,11 @@ const { TreeNode, createTree } = require('./TreeNode');
 var convertBST = function (root) {
 	let sum = 0;
 	let dfs = (root) => {
-		if (!root) return 0;
-		let rightValue = dfs(root.right);
+		if (!root) return;
+		dfs(root.right);
 		sum += root.val;
 		root.val = sum;
 		dfs(root.left);
-		return rightValue + root.val;
 	};
 	dfs(root);
 	return root;
