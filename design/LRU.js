@@ -10,6 +10,7 @@ class LinkedNode {
 class DoubleLinkedList {
 	constructor() {
 		this.head = new LinkedNode();
+		this.tail = null;
 		this.count = 0;
 	}
 
@@ -25,6 +26,7 @@ class DoubleLinkedList {
 		if (this.isEmpty()) {
 			this.head.next = node;
 			node.pre = this.head;
+			this.tail = node;
 		} else {
 			node.next = this.head.next;
 			this.head.next.pre = node;
@@ -35,53 +37,54 @@ class DoubleLinkedList {
 		return true;
 	}
 
-	/**
-	 * @param {LinkedNode} node
-	 */
-	insertTail(node) {
-		if (!node) return false;
-		if (this.isEmpty()) {
-			this.head.next = node;
-			node.pre = this.head;
-		} else {
-			let currNode = this.head.next;
-			while (currNode.next) {
-				currNode = currNode.next;
-			}
-			currNode.next = node;
-			node.pre = currNode;
-		}
-		this.count++;
-		return true;
-	}
+	// /**
+	//  * @param {LinkedNode} node
+	//  */
+	// insertTail(node) {
+	// 	if (!node) return false;
+	// 	if (this.isEmpty()) {
+	// 		this.head.next = node;
+	// 		node.pre = this.head;
+	// 		this.tail = node;
+	// 	} else {
+	// 		let currNode = this.head.next;
+	// 		while (currNode.next) {
+	// 			currNode = currNode.next;
+	// 		}
+	// 		currNode.next = node;
+	// 		node.pre = currNode;
+	// 	}
+	// 	this.count++;
+	// 	return true;
+	// }
 
-	/**
-	 * @param {LinkedNode} node
-	 */
-	checkNode(node) {
-		if (this.isEmpty()) {
-			return false;
-		}
-		let head = this.head.next;
-		while (head) {
-			if (head.key == node.key) {
-				// head.val = node.val; //key已存在，变更val
-				return true;
-			}
-			head = head.next;
-		}
-		return false;
-	}
+	// /**
+	//  * @param {LinkedNode} node
+	//  */
+	// checkNode(node) {
+	// 	if (this.isEmpty()) {
+	// 		return false;
+	// 	}
+	// 	let head = this.head.next;
+	// 	while (head) {
+	// 		if (head.key == node.key) {
+	// 			// head.val = node.val; //key已存在，变更val
+	// 			return true;
+	// 		}
+	// 		head = head.next;
+	// 	}
+	// 	return false;
+	// }
 
-	/**
-	 * @param {LinkedNode} node
-	 */
-	insertToHead(node) {
-		let have = this.checkNode(node);
-		if (have) return;
-		this.count--;
-		this.insertHead(node);
-	}
+	// /**
+	//  * @param {LinkedNode} node
+	//  */
+	// insertToHead(node) {
+	// 	let have = this.checkNode(node);
+	// 	if (have) return;
+	// 	this.count--;
+	// 	this.insertHead(node);
+	// }
 
 	print() {
 		if (this.isEmpty()) return [];
@@ -133,6 +136,9 @@ class DoubleLinkedList {
 		}
 		let preNode = curNode.pre;
 		preNode.next = curNode.next;
+		if (curNode == this.tail) {
+			this.tail = curNode.pre;
+		}
 		if (curNode.next) {
 			curNode.next.pre = preNode;
 		}
@@ -144,13 +150,12 @@ class DoubleLinkedList {
 		if (this.isEmpty()) {
 			return;
 		}
-		let head = this.head;
-		while (head && head.next) {
-			head = head.next;
-		}
-		let result = head;
-		if (head) {
-			head.pre.next = null;
+		let result = this.tail;
+		if (this.count == 1) {
+			this.tail = null;
+		} else {
+			this.tail = result.pre;
+			this.tail.next = null;
 		}
 		this.count--;
 		return result;
@@ -175,9 +180,7 @@ LRUCache.prototype.get = function (key) {
 		return -1;
 	}
 	let node = new LinkedNode(key);
-	if (this.list.checkNode(node)) {
-		this.list.moveToHead(node);
-	}
+	this.list.moveToHead(node);
 	return this.map.get(key);
 };
 
@@ -188,7 +191,7 @@ LRUCache.prototype.get = function (key) {
  */
 LRUCache.prototype.put = function (key, value) {
 	let node = new LinkedNode(key, value);
-	let have = this.map.has(key); //this.list.checkNode(node); //链表中已存在，则移动到表头且更改val；否则插入头部且移除尾部
+	let have = this.map.has(key); //链表中已存在，则移动到表头且更改val；否则插入头部且移除尾部
 	let isMax = this.capacity == this.list.count; //达到最大容量
 	this.map.set(key, value);
 	if (have) {
