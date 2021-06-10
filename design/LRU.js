@@ -122,7 +122,9 @@ class DoubleLinkedList {
 	moveToHead(node, isPut = false) {
 		if (!node) return;
 		if (this.isFirstNode(node)) {
-			this.head.next.val = node.val; //存在，需要更改val
+			if (isPut) {
+				this.head.next.val = node.val; //存在，需要更改val
+			}
 			return;
 		}
 		let curNode = this.getSpecialNode(node);
