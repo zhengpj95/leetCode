@@ -148,10 +148,12 @@ class DoubleLinkedList {
 		while (head && head.next) {
 			head = head.next;
 		}
+		let result = head;
 		if (head) {
 			head.pre.next = null;
 		}
 		this.count--;
+		return result;
 	}
 }
 
@@ -161,6 +163,7 @@ class DoubleLinkedList {
 var LRUCache = function (capacity) {
 	this.capacity = capacity;
 	this.list = new DoubleLinkedList();
+	this.map = new Map();
 };
 
 /**
@@ -168,22 +171,14 @@ var LRUCache = function (capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function (key) {
-	if (this.capacity == 0) {
+	if (this.capacity == 0 || !this.map.has(key)) {
 		return -1;
-	}
-	let result = -1;
-	let head = this.list.head.next;
-	while (head) {
-		if (head.key == key) {
-			result = head.val;
-		}
-		head = head.next;
 	}
 	let node = new LinkedNode(key);
 	if (this.list.checkNode(node)) {
 		this.list.moveToHead(node);
 	}
-	return result;
+	return this.map.get(key);
 };
 
 /**
@@ -193,10 +188,9 @@ LRUCache.prototype.get = function (key) {
  */
 LRUCache.prototype.put = function (key, value) {
 	let node = new LinkedNode(key, value);
-	let have = this.list.checkNode(node); //链表中已存在，则移动到表头且更改val；否则插入头部且移除尾部
+	let have = this.map.has(key); //this.list.checkNode(node); //链表中已存在，则移动到表头且更改val；否则插入头部且移除尾部
 	let isMax = this.capacity == this.list.count; //达到最大容量
-	// console.log(`${key} -- ${value} -- ${have}`);
-	// console.log(`  ${key} -- ${value} -- ${isMax}`);
+	this.map.set(key, value);
 	if (have) {
 		// 容量无关；移动到头部，且改变val
 		this.list.moveToHead(node, true);
@@ -204,7 +198,10 @@ LRUCache.prototype.put = function (key, value) {
 		this.list.insertHead(node); //插入头部
 		if (isMax) {
 			// 移除尾部
-			this.list.deleteTail();
+			let tail = this.list.deleteTail();
+			if (tail) {
+				this.map.delete(tail.key);
+			}
 		}
 	}
 };
@@ -228,21 +225,21 @@ LRUCache.prototype.print = function () {
 // list.insertToHead(new LinkedNode(2, 0));
 // console.log(list.print());
 
-// let obj = new LRUCache(2);
-// obj.put(1, 1);
-// obj.put(2, 2);
-// console.log(obj.get(1));
-// obj.put(3, 3);
-// console.log(obj.get(2));
-// obj.put(4, 4);
-// console.log(obj.get(1));
-// console.log(obj.get(3));
-// console.log(obj.get(4));
-// obj.print();
-// console.log(obj);
-// console.log(obj.get(2));
-
-let obj = new LRUCache(1);
-obj.put(2, 1);
+let obj = new LRUCache(2);
+obj.put(1, 1);
+obj.put(2, 2);
 console.log(obj.get(1));
+obj.put(3, 3);
+console.log(obj.get(2));
+obj.put(4, 4);
+console.log(obj.get(1));
+console.log(obj.get(3));
+console.log(obj.get(4));
 obj.print();
+console.log(obj);
+console.log(obj.get(2));
+
+// let obj = new LRUCache(1);
+// obj.put(2, 1);
+// console.log(obj.get(1));
+// obj.print();
