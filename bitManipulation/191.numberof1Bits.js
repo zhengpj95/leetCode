@@ -52,7 +52,20 @@ var hammingWeight2 = function (n) {
  * @param {number} n
  */
 var hammingWeight3 = function (n) {
-	console.log(n.toString(2).replace(/0/g, '').length);
+	console.log(n.toString(2).replace(/0/g, "").length);
+};
+
+/**
+ * @param {number} n - a positive integer
+ * @return {number}
+ */
+var hammingWeight4 = function (n) {
+	let result = 0;
+	while (n > 0) {
+		result += n & 1;
+		n >>>= 1;
+	}
+	return result;
 };
 
 console.log(hammingWeight(00000000000000000000000000001011));
