@@ -28,4 +28,27 @@ var jump = function (nums) {
 	return dp[dp.length - 1];
 };
 
+/**
+ * O(T)=O(n)
+ * O(S)=O(1)
+ * @param {number[]} nums
+ * @return {number}
+ */
+var jumpWithGreedy = function (nums) {
+	if (!nums || !nums.length) {
+		return 0;
+	}
+	let result = 0;
+	let curEnd = 0;
+	let maxStep = 0;
+	for (let i = 0; i < nums.length - 1; i++) {
+		maxStep = Math.max(maxStep, nums[i] + i);
+		if (i == curEnd) {
+			result++;
+			curEnd = maxStep;
+		}
+	}
+	return result;
+};
+
 jump([1, 2, 3, 4]);
