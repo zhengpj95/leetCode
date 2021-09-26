@@ -26,3 +26,27 @@ var firstMissingPositiveWithMap = function (nums) {
 	}
 	return 1;
 };
+
+/**
+ * O(T)=O(n)
+ * O(S)=O(1)
+ * @param {number[]} nums
+ * @return {number}
+ */
+var firstMissingPositive = function (nums) {
+	let size = nums.length;
+	for (let i = 0; i < size; i++) {
+		while (nums[i] > 0 && nums[i] <= size && nums[nums[i] - 1] != nums[i]) {
+			let pos = nums[i] - 1; //注意这一步，一定要记录这个下标
+			let temp = nums[i];
+			nums[i] = nums[pos];
+			nums[pos] = temp;
+		}
+	}
+	for (let i = 0; i < size; i++) {
+		if (nums[i] != i + 1) {
+			return i + 1;
+		}
+	}
+	return size + 1;
+};
