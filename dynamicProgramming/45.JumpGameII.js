@@ -38,14 +38,19 @@ var jumpWithGreedy = function (nums) {
 	if (!nums || !nums.length) {
 		return 0;
 	}
+
 	let result = 0;
 	let curEnd = 0;
 	let maxStep = 0;
+
+	// 这里i<nums.length-1，是因为i=0时计算了一次跳动，最后一步跳到最后一个元素就不需要计算了
 	for (let i = 0; i < nums.length - 1; i++) {
-		maxStep = Math.max(maxStep, nums[i] + i);
+		maxStep = Math.max(maxStep, nums[i] + i); //每个元素所能跳的最大步数
+
+		// i==curEnd 表示一次跳动结束
 		if (i == curEnd) {
 			result++;
-			curEnd = maxStep;
+			curEnd = maxStep; //这一轮里找到下次最大的跳动步数
 		}
 	}
 	return result;
