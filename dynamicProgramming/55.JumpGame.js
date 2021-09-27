@@ -62,13 +62,23 @@ var canJumpWithGreedy = function (nums) {
  * @return {boolean}
  */
 var canJumpWithGreedy2 = function (nums) {
+	// let step = 0;
+	// let i = 0;
+	// for (; i < nums.length && i <= step; i++) {
+	// 	step = Math.max(nums[i] + i, step);
+	// 	// console.log(i, nums[i] + i, step);
+	// }
+	// return i == nums.length;
+
 	let step = 0;
-	let i = 0;
-	for (; i < nums.length && i <= step; i++) {
-		step = Math.max(nums[i] + i, step);
-		// console.log(i, nums[i] + i, step);
+	// i <= step 表示所能跳到的最大位置；如果超了这个位置还不到末尾的，定为false
+	for (let i = 0; i < nums.length && i <= step; i++) {
+		step = Math.max(step, nums[i] + i);
+		if (step >= nums.length - 1) {
+			return true;
+		}
 	}
-	return i == nums.length;
+	return false;
 };
 // console.log(canJumpWithGreedy([2, 3, 1, 1, 4]));
 console.log(canJumpWithGreedy2([3, 2, 1, 0, 4, 12, 32]));
