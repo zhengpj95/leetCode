@@ -55,7 +55,22 @@ var canJumpWithGreedy = function (nums) {
 	return maxStep >= nums.length - 1;
 };
 
-console.log(canJumpWithGreedy([2, 3, 1, 1, 4]));
-console.log(canJumpWithGreedy([3, 2, 1, 0, 4]));
-console.log(canJumpWithGreedy([0, 2, 3]));
-console.log(canJumpWithGreedy([1, 0, 1, 0]));
+/**
+ * O(T)=O(n)
+ * O(S)=O(n)
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canJumpWithGreedy2 = function (nums) {
+	let step = 0;
+	let i = 0;
+	for (; i < nums.length && i <= step; i++) {
+		step = Math.max(nums[i] + i, step);
+		// console.log(i, nums[i] + i, step);
+	}
+	return i == nums.length;
+};
+// console.log(canJumpWithGreedy([2, 3, 1, 1, 4]));
+console.log(canJumpWithGreedy2([3, 2, 1, 0, 4, 12, 32]));
+// console.log(canJumpWithGreedy([0, 2, 3]));
+// console.log(canJumpWithGreedy([1, 0, 1, 0]));
