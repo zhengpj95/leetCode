@@ -31,19 +31,16 @@ var generateMatrix = function (n) {
 		}
 		colEnd--;
 		//left
-		if (colBegin <= colEnd) {
-			for (let i = colEnd; i >= colBegin; i--) {
-				matrix[rowEnd][i] = count++;
-			}
-			rowEnd--;
+		for (let i = colEnd; i >= colBegin; i--) {
+			matrix[rowEnd][i] = count++;
 		}
+		rowEnd--;
+
 		//up
-		if (rowBegin <= rowEnd) {
-			for (let i = rowEnd; i >= rowBegin; i--) {
-				matrix[i][colBegin] = count++;
-			}
-			colBegin++;
+		for (let i = rowEnd; i >= rowBegin; i--) {
+			matrix[i][colBegin] = count++;
 		}
+		colBegin++;
 	}
 	// console.log(matrix);
 	return matrix;
