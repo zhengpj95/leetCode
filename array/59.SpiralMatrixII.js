@@ -22,29 +22,25 @@ var generateMatrix = function (n) {
 	while (rowBegin <= rowEnd && colBegin <= colEnd) {
 		//right
 		for (let i = colBegin; i <= colEnd; i++) {
-			matrix[rowBegin][i] = count;
-			count++;
+			matrix[rowBegin][i] = count++;
 		}
 		rowBegin++;
 		//down
 		for (let i = rowBegin; i <= rowEnd; i++) {
-			matrix[i][colEnd] = count;
-			count++;
+			matrix[i][colEnd] = count++;
 		}
 		colEnd--;
 		//left
 		if (colBegin <= colEnd) {
 			for (let i = colEnd; i >= colBegin; i--) {
-				matrix[rowEnd][i] = count;
-				count++;
+				matrix[rowEnd][i] = count++;
 			}
 			rowEnd--;
 		}
 		//up
 		if (rowBegin <= rowEnd) {
 			for (let i = rowEnd; i >= rowBegin; i--) {
-				matrix[i][colBegin] = count;
-				count++;
+				matrix[i][colBegin] = count++;
 			}
 			colBegin++;
 		}
