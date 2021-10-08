@@ -47,16 +47,6 @@ Trie.prototype.insert = function (word) {
  * @return {boolean}
  */
 Trie.prototype.search = function (word) {
-	// let obj = this.root;
-	// for (let i = 0; i < word.length; i++) {
-	// 	let c = word[i];
-	// 	if (!obj[c]) {
-	// 		return false;
-	// 	} else {
-	// 		obj = obj[c];
-	// 	}
-	// }
-
 	let obj = this.commonSearch(word);
 	return obj && obj.isEnd ? true : false;
 };
@@ -67,15 +57,6 @@ Trie.prototype.search = function (word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function (prefix) {
-	// let obj = this.root;
-	// for (let char of prefix.split('')) {
-	// 	if (!obj[char]) {
-	// 		return false;
-	// 	} else {
-	// 		obj = obj[char];
-	// 	}
-	// }
-
 	let obj = this.commonSearch(prefix);
 	return !!obj;
 };
