@@ -21,3 +21,24 @@ var merge = function (intervals) {
 	}
 	return intervals;
 };
+
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge2 = function (intervals) {
+	if (!intervals || !intervals.length) {
+		return [];
+	}
+	intervals.sort((a, b) => a[0] - b[0]);
+	let result = [intervals.shift()];
+	while (intervals.length > 0) {
+		let item = intervals.shift();
+		if (result[result.length - 1][1] >= item[0]) {
+			result[result.length - 1][1] = Math.max(result[result.length - 1][1], ...item);
+		} else {
+			result.push(item);
+		}
+	}
+	return result;
+};
