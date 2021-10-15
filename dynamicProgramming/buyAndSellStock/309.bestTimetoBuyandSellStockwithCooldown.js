@@ -112,6 +112,7 @@ var maxProfit5 = function (prices) {
 	let buy = [0, -prices[0]]; //第i天买入后最大收益情况
 	let sell = [0, 0]; //第i天卖出后最大收益情况
 
+	// buy, sell 的索引0位置无用，所以i从2开始，prices需读i-1
 	for (let i = 2; i <= prices.length; i++) {
 		buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i - 1]); //cooldown，或者买入，因为要cooldown一天及以上，所以是 sell[i-2]
 		sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i - 1]); //cooldown，或者卖出
