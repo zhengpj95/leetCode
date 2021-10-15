@@ -50,9 +50,9 @@ var maxProfit2 = function (prices) {
 	hold[0] = -prices[0]; //买入后，持有-prices[0]
 
 	for (let i = 1; i < size; i++) {
-		sold[i] = hold[i - 1] + prices[i];
-		rest[i] = Math.max(rest[i - 1], sold[i - 1]);
-		hold[i] = Math.max(hold[i - 1], rest[i - 1] - prices[i]);
+		sold[i] = hold[i - 1] + prices[i]; //假设i天卖出，前一天持有的利润+i天卖出的
+		rest[i] = Math.max(rest[i - 1], sold[i - 1]); //持续cooldown，还是基于前一天卖出cooldown
+		hold[i] = Math.max(hold[i - 1], rest[i - 1] - prices[i]); //继续不买卖，还是买入
 	}
 
 	return Math.max(sold[size - 1], rest[size - 1]);
