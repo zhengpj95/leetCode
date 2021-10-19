@@ -42,8 +42,29 @@ var nextGreaterElement = function (nums1, nums2) {
 	return nums1;
 };
 
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement2 = function (nums1, nums2) {
+	let map = new Map();
+	let stack = [];
+	for (let num of nums2) {
+		while (stack.length > 0 && num > stack[stack.length - 1]) {
+			map.set(stack.pop(), num);
+		}
+		stack.push(num);
+	}
+	for (let i = 0; i < nums1.length; i++) {
+		nums1[i] = map.get(nums1[i]) || -1;
+	}
+	return nums1;
+};
+
 let nums1 = [137, 59, 92, 122, 52, 131, 79, 236, 94, 171, 141, 86, 169, 199, 248, 120, 196];
 let nums2 = [137, 59, 92, 122, 52, 131, 79, 236, 94, 171, 141, 86, 169, 199, 248, 120, 196];
 
 // nextGreaterElement(nums1, nums2);
-console.log(nextGreaterElement(nums1, nums2));
+// console.log(nextGreaterElement(nums1, nums2).join('-'));
+console.log(nextGreaterElement2(nums1, nums2).join('-'));
