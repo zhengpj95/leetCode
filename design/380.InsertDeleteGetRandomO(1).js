@@ -1,5 +1,5 @@
 var RandomizedSet = function () {
-	this.root = {};
+	this.map = {};
 };
 
 /**
@@ -7,10 +7,10 @@ var RandomizedSet = function () {
  * @return {boolean}
  */
 RandomizedSet.prototype.insert = function (val) {
-	if (this.root[val] != null) {
+	if (this.map[val] != null) {
 		return false;
 	}
-	this.root[val] = val;
+	this.map[val] = val;
 	return true;
 };
 
@@ -19,10 +19,10 @@ RandomizedSet.prototype.insert = function (val) {
  * @return {boolean}
  */
 RandomizedSet.prototype.remove = function (val) {
-	if (this.root[val] == null) {
+	if (this.map[val] == null) {
 		return false;
 	}
-	delete this.root[val];
+	delete this.map[val];
 	return true;
 };
 
@@ -30,10 +30,10 @@ RandomizedSet.prototype.remove = function (val) {
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function () {
-	let keys = Object.keys(this.root);
+	let keys = Object.keys(this.map);
 	let size = keys.length;
 	let random = Math.floor(Math.random() * size);
-	return this.root[keys[random]];
+	return this.map[keys[random]];
 };
 
 /**
