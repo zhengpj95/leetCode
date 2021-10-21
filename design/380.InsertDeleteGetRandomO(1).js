@@ -1,5 +1,6 @@
 var RandomizedSet = function () {
 	this.map = {};
+	this.list = [];
 };
 
 /**
@@ -10,7 +11,8 @@ RandomizedSet.prototype.insert = function (val) {
 	if (this.map[val] != null) {
 		return false;
 	}
-	this.map[val] = val;
+	this.map[val] = this.list.length; //map中保存的是索引
+	this.list.push(val);
 	return true;
 };
 
@@ -22,6 +24,15 @@ RandomizedSet.prototype.remove = function (val) {
 	if (this.map[val] == null) {
 		return false;
 	}
+	let idx = this.map[val];
+	let last = this.list.pop();
+
+	// 如果remove的不是最后一个，就把最后一个替代要移除的那个
+	if (idx != this.list.length) {
+		this.list[idx] = last; //位置更新
+		this.map[last] = idx; //索引更新
+	}
+
 	delete this.map[val];
 	return true;
 };
@@ -30,10 +41,7 @@ RandomizedSet.prototype.remove = function (val) {
  * @return {number}
  */
 RandomizedSet.prototype.getRandom = function () {
-	let keys = Object.keys(this.map);
-	let size = keys.length;
-	let random = Math.floor(Math.random() * size);
-	return this.map[keys[random]];
+	return this.list[Math.floor(Math.random() * this.list.length)];
 };
 
 /**
@@ -45,9 +53,13 @@ RandomizedSet.prototype.getRandom = function () {
  */
 
 var obj = new RandomizedSet();
-console.log(obj.remove(0));
-console.log(obj.remove(0));
-console.log(obj.insert(0));
+console.log(obj.insert(10));
+console.log(obj.insert(11));
+console.log(obj.insert(12));
+console.log(obj.insert(13));
+console.log(obj.insert(14));
 console.log(obj.getRandom());
-console.log(obj.remove(0));
-console.log(obj.insert(0));
+// console.log(obj.remove(10));
+console.log(obj);
+console.log(obj.remove(11));
+console.log(obj);
