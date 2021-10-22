@@ -32,4 +32,25 @@ var frequencySort = function (s) {
 	return result;
 };
 
-frequencySort('abeaabffzzzz');
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var frequencySort2 = function (s) {
+	let map = {};
+	for (let i = 0; i < s.length; i++) {
+		if (map[s[i]] == null) map[s[i]] = 0;
+		map[s[i]]++;
+	}
+
+	let keys = Object.keys(map).sort((a, b) => map[b] - map[a]);
+	let result = '';
+	keys.forEach((key) => {
+		result += key.repeat(map[key]);
+	});
+
+	console.log(result);
+	return result;
+};
+
+frequencySort2('abeaabffzzzz');
