@@ -49,7 +49,6 @@ var frequencySort2 = function (s) {
 		result += key.repeat(map[key]);
 	});
 
-	console.log(result);
 	return result;
 };
 
