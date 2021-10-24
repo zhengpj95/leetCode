@@ -4,7 +4,7 @@
  * @date 2020/09/27 10:25:18
  */
 
-const { TreeNode, createTree, getTreeHeight } = require('./TreeNode');
+const { TreeNode, createTree, getTreeHeight } = require("./TreeNode");
 
 /**
  * Time complexity: O(n)
@@ -65,30 +65,22 @@ const countNodes2 = function (root) {
  * @return {number}
  */
 const countNodes3 = function (root) {
-	let leftDepth = function (root) {
+	let treeDepth = (root, isLeft) => {
 		let depth = 0;
 		while (root) {
 			depth++;
-			root = root.left;
-		}
-		return depth;
-	};
-	let rightDepth = function (root) {
-		let depth = 0;
-		while (root) {
-			depth++;
-			root = root.right;
+			root = isLeft ? root.left : root.right;
 		}
 		return depth;
 	};
 
-	let leftH = leftDepth(root);
-	let rightH = rightDepth(root);
+	let leftH = treeDepth(root);
+	let rightH = treeDepth(root);
 
 	// console.log('leftH = %s, rightH = %s', leftH, rightH);
 	// 若是满二叉树就返回结果
 	if (leftH === rightH) {
-		return (1 << leftH) - 1;
+		return (1 << leftH) - 1; // Math.pow(2, leftH) - 1;
 	}
 	return 1 + countNodes3(root.left) + countNodes3(root.right);
 };
