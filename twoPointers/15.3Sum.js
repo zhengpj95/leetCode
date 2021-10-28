@@ -43,7 +43,6 @@ const threeSum = function (nums) {
 	return res;
 };
 
-
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 
 /**
@@ -73,11 +72,9 @@ const threeSumWithDuplicate2 = function (nums) {
 };
 
 /**
- * twoSum
- * @param {number[]} nums 
- * @param {number} target 
- * @param {number} start 
- * @param {number} end 
+ * twoSum 有bug
+ * @param {number[]} nums
+ * @param {number} target
  */
 const twoSum = function (nums, target) {
 	let res = [];
@@ -102,7 +99,7 @@ const twoSum = function (nums, target) {
 
 /**
  * 没有去掉重复值
- * @param {number[]} nums 
+ * @param {number[]} nums
  */
 function threeSumWithDuplicate(nums) {
 	let obj = {};
@@ -133,4 +130,4 @@ function threeSumWithDuplicate(nums) {
 	// console.log(obj, had);
 	// console.log(res);
 	return res;
-};
+}
