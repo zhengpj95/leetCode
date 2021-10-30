@@ -36,6 +36,31 @@ const sortColors = function (nums) {
 	}
 };
 
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+const sortColors2 = function (nums) {
+	let swap = (nums, a, b) => {
+		let temp = nums[a];
+		nums[a] = nums[b];
+		nums[b] = temp;
+	};
+
+	let low = 0,
+		high = nums.length - 1;
+	for (let i = 0; i <= high; i++) {
+		while (nums[i] == 2 && i < high) {
+			swap(nums, i, high);
+			high--;
+		}
+		while (nums[i] == 0 && i > low) {
+			swap(nums, i, low);
+			low++;
+		}
+	}
+};
+
 let nums = [2, 0, 2, 1, 1, 0, 2, 2, 2];
 console.log(sortColors(nums));
 console.log(nums);
