@@ -31,6 +31,27 @@ var numTilePossibilities = function (tiles) {
 	return Object.keys(map).length;
 };
 
+/**
+ * 大神思路
+ * @param {string} tiles
+ * @return {number}
+ */
+var numTilePossibilities2 = function (tiles) {
+	if (!tiles || !tiles.length) {
+		return 0;
+	}
+
+	let set = new Set();
+	let result = 0;
+	for (let i = 0; i < tiles.length; i++) {
+		if (!set.has(tiles[i])) {
+			result += numTilePossibilities2(tiles.slice(0, i) + tiles.slice(i + 1)) + 1;
+		}
+		set.add(tiles[i]);
+	}
+	return result;
+};
+
 let tiles = 'AAB';
-let res = numTilePossibilities(tiles);
+let res = numTilePossibilities2(tiles);
 console.log(res);
