@@ -24,5 +24,19 @@ var minStartValue = function (nums) {
 	return Math.abs(min2 - min1);
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minStartValue2 = function (nums) {
+	let count = 0;
+	let result = 0;
+	for (let i = 0; i < nums.length; i++) {
+		count += nums[i];
+		result = Math.min(result, count);
+	}
+	return -result + 1;
+};
+
 let nums = [-3, 2, -3, 4, 2];
 console.log(minStartValue(nums));
