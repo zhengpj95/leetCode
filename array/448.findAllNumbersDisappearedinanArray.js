@@ -50,5 +50,32 @@ var findDisappearedNumbers2 = function (nums) {
 	return res;
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers3 = function (nums) {
+	for (let i = 0; i < nums.length; i++) {
+		while (true) {
+			let idx = nums[i];
+			//元素已在其适当位置，或者要对换的位置的元素也恰好就在那位置
+			if (nums[i] == i + 1 || nums[idx - 1] == idx) {
+				break;
+			}
+			let temp = nums[idx - 1];
+			nums[idx - 1] = idx;
+			nums[i] = temp;
+		}
+	}
+
+	let res = [];
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] != i + 1) {
+			res.push(i + 1);
+		}
+	}
+	return res;
+};
+
 let nums = [4, 3, 2, 7, 8, 2, 3, 1];
-console.log(findDisappearedNumbers2(nums));
+console.log(findDisappearedNumbers3(nums));
