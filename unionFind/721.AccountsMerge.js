@@ -31,10 +31,12 @@ var accountsMerge = function (accounts) {
 
 	for (let [name, ...emails] of accounts) {
 		for (let email of emails) {
-			ds.union(email, emails[0]);
+			ds.union(email, emails[0]); //因为emails长度可为1
 			nameMap[email] = name;
 		}
 	}
+
+	// console.log(ds.list);
 
 	// 具有共同的parent的放在一起（属于相同集合）
 	let emailMap = {};
@@ -63,4 +65,4 @@ let accounts = [
 	['John', 'johnnybravo@mail.com'],
 ];
 
-accountsMerge(accounts);
+console.log(accountsMerge(accounts));
