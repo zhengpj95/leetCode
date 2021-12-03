@@ -80,5 +80,26 @@ var maxProduct3 = function (nums) {
 	return res;
 };
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct4 = function (nums) {
+	if (!nums || !nums.length) {
+		return 0;
+	}
+	let max = nums[0];
+	let min = nums[0];
+	let result = max;
+
+	for (let i = 1; i < nums.length; i++) {
+		let tmpMax = max;
+		max = Math.max(tmpMax * nums[i], min * nums[i], nums[i]);
+		min = Math.min(tmpMax * nums[i], min * nums[i], nums[i]);
+		result = Math.max(result, max);
+	}
+	return result;
+};
+
 let nums = [-4, -3, -2];
 console.log(maxProduct3(nums));
