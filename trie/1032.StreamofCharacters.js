@@ -43,4 +43,12 @@ StreamChecker.prototype.query = function (letter) {
  */
 
 let o = new StreamChecker(['cd', 'f', 'kl']);
-console.log(o);
+// console.log(o.trie);
+console.log(o.query('b')); //false
+console.log(o.query('d')); //false
+console.log(o.query('m')); //false
+console.log(o.query('f')); //true f can build with 'f'
+console.log(o.query('k')); //false
+console.log(o.query('l')); //true  kl can build with 'kl'
+console.log(o.query('c')); //false
+console.log(o.query('d')); //true cd can build with 'cd'
