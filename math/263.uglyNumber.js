@@ -45,3 +45,22 @@ var isUgly2 = function (num) {
 	}
 	return dp[dp.length - 1] == num;
 };
+
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isUgly3 = function (n) {
+	if (n <= 0) return false;
+	if (n == 1) return true;
+	while (n % 5 == 0) {
+		n = Math.floor(n / 5);
+	}
+	while (n % 3 == 0) {
+		n = Math.floor(n / 3);
+	}
+	while (n % 2 == 0) {
+		n = Math.floor(n / 2);
+	}
+	return n == 1;
+};
