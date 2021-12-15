@@ -40,6 +40,35 @@ const insertionSortList = function (head) {
 	return dummy.next;
 };
 
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+const insertionSortList2 = function (head) {
+	if (!head || !head.next) {
+		return head;
+	}
+	let dummy = new ListNode(0);
+	let prev = dummy;
+
+	while (head) {
+		// reset prev to dummy
+		if (prev.val >= head.val) {
+			prev = dummy;
+		}
+		while (prev && prev.next && prev.next.val < head.val) {
+			prev = prev.next;
+		}
+
+		let newHead = head.next;
+		head.next = prev.next;
+		prev.next = head;
+		head = newHead;
+	}
+
+	return dummy.next;
+};
+
 let arr = [6, 5, 3, 1, 8, 7, 2, 4];
 let head = createList(arr);
-console.log(traversal(insertionSortList(head.next)));
+console.log(traversal(insertionSortList2(head.next)));
