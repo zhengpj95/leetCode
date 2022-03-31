@@ -7,7 +7,7 @@
  * @date 2020/09/29 12:01:32
  */
 
-const { TreeNode, createTree } = require('./TreeNode');
+const { TreeNode, createTree } = require("./TreeNode");
 
 /**
  * 递归调用，只要找到等于 p 或 q 的，返回true；然后相加大于等于2，就表明两个都找到了
@@ -62,6 +62,32 @@ const lowestCommonAncestor2 = function (root, p, q) {
 
 	return lNode ? (rNode ? root : lNode) : rNode;
 	// return !lNode ? rNode : !rNode ? lNode : root;
+};
+
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+const lowestCommonAncestor3 = function (root, p, q) {
+	if (!root) return null;
+	let find = (root, pVal, qVal) => {
+		if (!root) return null;
+		// 返回目标值的节点
+		if (root.val == pVal || root.val == qVal) {
+			return root;
+		}
+		let left = find(root.left, pVal, qVal);
+		let right = find(root.right, pVal, qVal);
+		// 左右子树都找到了，则此节点就是最近公共祖先
+		if (left && right) {
+			return root;
+		}
+		// 其中一个恰好为最近公共祖先
+		return left ? left : right;
+	};
+	return find(root, p.val, q.val);
 };
 
 let root = createTree([3, 5, 1, 6, 2, 0, 8, null, null, 7, 4]);
