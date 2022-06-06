@@ -10,7 +10,7 @@
  * @date 2020/10/18 20:47:00
  */
 
-const { ListNode, createList, traversal } = require('./ListNode');
+const { ListNode, createList, traversal } = require("./ListNode");
 
 /**
  * Approach 1: Hast Table
@@ -60,6 +60,10 @@ const bruteForceFunc = function (headA, headB) {
 };
 
 /**
+ * https://leetcode.com/problems/intersection-of-two-linked-lists/discuss/2116221/Visual-Explanation-or-One-Pass-JAVA
+ * 当listA和listB长度不一样后，listA+listB == listB+listA，所以同步遍历时，当其中一方到末尾后就接着遍历另一个list。
+ * 如果两list有相同的节点，那么其就处于同一位置上了。
+ *
  * 当pA=headB,pB=headA，从头开始遍历时，pA和pB后的结点长度是相同的了
  * Approach 3: Two Pointers
  * Time complexity: O(m+n)
