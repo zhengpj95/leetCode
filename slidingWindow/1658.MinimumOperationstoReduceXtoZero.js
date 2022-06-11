@@ -1,4 +1,9 @@
 /**
+ * 逆向思维
+ * 由求最小的 prefixSum + subfixSum，求 maximum subarray
+ *
+ * O(T):O(n)
+ * O(S):O(1)
  * @param {number[]} nums
  * @param {number} x
  * @return {number}
