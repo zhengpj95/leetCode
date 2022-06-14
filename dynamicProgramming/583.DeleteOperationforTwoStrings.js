@@ -14,7 +14,7 @@ var minDistance = function (word1, word2) {
 
 	for (let r = 1; r <= word1.length; r++) {
 		for (let c = 1; c <= word2.length; c++) {
-			if (word1[r] == word2[c]) {
+			if (word1[r - 1] == word2[c - 1]) {
 				dp[r][c] = 1 + dp[r - 1][c - 1];
 			} else {
 				dp[r][c] = Math.max(dp[r - 1][c], dp[r][c - 1]);
@@ -25,4 +25,4 @@ var minDistance = function (word1, word2) {
 	return word1.length + word2.length - 2 * dp[word1.length][word2.length];
 };
 
-console.log(minDistance("etco", "leetcode"));
+console.log(minDistance("a", "b"));
