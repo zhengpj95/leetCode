@@ -36,7 +36,8 @@ const bruteSearch = function (nums, target) {
 };
 
 /**
- * 未曾很理解 (todo)
+ * 找出pivot，这就是偏移量。
+ * binary search 中 (pivot+mid)%nums.length 就是真实的中点
  * Time complexity: O(logN)
  * Space complexity: O(1)
  * @param {number[]} nums
