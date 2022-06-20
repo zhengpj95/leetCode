@@ -26,6 +26,23 @@ var minimumLengthEncoding = function (words) {
 	return words.reduce((rst, w) => rst + w.length + 1, 0);
 };
 
+/**
+ * 使用 Set 的特性，如果已经存在 words[i] 的某部分，则删除这部分
+ * @param {string[]} words
+ * @return {number}
+ */
+var minimumLengthEncoding2 = function (words) {
+	let set = new Set(words);
+	for (let word of words) {
+		for (let i = 1; i < word.length; i++) {
+			if (set.has(word.slice(i))) {
+				set.delete(word.slice(i));
+			}
+		}
+	}
+	return Array.from(set).join("#").length + 1;
+};
+
 let words = ["sp", "p", "grah", "qwosp"];
 // words = ["time", "me", "bell"];
-console.log(minimumLengthEncoding(words));
+console.log(minimumLengthEncoding2(words));
