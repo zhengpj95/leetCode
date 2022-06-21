@@ -16,27 +16,27 @@ const { PriorityQueue } = require("./PriorityQueue");
  */
 var furthestBuilding = function (heights, bricks, ladders) {
 	let queue = new PriorityQueue((a, b) => a < b);
-	let count = 0;
+	let neededBricks = 0;
 	for (let i = 0; i < heights.length - 1; i++) {
 		// next building is maller than current, jump it
 		if (heights[i] >= heights[i + 1]) {
 			continue;
 		}
 		let diff = heights[i + 1] - heights[i];
-		count += diff;
+		neededBricks += diff;
 		// count of needed bricks is greater than given bricks
-		if (ladders == 0 && count > bricks) {
+		if (ladders == 0 && neededBricks > bricks) {
 			return i;
 		}
 		// continue move to next building
-		if (ladders == 0 && count <= bricks) {
+		if (ladders == 0 && neededBricks <= bricks) {
 			continue;
 		}
 		queue.enqueue(diff);
 		// get the max diff, use ladders to replace it needed bricks
-		if (count > bricks) {
+		if (neededBricks > bricks) {
 			let top = queue.dequeue();
-			count -= top;
+			neededBricks -= top;
 			ladders--;
 		}
 	}
