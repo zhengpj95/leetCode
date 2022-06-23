@@ -2,15 +2,11 @@
  * 优先队列
  */
 class PriorityQueue {
-	// compare函数，比较大小，使用 > < >= <=
-	compare(a, b) {
-		return a > b;
-	}
 	/**
 	 * 传入比较排序函数，默认从小到大排序输出
 	 * @param {Function} compare
 	 */
-	constructor(compare = this.compare) {
+	constructor(compare = (a, b) => a > b) {
 		this.count = 0;
 		this.list = [];
 		this.compare = compare;
