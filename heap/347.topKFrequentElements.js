@@ -36,7 +36,42 @@ var topKFrequent = function (nums, k) {
 	return res;
 };
 
+/**
+ * Bucket Sort
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+var topKFrequentWithBucketSort = function (nums, k) {
+	if (k == 0) return [];
+	let map = new Map();
+	for (let num of nums) {
+		map.set(num, map.has(num) ? map.get(num) + 1 : 1);
+	}
+	// console.log(map);
+
+	let bucket = [];
+	for (let [k, v] of map.entries()) {
+		if (!bucket[v]) {
+			bucket[v] = [];
+		}
+		bucket[v].push(k);
+	}
+	// console.log(bucket);
+
+	let res = [];
+	for (let i = bucket.length - 1; i >= 0; i--) {
+		if (bucket[i]) {
+			res.push(...bucket[i]);
+		}
+		if (res.length === k) {
+			break;
+		}
+	}
+	return res;
+};
+
 let nums = [1, 1, 1, 2, 2, 3, 3, 3, 4],
 	k = 2;
 // (nums = [1]), (k = 1);
-console.log(topKFrequent(nums, k));
+console.log(topKFrequentWithBucketSort(nums, k));
