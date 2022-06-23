@@ -18,11 +18,10 @@
 ```javascript
 class PriorityQueue {
   /**
-   * 控制大堆还是小堆，默认小堆
+   * 传入比较排序函数，默认从小到大排序输出
+   * @param {Function} compare
    */
-  compare = (a, b) => a > b;
-
-  constructor(compare = this.compare) {
+  constructor(compare = (a, b) => a > b) {
     this.count = 0;
     this.list = [];
     this.compare = compare;
@@ -59,7 +58,7 @@ class PriorityQueue {
     this.list[j] = temp;
   }
 
-  isLarge(i, j) {
+  doCompare(i, j) {
     return this.compare(this.list[i], this.list[j]);
   }
 
@@ -67,7 +66,7 @@ class PriorityQueue {
    * 上浮，从最后一位开始上浮，与父节点比较大小关系
    */
   swim(k = this.count) {
-    while (k > 1 && this.isLarge(this.getParent(k), k)) {
+    while (k > 1 && this.doCompare(this.getParent(k), k)) {
       this.exchange(this.getParent(k), k);
       k = this.getParent(k);
     }
@@ -79,10 +78,10 @@ class PriorityQueue {
   sink(k = 1) {
     while (this.leftChildren(k) <= this.count) {
       let max = this.leftChildren(k);
-      if (this.rightChildren(k) <= this.count && this.isLarge(max, this.rightChildren(k))) {
+      if (this.rightChildren(k) <= this.count && this.doCompare(max, this.rightChildren(k))) {
         max = this.rightChildren(k);
       }
-      if (this.isLarge(max, k)) break;
+      if (this.doCompare(max, k)) break;
       this.exchange(k, max);
       k = max;
     }
