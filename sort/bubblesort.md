@@ -25,18 +25,12 @@
  * @return {number[]}
  */
 function bubbleSort(nums) {
-  let flag = false; //flag来控制一趟排序后是否有交换元素的操作，如果flag还是false就说明序列已经有序了
   for (let i = 0; i < nums.length - 1; i++) {
-      flag = false;
-      for (let j = nums.length - 1; j > i; j--) {
-        if (nums[j - 1] > nums[j]) {
-          [nums[j - 1], nums[j]] = [nums[j], nums[j - 1]];
-          flag = true;
-        }
+    for (let j = 0; j < nums.length - 1 - i; j++) {
+      if (nums[j] > nums[j + 1]) {
+        [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]];
       }
-      if (!flag) {
-        break;
-      }
+    }
   }
   return nums;
 }
