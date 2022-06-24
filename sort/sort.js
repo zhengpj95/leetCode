@@ -139,8 +139,11 @@ function merge(nums, left, mid, right) {
  */
 function heapSort(nums) {
 	let len = nums.length;
-	// 构建大顶堆，从下往上，遍历非叶子节点
-	for (let i = Math.floor(len / 2) - 1; i >= 0; i--) {
+	// 构建大顶堆。从下往上，从右往左，遍历非叶子节点
+	let lastNodeIdx = nums.length - 1;
+	let parent = Math.floor((lastNodeIdx - 1) / 2);
+	// i = Math.floor(len / 2) - 1;
+	for (let i = parent; i >= 0; i--) {
 		heapify2(nums, i, len);
 	}
 	// console.log(nums);
