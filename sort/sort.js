@@ -141,18 +141,18 @@ function heapSort(nums) {
 	let len = nums.length;
 	// 构建大顶堆
 	for (let i = Math.floor(len / 2) - 1; i >= 0; i--) {
-		heapify(nums, i, len);
+		heapify2(nums, i, len);
 	}
 	console.log(nums);
 	// 调整堆结构
 	for (let i = len - 1; i > 0; i--) {
 		swap(nums, 0, i); //交换堆顶元素与末尾元素
-		heapify(nums, 0, i);
+		heapify2(nums, 0, i);
 	}
 }
 
 /**
- * 调整堆结构
+ * 调整堆结构，迭代方式
  * 修改while循环里的两个if大小判断，即可改成小顶堆
  * @param {number[]} nums
  * @param {number} idx
@@ -178,6 +178,28 @@ function heapify(nums, idx, len) {
 	}
 	// 将temp放到最终的位置
 	nums[idx] = temp;
+}
+
+/**
+ * 调整堆结构，递归方式
+ * @param {number[]} nums
+ * @param {number} idx
+ * @param {number} len
+ */
+function heapify2(nums, idx, len) {
+	let left = idx * 2 + 1;
+	let right = idx * 2 + 2;
+	let max = idx;
+	if (left < len && nums[left] > nums[max]) {
+		max = left;
+	}
+	if (right < len && nums[right] > nums[max]) {
+		max = right;
+	}
+	if (max != idx) {
+		swap(nums, idx, max);
+		heapify2(nums, max, len);
+	}
 }
 
 /**
