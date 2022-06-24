@@ -75,5 +75,19 @@ class PriorityQueue {
 		this.sink();
 		return max;
 	}
+
+	getSortedQueue() {
+		let result = [];
+		while (this.count > 0) {
+			result.push(this.dequeue());
+		}
+		return result;
+	}
+
+	createHeap(data) {
+		for (let i = 0; i < data.length; i++) {
+			this.enqueue(data[i]);
+		}
+	}
 }
 module.exports.PriorityQueue = PriorityQueue;

@@ -9,7 +9,7 @@
 
 二叉堆就是一种特殊的二叉树，完全二叉树，所以存储结构使用数组即可。
 
-其中我们添加一个函数参数 `compare = (a, b) => a > b` 来控制大堆还是小堆。
+其中我们添加一个函数参数 `compare = (a, b) => a > b` 来控制升序还是降序。
 
 使用二叉堆实现优先队列，最重要的是 **上浮** 和 **下沉** 两个方法，代码看下面实现，废话不多说。
 
@@ -110,10 +110,10 @@ class PriorityQueue {
   }
 
   /**
-   * 堆排序
+   * 排序
    * @returns {any[]}
    */
-  heapSort() {
+  getSortedQueue() {
     let result = [];
     while (this.count > 0) {
       result.push(this.dequeue());
