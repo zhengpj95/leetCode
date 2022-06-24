@@ -139,14 +139,17 @@ function merge(nums, left, mid, right) {
  */
 function heapSort(nums) {
 	let len = nums.length;
-	// 构建大顶堆
+	// 构建大顶堆，从下往上，遍历非叶子节点
 	for (let i = Math.floor(len / 2) - 1; i >= 0; i--) {
 		heapify2(nums, i, len);
 	}
-	console.log(nums);
+	// console.log(nums);
+
 	// 调整堆结构
 	for (let i = len - 1; i > 0; i--) {
-		swap(nums, 0, i); //交换堆顶元素与末尾元素
+		// 交换堆顶元素与末尾元素，堆顶元素就是剩余元素中最大的
+		swap(nums, 0, i);
+		// i 刚好表示剩余的堆的元素个数，也就是最大的都被交换到最后了，不参与
 		heapify2(nums, 0, i);
 	}
 }
@@ -159,6 +162,9 @@ function heapSort(nums) {
  * @param {number} len
  */
 function heapify(nums, idx, len) {
+	if (idx >= len) {
+		return;
+	}
 	let temp = nums[idx];
 	let p = idx * 2 + 1; //idx左孩子序号
 	while (p < len) {
@@ -187,6 +193,9 @@ function heapify(nums, idx, len) {
  * @param {number} len
  */
 function heapify2(nums, idx, len) {
+	if (idx >= len) {
+		return;
+	}
 	let left = idx * 2 + 1;
 	let right = idx * 2 + 2;
 	let max = idx;
@@ -225,5 +234,5 @@ function countingSort(nums) {
 
 let arr = [13, 2, 5, 32, 6, 4, 3, 7, 5, 90, 99, 9, 8];
 // console.log(shellSort(arr));
-countingSort(arr);
+heapSort(arr);
 console.log(arr);
