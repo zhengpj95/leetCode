@@ -32,6 +32,7 @@ my leetcode practice
 
 1. [快速排序算法](./sort/quicksort.md)
 2. [冒泡排序算法](./sort/bubblesort.md)
+3. [各种排序算法js写法](./sort/sort.js)
 
 ### 2. 查找
 
