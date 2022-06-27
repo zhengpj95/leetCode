@@ -169,21 +169,22 @@ function heapify(nums, idx, len) {
 		return;
 	}
 	let temp = nums[idx];
-	let p = idx * 2 + 1; //idx左孩子序号
-	while (p < len) {
+	let left = idx * 2 + 1; //idx左孩子序号
+	while (left < len) {
+		let right = left + 1;
 		// 如果左孩子值小于右孩子值，p指向右孩子
-		if (p + 1 < len && nums[p] < nums[p + 1]) {
-			p++;
+		if (right < len && nums[left] < nums[right]) {
+			left++;
 		}
 		// 如果子节点值大于父节点值，则将子节点值赋值给父节点值
-		if (nums[p] > temp) {
-			nums[idx] = nums[p];
-			idx = p;
+		if (nums[left] > temp) {
+			nums[idx] = nums[left];
+			idx = left;
 		} else {
 			break;
 		}
-		// 继续p下一级的左孩子
-		p = p * 2 + 1;
+		// 继续left下一级的左孩子
+		left = left * 2 + 1;
 	}
 	// 将temp放到最终的位置
 	nums[idx] = temp;
