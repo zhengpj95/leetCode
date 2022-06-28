@@ -20,8 +20,12 @@ var minDeletions = function (s) {
 	let rst = 0;
 	for (let i = 1; i < list.length; i++) {
 		while (list[i] && list[i] >= list[i - 1]) {
-			list[i]--;
-			rst++;
+			let diff = list[i] - list[i - 1];
+			if (list[i - 1] > 0) {
+				diff++;
+			}
+			list[i] -= diff;
+			rst += diff;
 		}
 	}
 	return rst;
