@@ -10,33 +10,18 @@
  * @return {number}
  */
 var minDeletions = function (s) {
-	let list = new Array(26);
+	let list = new Array(26).fill(0);
 	for (let i = 0; i < s.length; i++) {
-		let char = s[i].charCodeAt(0) - 97;
-		if (!list[char]) {
-			list[char] = 0;
-		}
+		let char = s[i].charCodeAt(0) - "a".charCodeAt(0);
 		list[char]++;
 	}
 	list.sort((a, b) => b - a);
 
-	let existed = new Array(26);
 	let rst = 0;
-	for (let item of list) {
-		if (item == null) {
-			continue;
-		}
-		if (existed[item] == null) {
-			existed[item] = item;
-		} else {
-			while (existed[item] != null) {
-				item--;
-				rst++;
-				if (item <= 0) {
-					continue;
-				}
-			}
-			item > 0 && (existed[item] = item);
+	for (let i = 1; i < list.length; i++) {
+		while (list[i] && list[i] >= list[i - 1]) {
+			list[i]--;
+			rst++;
 		}
 	}
 	return rst;
