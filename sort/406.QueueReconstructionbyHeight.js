@@ -28,9 +28,15 @@ var reconstructQueue = function (people) {
 		return b[0] - a[0];
 	});
 
+	// let queue = [];
+	// for (let i = 0; i < people.length; i++) {
+	// 	insectionSort(queue, people[i]);
+	// }
+	// return queue;
+
 	let queue = [];
-	for (let i = 0; i < people.length; i++) {
-		insectionSort(queue, people[i]);
+	for (let person of people) {
+		queue.splice(person[1], 0, person);
 	}
 	return queue;
 };
