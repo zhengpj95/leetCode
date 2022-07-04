@@ -26,6 +26,8 @@ my leetcode practice
 
 ### 4. 二进制
 
+[Bit Manipulation](./bitManipulation/README.md)
+
 ## **二、基础算法篇**
 
 ### 1. 排序
@@ -60,7 +62,7 @@ my leetcode practice
 
 ### 6. 二叉堆
 
-[基于二叉堆的优先队列](./head/priorityQueue.md)
+[基于二叉堆的优先队列](./heap/priorityQueue.md)
 
 ## **四、刷题分类总结**
 
