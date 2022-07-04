@@ -38,13 +38,11 @@ my leetcode practice
 
 ## **三、算法思维篇**
 
-### 1. 递归
-
-### 2. 双指针
+### 1. 双指针
 
 [Two Pointers](./summary/twoPointers.md)
 
-### 3. 滑动窗口
+### 2. 滑动窗口
 
 [Sliding Window](./summary/slidingWindow.md)
 
@@ -63,10 +61,6 @@ my leetcode practice
 ### 6. 二叉堆
 
 [基于二叉堆的优先队列](./head/priorityQueue.md)
-
-### 6. 二分查找
-
-### 7. 二进制操作
 
 ## **四、刷题分类总结**
 
