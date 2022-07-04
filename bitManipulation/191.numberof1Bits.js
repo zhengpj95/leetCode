@@ -52,7 +52,7 @@ var hammingWeight2 = function (n) {
  * @param {number} n
  */
 var hammingWeight3 = function (n) {
-	console.log(n.toString(2).replace(/0/g, "").length);
+	return n.toString(2).replace(/0/g, "").length;
 };
 
 /**
