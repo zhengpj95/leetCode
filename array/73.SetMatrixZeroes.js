@@ -47,3 +47,46 @@ var setZeroes = function (matrix) {
 		}
 	}
 };
+
+/**
+ * 以空间换时间
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var setZeroes2 = function (matrix) {
+	let rows = matrix.length;
+	let cols = matrix[0].length;
+
+	let rowSet = new Set();
+	let colSet = new Set();
+
+	for (let i = 0; i < rows; i++) {
+		for (let j = 0; j < cols; j++) {
+			if (matrix[i][j] == 0) {
+				rowSet.add(i);
+				colSet.add(j);
+			}
+		}
+	}
+
+	for (let i = 0; i < rows; i++) {
+		for (let j = 0; j < cols; j++) {
+			if (rowSet.has(i) || colSet.has(j)) {
+				matrix[i][j] = 0;
+			}
+		}
+	}
+};
+
+let matrix = [
+	[1, 1, 1],
+	[1, 0, 1],
+	[1, 1, 1],
+];
+matrix = [
+	[0, 1, 2, 0],
+	[3, 4, 5, 2],
+	[1, 3, 1, 5],
+];
+setZeroes2(matrix);
+console.log(matrix);
