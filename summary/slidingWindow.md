@@ -60,13 +60,13 @@ it is guaranteed that there will always be only one unique minimum window in s.
 Constraints: 1 <= s.length, t.length <= 10^5; s and t consist of English letters.
 ```
 
-给定两个字符串 `s`, `t`，我们需要在 `s` 中超出包含 `t` 的全部字符的最小子串，并返回此字符串。
+给定两个字符串 `s`, `t`，我们需要在 `s` 中找出包含 `t` 的全部字符的最小子串，并返回此字符串。
 
 题目中已经保证如果 `s` 中存在这样的子串，它是唯一的答案；题目中可以不保证这样唯一的子串，我们在代码中只返回第一个出现的字串即可。
 
 以 `s = "ADOBECODEBANC", t = "ABC"` 为例，我们定义两个指针 *left*, *right*，其都指向字符串 s 的第一个字母。
 
-1、*right* 指针不断向右移动，知道出现了子串中满足 `t`，此时子串是 `ADOBEC`，记录结果，此时指针未到末尾，还需继续操作；
+1、*right* 指针不断向右移动，直到出现了子串中满足 `t`，此时子串是 `ADOBEC`，记录结果，此时指针未到末尾，还需继续操作；
 
 2、开始移动 *left* 指针，其移动到下标 1 时，left 和 right 之间的子串已经不满足 `t`，此时 *right* 指针要开始右移；
 
