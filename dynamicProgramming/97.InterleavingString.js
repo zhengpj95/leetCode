@@ -66,6 +66,8 @@ var isInterleave = function (s1, s2, s3) {
 };
 
 /**
+ * 凡是有递归的，都要联想到使用缓存减少递归次数
+ * Recursion with memoization
  * @param {string} s1
  * @param {string} s2
  * @param {string} s3
