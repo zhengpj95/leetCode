@@ -65,6 +65,42 @@ var isInterleave = function (s1, s2, s3) {
 	return dp[s1.length][s2.length];
 };
 
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @param {string} s3
+ * @return {boolean}
+ */
+var isInterleaveWithMemo = function (s1, s2, s3) {
+	if (s1.length + s2.length != s3.length) {
+		return false;
+	}
+	let memo = new Map();
+
+	let helper = (idx1, idx2, idx3) => {
+		if (idx3 >= s3.length && idx1 >= s1.length && idx2 >= s2.length) {
+			return true;
+		}
+		let key = `${idx1}_${idx2}_${idx3}`;
+		if (memo.has(key)) {
+			return memo.get(key);
+		}
+		let rst = false;
+		if (s1[idx1] == s3[idx3]) {
+			rst = rst || helper(idx1 + 1, idx2, idx3 + 1);
+		}
+		if (!rst && s2[idx2] == s3[idx3]) {
+			rst = rst || helper(idx1, idx2 + 1, idx3 + 1);
+		}
+		memo.set(key, rst);
+		return rst;
+	};
+
+	let rst = helper(0, 0, 0);
+	// console.log(memo);
+	return rst;
+};
+
 let s1 = "aabcc";
 s2 = "dbbca";
 s3 = "aadbbcbcac";
@@ -72,4 +108,4 @@ s3 = "aadbbcbcac";
 // s1 = "cabbcaaacacbac";
 // s2 = "acabaabacabcca";
 // s3 = "cacabaabacaabccbabcaaacacbac";
-console.log(isInterleave(s1, s2, s3));
+console.log(isInterleaveWithMemo(s1, s2, s3));
