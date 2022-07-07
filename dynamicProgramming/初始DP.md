@@ -38,7 +38,7 @@ Fibonacci 算 DP 问题吗？我还不懂得如何判断一个问题是不是 DP
 
 DP 问题是有一定的套路的，我需要总结自己的一套思路或者套路。
 
-首先你的判断问题是不是 DP 问题嘛，如果判断不准确那套 DP 的套路不是浪费时间嘛。
+首先你得判断问题是不是 DP 问题，如果判断不准确直接套用 DP 的套路纯属是浪费时间嘛。
 
 1. 判断是否是 DP 问题
    1. 怎么判断是否是 DP 问题呢
@@ -56,6 +56,8 @@ DP 问题是有一定的套路的，我需要总结自己的一套思路或者�
 
 ## 参考
 
-1、[什么是动态规划？动态规划的意义是什么？](https://www.zhihu.com/question/23995189/answer/1160796300)
-2、[你靠哪些讲解学会了曾经怎么也学不会的算法？](https://www.zhihu.com/question/265531567)
-3、[动态规划之武林秘籍](https://mp.weixin.qq.com/s/-DT0b_W1Vqs0tVANhCB4-w)
+1.[什么是动态规划？动态规划的意义是什么？](https://www.zhihu.com/question/23995189/answer/1160796300)
+
+2.[你靠哪些讲解学会了曾经怎么也学不会的算法？](https://www.zhihu.com/question/265531567)
+
+3.[动态规划之武林秘籍](https://mp.weixin.qq.com/s/-DT0b_W1Vqs0tVANhCB4-w)
