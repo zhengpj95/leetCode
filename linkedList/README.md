@@ -129,12 +129,16 @@ const swapPairs = function (head) {
   let dHeap = dummyHead;
   let nextN = null;
 
+  // 两两交换
   while (head && head.next) {
     nextN = head.next;
     // 交换两结点
     head.next = nextN.next;
     nextN.next = head;
 
+    // 这里有点绕
+    // 一轮交换后，把上一轮交换后的第二个节点链接到这一轮交换的第一个节点；
+    // 然后再把 dHeap 移到这一轮交换后的第二个节点，以便链接下一轮交换后的第一个节点
     dHeap.next = nextN;
     dHeap = head;
     head = head.next;
