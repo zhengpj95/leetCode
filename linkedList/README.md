@@ -85,7 +85,7 @@ while (head && head.next) {
 }
 return dummyHead.next;
 
-// 2.直接操作
+// 2.迭代法
 let prev = null;
 while (head) {
   let node = head.next;
@@ -104,14 +104,14 @@ const reverseList = function (head) {
   return p;
 }
 
-// 4.链表[a, b)逆转
+// 4.链表[a, b)逆转。跟2.迭代法一样，只是迭代法中的 while 可以改成 while (head != null)
 const reverseList = function (head, tail) {
   let prev = null;
   while (head !== tail) {
-    let nxt = head.next;
+    let node = head.next;
     head.next = prev;
     prev = head;
-    head = nxt;
+    head = node;
   }
   return prev;
 }
@@ -120,23 +120,24 @@ const reverseList = function (head, tail) {
 ## 6. 链表两两结点交换
 
 ```javascript
+// 返回新链表
 const swapPairs = function (head) {
   if (!head || !head.next) return head;
   let dummyHead = new ListNode(0); //添加头结点
   dummyHead.next = head;
 
-  let curr = head;
-  let head1 = dummyHead;
+  let dHeap = dummyHead;
   let nextN = null;
-  while (curr && curr.next) {
-    nextN = curr.next;
-    // 交换两结点
-    curr.next = nextN.next;
-    nextN.next = curr;
 
-    head1.next = nextN;
-    head1 = curr;
-    curr = curr.next;
+  while (head && head.next) {
+    nextN = head.next;
+    // 交换两结点
+    head.next = nextN.next;
+    nextN.next = head;
+
+    dHeap.next = nextN;
+    dHeap = head;
+    head = head.next;
   }
 
   return dummyHead.next;
