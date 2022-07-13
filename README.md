@@ -16,13 +16,17 @@ my leetcode practice
 
 ### 1. 栈与队列
 
-[Stack & Queue](./summary/stack&queue.md)
+[Stack&Queue概念](./summary/stack&queue.md)
 
 ### 2. 链表
 
-[LinkedList](./summary/linkedlist.md)
+[链表概念](./summary/linkedlist.md)
+[链表应用](./linkedList/README.md)
 
 ### 3. 二叉树
+
+[Binary Tree](./tree/README.md)
+[Trie](./trie/README.md)
 
 ### 4. 二进制
 
@@ -42,19 +46,22 @@ my leetcode practice
 
 ### 1. 双指针
 
-[Two Pointers](./summary/twoPointers.md)
+[Two Pointers](./twoPointers/README.md)
 
 ### 2. 滑动窗口
 
 [Sliding Window](./summary/slidingWindow.md)
+[Sliding Window 应用](./slidingWindow/README.md)
 
 ### 3. 回溯算法
 
 [Backtracking](./summary/backtracking.md)
+[BackTracking应用](./backTracking/README.md)
 
 ### 4. 动态规划
 
-[DP](./dynamicProgramming/README.md)
+[初识DP](./初识DP.md)
+[Dynamic Programming](./dynamicProgramming/README.md)
 
 ### 5. 前缀和思路
 
@@ -63,21 +70,3 @@ my leetcode practice
 ### 6. 二叉堆
 
 [基于二叉堆的优先队列](./heap/priorityQueue.md)
-
-## **四、刷题分类总结**
-
-1. [LinkedList](./linkedList/README.md)
-
-2. [Bit Manipulation](./bitManipulation/README.md)
-
-3. [Binary Tree](./tree/README.md)
-
-4. [Two Pointers](./twoPointers/README.md)
-
-5. [Sliding Window](./slidingWindow/README.md)
-
-6. [BackTracking](./backTracking/README.md)
-
-7. [Trie](./trie/README.md)
-
-8. [DP](./dynamicProgramming/README.md)
