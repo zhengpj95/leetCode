@@ -20,18 +20,16 @@ var buildTree = function (preorder, inorder) {
 		if (preStart > preEnd) {
 			return null;
 		}
-		let rootValue = preorder[preStart]; //前序的第一个就是根结点
-		let index = 0; //中序中找出上面找到的根结点的位置，此位置左边是左子树，右边是右子树
-		for (let i = inStart; i <= inEnd; i++) {
-			if (inorder[i] == rootValue) {
-				index = i;
-				break;
-			}
-		}
+		//前序的第一个就是根结点
+		let rootValue = preorder[preStart];
+		//中序中找出上面找到的根结点的位置，此位置左边是左子树，右边是右子树。index-inStart 就是左子树节点数（根据中序遍历特性，根节点前的节点都是左子树节点）
+		let index = inorder.indexOf(rootValue);
 
 		let root = new TreeNode(rootValue); //根结点
-		root.left = build(preorder, preStart + 1, preStart + (index - inStart), inorder, inStart, index - 1); //左子树
-		root.right = build(preorder, preStart + (index - inStart) + 1, preEnd, inorder, index + 1, inEnd); //右子树
+		// 左子树，先序遍历中 [左边界+1, index-inStart] 的元素就对应了中序遍历中 [左边界, index-1] 的元素
+		root.left = build(preorder, preStart + 1, preStart + (index - inStart), inorder, inStart, index - 1);
+		// 右子树，先序遍历中 [左边界+1+左子树节点数目, 右边界] 的元素就对应了中序遍历中 [index+1, 右边界] 的元素
+		root.right = build(preorder, preStart + (index - inStart) + 1, preEnd, inorder, index + 1, inEnd);
 		return root;
 	};
 
