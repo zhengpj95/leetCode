@@ -8,6 +8,8 @@
 
 对于任意数字，将其变成二进制，再运用 **相同为0，相异为1** 规则，就可以得到异或结果。
 
+[LeetCode 136. Single Number](https://leetcode.com/problems/single-number/)
+
 ```javascript
 // 异或操作，对应的二进制位：相同为0，相异为1
 // 给定一个非空数组，每个元素出现两次，除了一个，找出此数字
@@ -20,7 +22,7 @@ return res;
 
 ## 2. 返回一个数有多少个二进制位 "1"
 
-题目 [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)，
+[LeetCode 191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)
 
 求一个数的二进制有多少个1，对于每一位只要让其与1相与不为0即可，那么如何方便的找出每一位呢，那显示是 2^0, 2^1, 2^2, ... 这样我们就能找出每一位了。
 
