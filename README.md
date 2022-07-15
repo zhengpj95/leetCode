@@ -64,7 +64,7 @@ my leetcode practice
 
 ### 4. 动态规划
 
-[初识DP](./初识DP.md)
+[初识DP](./dynamicProgramming/初识DP.md)
 
 [Dynamic Programming](./dynamicProgramming/README.md)
 
