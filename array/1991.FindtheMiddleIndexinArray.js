@@ -24,3 +24,27 @@ var findMiddleIndex = function (nums) {
 	}
 	return -1;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMiddleIndex2 = function (nums) {
+	let sum = nums.reduce((pre, cur) => {
+		return pre + cur;
+	}, 0);
+
+	let left = 0,
+		right = 0,
+		preSum = 0;
+
+	for (let i = 0; i < nums.length; i++) {
+		preSum += nums[i];
+		left = preSum - nums[i];
+		right = sum - preSum;
+		if (left === right) {
+			return i;
+		}
+	}
+	return -1;
+};
