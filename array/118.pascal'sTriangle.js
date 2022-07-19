@@ -94,5 +94,28 @@ const generate4 = function (numRows) {
 	return triangle;
 };
 
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate5 = function (numRows) {
+	if (numRows == 1) {
+		return [[1]];
+	} else if (numRows == 2) {
+		return [[1], [1, 1]];
+	}
+	let rst = [[1], [1, 1]];
+	for (let i = 3; i <= numRows; i++) {
+		let curRow = [1];
+		let lastRow = rst[rst.length - 1];
+		for (let j = 1; j < lastRow.length; j++) {
+			curRow.push(lastRow[j] + lastRow[j - 1]);
+		}
+		curRow.push(1);
+		rst.push(curRow);
+	}
+	return rst;
+};
+
 console.log(generate3(5));
 console.log(generate4(3));
